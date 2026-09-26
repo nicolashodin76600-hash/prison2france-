@@ -1,774 +1,512 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#111318">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#10151c">
+<title>PRISON DE FRANCE</title>
 
-  <title>PRISON DE FRANCE</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-    }
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:#0b1016;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-      background: #0d0f13;
-      color: white;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+body{
+  overflow-x:hidden;
+}
 
-    body {
-      overflow-x: hidden;
-    }
+/* FOND */
+.app{
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 15% 20%,rgba(0,190,255,.25),transparent 28%),
+    radial-gradient(circle at 90% 35%,rgba(255,30,90,.25),transparent 30%),
+    radial-gradient(circle at 50% 85%,rgba(150,30,255,.22),transparent 35%),
+    linear-gradient(180deg,#121923 0%,#090d13 100%);
+}
 
-    .app {
-      min-height: 100vh;
-      position: relative;
-      overflow: hidden;
-      padding-bottom: 90px;
-    }
+.wall{
+  position:absolute;
+  inset:0;
+  opacity:.55;
+  pointer-events:none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 46px,
+      rgba(255,255,255,.035) 47px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      transparent 72px,
+      rgba(255,255,255,.025) 73px
+    );
+}
 
-    /* ===== FOND PRISON / GRAFFITI ===== */
+/* GRAFFITI */
+.graffiti{
+  position:absolute;
+  top:75px;
+  left:-20px;
+  right:-20px;
+  text-align:center;
+  font-weight:1000;
+  font-size:42px;
+  line-height:.9;
+  transform:rotate(-4deg);
+  letter-spacing:-3px;
+  color:#16d7ff;
+  text-shadow:
+    3px 3px 0 #ff174f,
+    -2px -2px 0 #ffd21c,
+    5px 6px 0 #702cff,
+    0 0 20px rgba(0,210,255,.4);
+  pointer-events:none;
+}
 
-    .background {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 15% 25%, rgba(0,140,255,.35), transparent 25%),
-        radial-gradient(circle at 85% 35%, rgba(255,0,90,.30), transparent 25%),
-        radial-gradient(circle at 50% 75%, rgba(255,190,0,.18), transparent 30%),
-        #151820;
-    }
+.graffiti small{
+  display:block;
+  font-size:14px;
+  letter-spacing:4px;
+  color:#fff;
+  text-shadow:2px 2px #ff174f;
+  margin-top:12px;
+}
 
-    .wall {
-      position: absolute;
-      inset: 0;
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.025) 0px,
-          rgba(255,255,255,.025) 2px,
-          transparent 2px,
-          transparent 14px
-        );
-    }
+/* BARBELÉS */
+.wire{
+  position:absolute;
+  top:155px;
+  left:-10%;
+  width:120%;
+  height:18px;
+  border-top:3px solid #b9c2ca;
+  transform:rotate(-5deg);
+  opacity:.55;
+}
 
-    .graffiti {
-      position: absolute;
-      font-weight: 900;
-      font-style: italic;
-      letter-spacing: -3px;
-      text-transform: uppercase;
-      opacity: .28;
-      transform: rotate(-8deg);
-      text-shadow:
-        4px 4px 0 #000,
-        -2px -2px 0 rgba(255,255,255,.2);
-    }
+.wire:after{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:-7px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 35px,
+      #c8d0d7 36px 39px,
+      transparent 40px 70px
+    );
+}
 
-    .g1 {
-      top: 110px;
-      left: -20px;
-      font-size: 48px;
-      color: #00aaff;
-    }
+/* MIRADOR */
+.tower{
+  position:absolute;
+  right:7%;
+  top:195px;
+  width:70px;
+  height:170px;
+  opacity:.45;
+}
 
-    .g2 {
-      top: 270px;
-      right: -25px;
-      font-size: 52px;
-      color: #ff1744;
-      transform: rotate(8deg);
-    }
+.tower .box{
+  width:70px;
+  height:55px;
+  border:4px solid #8995a2;
+  background:#202a34;
+  transform:skew(-8deg);
+}
 
-    .g3 {
-      bottom: 160px;
-      left: -10px;
-      font-size: 55px;
-      color: #ffd000;
-      transform: rotate(-5deg);
-    }
+.tower .light{
+  width:22px;
+  height:12px;
+  background:#ffdf55;
+  margin:17px auto;
+  border-radius:10px;
+  box-shadow:0 0 20px #ffe66d;
+}
 
-    .tower {
-      position: absolute;
-      right: 15px;
-      top: 150px;
-      width: 75px;
-      height: 130px;
-      background: #090b0e;
-      border: 3px solid #30343d;
-      transform: skewY(-4deg);
-    }
+.tower .legs{
+  height:115px;
+  border-left:5px solid #8995a2;
+  border-right:5px solid #8995a2;
+  margin:auto;
+  width:42px;
+}
 
-    .tower::before {
-      content: "";
-      position: absolute;
-      top: -20px;
-      left: -12px;
-      width: 95px;
-      height: 20px;
-      background: #090b0e;
-      border: 2px solid #30343d;
-    }
+/* CONTENU */
+.content{
+  position:relative;
+  z-index:2;
+  padding:205px 16px 105px;
+}
 
-    .tower::after {
-      content: "";
-      position: absolute;
-      top: 25px;
-      left: 22px;
-      width: 28px;
-      height: 25px;
-      background: #111827;
-      border: 3px solid #555b66;
-    }
+.brand{
+  margin-bottom:18px;
+}
 
-    .barbed {
-      position: absolute;
-      top: 125px;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: #b8bec8;
-      transform: rotate(-2deg);
-      box-shadow: 0 30px 0 rgba(184,190,200,.35);
-    }
+.brand .tag{
+  display:inline-block;
+  background:#16d7ff;
+  color:#071018;
+  font-weight:900;
+  padding:7px 11px;
+  border-radius:8px;
+  font-size:12px;
+  letter-spacing:1px;
+  box-shadow:4px 4px 0 #ff174f;
+}
 
-    .barbed::before,
-    .barbed::after {
-      content: "✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦";
-      position: absolute;
-      color: #d8dce2;
-      font-size: 17px;
-      letter-spacing: 16px;
-    }
+h1{
+  font-size:27px;
+  margin:13px 0 5px;
+}
 
-    .barbed::before {
-      top: -13px;
-      left: 0;
-    }
+.subtitle{
+  color:#aeb9c6;
+  font-size:14px;
+  line-height:1.45;
+  max-width:370px;
+}
 
-    .barbed::after {
-      top: 17px;
-      left: 35px;
-      opacity: .35;
-    }
+/* CARTES */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:22px;
+}
 
-    .yard {
-      position: absolute;
-      left: -10%;
-      right: -10%;
-      bottom: 0;
-      height: 34%;
-      background:
-        linear-gradient(145deg, transparent 48%, rgba(255,255,255,.04) 49%, transparent 51%),
-        linear-gradient(35deg, transparent 48%, rgba(255,255,255,.03) 49%, transparent 51%),
-        #111419;
-      border-top: 2px solid #292e37;
-    }
+.card{
+  min-height:142px;
+  padding:16px 13px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  background:rgba(25,33,43,.88);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.28),
+    inset 0 1px rgba(255,255,255,.05);
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.15s;
+}
 
-    /* ===== CONTENU ===== */
+.card:active{
+  transform:scale(.97);
+}
 
-    .content {
-      position: relative;
-      z-index: 2;
-      padding: 18px 16px 20px;
-      max-width: 600px;
-      margin: auto;
-    }
+.card:after{
+  content:"";
+  position:absolute;
+  width:70px;
+  height:70px;
+  right:-25px;
+  bottom:-25px;
+  border-radius:50%;
+  background:rgba(0,210,255,.12);
+}
 
-    .top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
-    }
+.icon{
+  font-size:29px;
+  margin-bottom:13px;
+}
 
-    .brand-small {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      opacity: .8;
-    }
+.card strong{
+  display:block;
+  font-size:15px;
+  line-height:1.15;
+}
 
-    .flag {
-      font-size: 20px;
-    }
+.card span{
+  display:block;
+  color:#8996a5;
+  font-size:11px;
+  margin-top:7px;
+  line-height:1.3;
+}
 
-    .hero {
-      background: rgba(10,12,16,.82);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 24px;
-      padding: 24px 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,.45);
-      backdrop-filter: blur(12px);
-      margin-bottom: 18px;
-    }
+.card.main{
+  grid-column:1 / -1;
+  min-height:110px;
+  background:
+    linear-gradient(135deg,rgba(0,190,255,.16),rgba(255,20,80,.10)),
+    rgba(25,33,43,.94);
+  border-color:rgba(0,205,255,.22);
+}
 
-    .graffiti-title {
-      font-size: 34px;
-      line-height: .95;
-      font-weight: 1000;
-      letter-spacing: -2px;
-      text-transform: uppercase;
-      color: white;
-      text-shadow:
-        3px 3px 0 #ff1744,
-        -2px -2px 0 #00aaff;
-      transform: rotate(-2deg);
-      margin-bottom: 15px;
-    }
+/* SECTIONS */
+.section{
+  margin-top:18px;
+  padding:17px;
+  border-radius:18px;
+  background:rgba(20,27,36,.9);
+  border:1px solid rgba(255,255,255,.07);
+}
 
-    .subtitle {
-      font-size: 14px;
-      line-height: 1.5;
-      color: #d5d8df;
-    }
+.section-title{
+  font-weight:900;
+  margin-bottom:8px;
+}
 
-    .welcome {
-      margin-top: 13px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
+.section-text{
+  color:#9ca8b5;
+  font-size:12px;
+  line-height:1.5;
+}
 
-    /* ===== CARTES ===== */
+/* BAS */
+.bottom{
+  position:fixed;
+  z-index:20;
+  left:10px;
+  right:10px;
+  bottom:10px;
+  height:70px;
+  border-radius:22px;
+  background:rgba(20,27,36,.96);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 15px 35px rgba(0,0,0,.45);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  align-items:center;
+  backdrop-filter:blur(15px);
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+.nav{
+  text-align:center;
+  color:#778493;
+  font-size:10px;
+  cursor:pointer;
+}
 
-    .card {
-      min-height: 125px;
-      padding: 17px;
-      border-radius: 20px;
-      background: rgba(13,15,20,.90);
-      border: 1px solid rgba(255,255,255,.11);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      transition: transform .15s ease;
-      cursor: pointer;
-    }
+.nav .nicon{
+  font-size:20px;
+  display:block;
+  margin-bottom:4px;
+}
 
-    .card:active {
-      transform: scale(.96);
-    }
+.nav.active{
+  color:#fff;
+}
 
-    .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, #148cff, #7b2cff);
-    }
+.nav.active .nicon{
+  filter:drop-shadow(0 0 7px #16d7ff);
+}
 
-    .card:nth-child(2) .icon {
-      background: linear-gradient(135deg, #ff1744, #ff7a00);
-    }
+/* PETITS ÉLÉMENTS */
+.dot{
+  display:inline-block;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#31e981;
+  box-shadow:0 0 10px #31e981;
+  margin-right:6px;
+}
 
-    .card:nth-child(3) .icon {
-      background: linear-gradient(135deg, #ffd000, #ff6b00);
-    }
+@media(max-width:360px){
+  .graffiti{
+    font-size:35px;
+  }
 
-    .card:nth-child(4) .icon {
-      background: linear-gradient(135deg, #00c853, #00aaff);
-    }
+  .grid{
+    gap:8px;
+  }
 
-    .card:nth-child(5) .icon {
-      background: linear-gradient(135deg, #a100ff, #ff1744);
-    }
-
-    .card:nth-child(6) .icon {
-      background: linear-gradient(135deg, #555, #222);
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-
-    .card-text {
-      font-size: 11px;
-      line-height: 1.35;
-      color: #aeb4bf;
-    }
-
-    /* ===== NOTICE ===== */
-
-    .notice {
-      margin-top: 14px;
-      padding: 15px;
-      border-radius: 17px;
-      background: rgba(255,190,0,.10);
-      border: 1px solid rgba(255,190,0,.22);
-      color: #e5e7eb;
-      font-size: 11px;
-      line-height: 1.45;
-    }
-
-    /* ===== NAVIGATION ===== */
-
-    .bottom-nav {
-      position: fixed;
-      z-index: 20;
-      left: 10px;
-      right: 10px;
-      bottom: calc(10px + env(safe-area-inset-bottom));
-      height: 66px;
-      background: rgba(11,13,17,.94);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
-      backdrop-filter: blur(18px);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 15px 40px rgba(0,0,0,.55);
-    }
-
-    .nav-item {
-      border: 0;
-      background: transparent;
-      color: #858b96;
-      font-size: 10px;
-      font-weight: 700;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .nav-item span {
-      display: block;
-      font-size: 20px;
-      margin-bottom: 3px;
-    }
-
-    .nav-item.active {
-      color: white;
-    }
-
-    .nav-item.active span {
-      filter: drop-shadow(0 0 8px #00aaff);
-    }
-
-    /* ===== PAGES ===== */
-
-    .page {
-      display: none;
-    }
-
-    .page.active {
-      display: block;
-    }
-
-    .page-title {
-      font-size: 27px;
-      font-weight: 900;
-      margin: 10px 0 18px;
-    }
-
-    .search {
-      width: 100%;
-      padding: 15px;
-      border-radius: 15px;
-      border: 1px solid #343943;
-      background: rgba(10,12,16,.9);
-      color: white;
-      outline: none;
-      margin-bottom: 14px;
-      font-size: 14px;
-    }
-
-    .search::placeholder {
-      color: #777e89;
-    }
-
-    .info-box {
-      background: rgba(12,14,18,.92);
-      border: 1px solid rgba(255,255,255,.1);
-      padding: 18px;
-      border-radius: 18px;
-      margin-bottom: 12px;
-    }
-
-    .info-box h3 {
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-
-    .info-box p {
-      margin: 0;
-      color: #b9bec7;
-      font-size: 12px;
-      line-height: 1.5;
-    }
-
-    .back-home {
-      margin-top: 15px;
-      padding: 14px;
-      width: 100%;
-      border: 0;
-      border-radius: 14px;
-      background: #168cff;
-      color: white;
-      font-weight: 800;
-    }
-  </style>
+  .card{
+    padding:13px 10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <div class="background">
-    <div class="wall"></div>
-    <div class="graffiti g1">LIBERTÉ</div>
-    <div class="graffiti g2">FRANCE</div>
-    <div class="graffiti g3">JUSTICE</div>
-    <div class="tower"></div>
-    <div class="barbed"></div>
-    <div class="yard"></div>
+  <div class="wall"></div>
+
+  <div class="graffiti">
+    PRISON DE FRANCE
+    <small>PRISON2FRANCE 🇫🇷 ⛓</small>
+  </div>
+
+  <div class="wire"></div>
+
+  <div class="tower">
+    <div class="box">
+      <div class="light"></div>
+    </div>
+    <div class="legs"></div>
   </div>
 
   <main class="content">
 
-    <!-- ACCUEIL -->
-    <section id="home" class="page active">
+    <div class="brand">
+      <span class="tag">PRISON2FRANCE</span>
 
-      <div class="top">
-        <div class="brand-small">PRISON2FRANCE</div>
-        <div class="flag">🇫🇷</div>
+      <h1>Bienvenue 👋</h1>
+
+      <div class="subtitle">
+        Retrouvez les informations utiles concernant les établissements
+        pénitentiaires et effectuez vos demandes en toute confidentialité.
+      </div>
+    </div>
+
+    <div class="grid">
+
+      <div class="card main" onclick="openSection('search')">
+        <div class="icon">🔎</div>
+        <strong>RECHERCHER UN PROCHE</strong>
+        <span>Effectuer une demande de recherche ou transmettre des informations.</span>
       </div>
 
-      <div class="hero">
-        <div class="graffiti-title">
-          PRISON<br>DE FRANCE
-        </div>
-
-        <div class="subtitle">
-          Informations, établissements et accompagnement
-          pour les proches de personnes détenues.
-        </div>
-
-        <div class="welcome">
-          Bienvenue dans votre espace d'information.
-        </div>
+      <div class="card" onclick="openSection('prisons')">
+        <div class="icon">🏢</div>
+        <strong>ÉTABLISSEMENTS</strong>
+        <span>Annuaire des établissements pénitentiaires.</span>
       </div>
 
-      <div class="grid">
-
-        <div class="card" onclick="openPage('search')">
-          <div class="icon">🔎</div>
-          <div class="card-title">RECHERCHER UN PROCHE</div>
-          <div class="card-text">
-            Faire une demande de recherche et transmettre les informations utiles.
-          </div>
-        </div>
-
-        <div class="card" onclick="openPage('establishments')">
-          <div class="icon">🏢</div>
-          <div class="card-title">ANNUAIRE</div>
-          <div class="card-text">
-            Consulter les établissements pénitentiaires.
-          </div>
-        </div>
-
-        <div class="card" onclick="openPage('request')">
-          <div class="icon">📝</div>
-          <div class="card-title">FAIRE UNE DEMANDE</div>
-          <div class="card-text">
-            Ouvrir un dossier privé auprès de l'équipe.
-          </div>
-        </div>
-
-        <div class="card" onclick="openPage('messages')">
-          <div class="icon">💬</div>
-          <div class="card-title">MESSAGES</div>
-          <div class="card-text">
-            Suivre vos échanges et demandes.
-          </div>
-        </div>
-
-        <div class="card" onclick="openPage('info')">
-          <div class="icon">ℹ️</div>
-          <div class="card-title">INFORMATIONS</div>
-          <div class="card-text">
-            Démarches et informations pratiques.
-          </div>
-        </div>
-
-        <div class="card" onclick="openPage('account')">
-          <div class="icon">👤</div>
-          <div class="card-title">MON COMPTE</div>
-          <div class="card-text">
-            Votre espace personnel.
-          </div>
-        </div>
-
+      <div class="card" onclick="openSection('request')">
+        <div class="icon">📝</div>
+        <strong>FAIRE UNE DEMANDE</strong>
+        <span>Créer un dossier confidentiel.</span>
       </div>
 
-      <div class="notice">
-        🔐 <b>Confidentialité :</b> les informations transmises
-        dans le cadre d'une demande sont destinées à l'équipe
-        et ne sont pas affichées publiquement.
+      <div class="card" onclick="openSection('messages')">
+        <div class="icon">💬</div>
+        <strong>MESSAGES</strong>
+        <span>Échanger avec l'équipe.</span>
       </div>
 
-    </section>
-
-
-    <!-- RECHERCHE -->
-    <section id="search" class="page">
-
-      <div class="page-title">🔎 Rechercher un proche</div>
-
-      <div class="info-box">
-        <h3>Recherche confidentielle</h3>
-        <p>
-          Vous pourrez transmettre les informations dont vous disposez
-          afin que l'équipe puisse examiner votre demande.
-        </p>
+      <div class="card" onclick="openSection('info')">
+        <div class="icon">ℹ️</div>
+        <strong>INFOS & DÉMARCHES</strong>
+        <span>Informations pratiques et démarches.</span>
       </div>
 
-      <input
-        class="search"
-        type="text"
-        placeholder="Nom ou prénom"
-      >
-
-      <button class="back-home" onclick="openPage('request')">
-        Faire une demande
-      </button>
-
-    </section>
-
-
-    <!-- ETABLISSEMENTS -->
-    <section id="establishments" class="page">
-
-      <div class="page-title">🏢 Établissements</div>
-
-      <input
-        class="search"
-        type="text"
-        placeholder="Rechercher un établissement"
-        oninput="filterEstablishments(this.value)"
-      >
-
-      <div id="establishmentList">
-
-        <div class="info-box establishment">
-          <h3>Annuaire pénitentiaire</h3>
-          <p>
-            La base complète des établissements sera intégrée ici :
-            maisons d'arrêt, centres pénitentiaires, centres de détention,
-            maisons centrales et autres structures.
-          </p>
-        </div>
-
-        <div class="info-box establishment">
-          <h3>Informations pratiques</h3>
-          <p>
-            Adresse, téléphone, catégorie de l'établissement et
-            informations utiles seront affichés ici.
-          </p>
-        </div>
-
+      <div class="card" onclick="openSection('account')">
+        <div class="icon">👤</div>
+        <strong>MON COMPTE</strong>
+        <span>Voir vos demandes et dossiers.</span>
       </div>
 
-    </section>
+    </div>
 
-
-    <!-- DEMANDE -->
-    <section id="request" class="page">
-
-      <div class="page-title">📝 Faire une demande</div>
-
-      <div class="info-box">
-        <h3>Votre demande sera privée</h3>
-        <p>
-          Le formulaire complet sera relié à la base de données et
-          permettra de créer automatiquement un numéro de dossier.
-        </p>
+    <div class="section">
+      <div class="section-title">
+        <span class="dot"></span>
+        Service confidentiel
       </div>
 
-      <div class="info-box">
-        <h3>📂 Exemple</h3>
-        <p>
-          Dossier #PF-000184<br>
-          Statut : nouvelle demande
-        </p>
+      <div class="section-text">
+        Les informations transmises dans le cadre d'une demande sont
+        destinées au traitement du dossier et ne sont pas affichées
+        publiquement.
       </div>
-
-      <button class="back-home" onclick="alert('Le formulaire sécurisé sera connecté au serveur dans la prochaine étape.')">
-        Commencer ma demande
-      </button>
-
-    </section>
-
-
-    <!-- MESSAGES -->
-    <section id="messages" class="page">
-
-      <div class="page-title">💬 Messages</div>
-
-      <div class="info-box">
-        <h3>Aucun message</h3>
-        <p>
-          Vos échanges avec l'équipe apparaîtront ici une fois
-          votre demande enregistrée.
-        </p>
-      </div>
-
-    </section>
-
-
-    <!-- INFORMATIONS -->
-    <section id="info" class="page">
-
-      <div class="page-title">ℹ️ Informations</div>
-
-      <div class="info-box">
-        <h3>Informations & démarches</h3>
-        <p>
-          Cette rubrique présentera les informations pratiques et
-          les démarches officielles concernant les personnes détenues.
-        </p>
-      </div>
-
-      <div class="info-box">
-        <h3>⚠️ Important</h3>
-        <p>
-          Les informations fournies dans l'application ne remplacent
-          pas les services officiels de l'administration pénitentiaire
-          ou les conseils d'un professionnel du droit.
-        </p>
-      </div>
-
-    </section>
-
-
-    <!-- COMPTE -->
-    <section id="account" class="page">
-
-      <div class="page-title">👤 Mon compte</div>
-
-      <div class="info-box">
-        <h3>Votre espace</h3>
-        <p>
-          Votre identité Telegram sera associée à votre espace
-          lorsque le système sécurisé sera connecté.
-        </p>
-      </div>
-
-    </section>
+    </div>
 
   </main>
 
+  <nav class="bottom">
 
-  <!-- NAVIGATION -->
-  <nav class="bottom-nav">
-
-    <button class="nav-item active" onclick="openPage('home', this)">
-      <span>🏠</span>
+    <div class="nav active" onclick="home()">
+      <span class="nicon">⌂</span>
       Accueil
-    </button>
+    </div>
 
-    <button class="nav-item" onclick="openPage('search', this)">
-      <span>🔎</span>
+    <div class="nav" onclick="openSection('search')">
+      <span class="nicon">⌕</span>
       Rechercher
-    </button>
+    </div>
 
-    <button class="nav-item" onclick="openPage('establishments', this)">
-      <span>🏢</span>
+    <div class="nav" onclick="openSection('prisons')">
+      <span class="nicon">▣</span>
       Établissements
-    </button>
+    </div>
 
-    <button class="nav-item" onclick="openPage('messages', this)">
-      <span>💬</span>
+    <div class="nav" onclick="openSection('messages')">
+      <span class="nicon">▢</span>
       Messages
-    </button>
+    </div>
 
-    <button class="nav-item" onclick="openPage('account', this)">
-      <span>👤</span>
+    <div class="nav" onclick="openSection('account')">
+      <span class="nicon">♙</span>
       Compte
-    </button>
+    </div>
 
   </nav>
 
 </div>
 
-
 <script>
-  // Connexion à Telegram Mini Apps
-  const tg = window.Telegram && window.Telegram.WebApp;
+const tg = window.Telegram && window.Telegram.WebApp;
 
-  if (tg) {
-    tg.ready();
-    tg.expand();
-    tg.setHeaderColor("#111318");
-    tg.setBackgroundColor("#0d0f13");
+if(tg){
+  tg.ready();
+  tg.expand();
+
+  if(tg.setHeaderColor){
+    tg.setHeaderColor("#10151c");
   }
 
-  // Navigation
-  function openPage(pageId, button) {
-
-    document.querySelectorAll(".page").forEach(page => {
-      page.classList.remove("active");
-    });
-
-    const page = document.getElementById(pageId);
-
-    if (page) {
-      page.classList.add("active");
-    }
-
-    document.querySelectorAll(".nav-item").forEach(item => {
-      item.classList.remove("active");
-    });
-
-    if (button) {
-      button.classList.add("active");
-    } else {
-      const nav = document.querySelector(
-        '.nav-item[onclick*="' + pageId + '"]'
-      );
-
-      if (nav) {
-        nav.classList.add("active");
-      }
-    }
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+  if(tg.setBackgroundColor){
+    tg.setBackgroundColor("#0b1016");
   }
+}
 
-  // Recherche établissement
-  function filterEstablishments(value) {
+function openSection(section){
 
-    const search = value.toLowerCase();
+  const names = {
+    search:"🔎 Rechercher un proche",
+    prisons:"🏢 Annuaire des établissements",
+    request:"📝 Faire une demande",
+    messages:"💬 Messages",
+    info:"ℹ️ Informations & démarches",
+    account:"👤 Mon compte"
+  };
 
-    document.querySelectorAll(".establishment").forEach(item => {
+  const title = names[section] || "PRISON2FRANCE";
 
-      const text = item.innerText.toLowerCase();
+  if(tg && tg.showPopup){
 
-      item.style.display =
-        text.includes(search) ? "block" : "none";
-
+    tg.showPopup({
+      title:title,
+      message:"Cette section sera activée dans la prochaine étape.",
+      buttons:[
+        {id:"ok",type:"default",text:"OK"}
+      ]
     });
+
+  }else{
+    alert(title + "\n\nCette section sera activée dans la prochaine étape.");
   }
+}
+
+function home(){
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
 </script>
 
 </body>
