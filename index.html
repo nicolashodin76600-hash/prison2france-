@@ -17,241 +17,482 @@ html{
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  color:#fff;
-  background:
-    radial-gradient(circle at top,#303030 0,#151515 38%,#080808 100%);
+  font-family:Arial,Helvetica,sans-serif;
+  color:white;
+  background:#05060a;
+}
+
+/* ===== FOND ===== */
+
+.site{
   min-height:100vh;
-}
-
-/* BARBELÉS DÉCORATIFS */
-body::before,
-body::after{
-  content:"";
-  position:fixed;
-  left:-10%;
-  width:120%;
-  height:35px;
-  pointer-events:none;
-  opacity:.28;
-  z-index:5;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      transparent 0,
-      transparent 18px,
-      #aaa 19px,
-      #aaa 21px,
-      transparent 22px,
-      transparent 38px
-    );
-}
-
-body::before{
-  top:105px;
-  transform:rotate(-2deg);
-}
-
-body::after{
-  bottom:45px;
-  transform:rotate(2deg);
-}
-
-/* HEADER */
-
-header{
   position:relative;
-  text-align:center;
-  padding:28px 18px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 25%,#3b0712 0%,#17070d 28%,#08090f 65%,#030408 100%);
+}
+
+.site:before{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
     linear-gradient(
-      rgba(10,10,10,.92),
-      rgba(25,25,25,.92)
+      90deg,
+      rgba(0,0,0,.65),
+      transparent 35%,
+      transparent 65%,
+      rgba(0,0,0,.65)
     );
-  border-bottom:2px solid #444;
-  overflow:hidden;
+  pointer-events:none;
 }
 
-header h1{
-  margin:0;
-  font-size:29px;
+/* ===== TEXTE ARRIERE PLAN ===== */
+
+.background-title{
+  position:absolute;
+  top:75px;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  text-align:center;
+  font-size:clamp(38px,10vw,100px);
+  font-weight:1000;
+  letter-spacing:4px;
+  color:rgba(255,255,255,.055);
+  text-transform:uppercase;
+  white-space:nowrap;
+  pointer-events:none;
+}
+
+/* ===== PRISON CARICATUREE ===== */
+
+.prison{
+  position:absolute;
+  left:50%;
+  bottom:-25px;
+  transform:translateX(-50%);
+  width:min(1000px,120%);
+  height:430px;
+  opacity:.42;
+  pointer-events:none;
+}
+
+.main-building{
+  position:absolute;
+  bottom:0;
+  left:18%;
+  right:18%;
+  height:280px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #171923 0 48px,
+      #101219 48px 52px
+    );
+  border:3px solid #303341;
+  box-shadow:
+    inset 0 0 50px #000,
+    0 0 35px #000;
+}
+
+.roof{
+  position:absolute;
+  top:-35px;
+  left:-15px;
+  right:-15px;
+  height:38px;
+  background:#292c38;
+  border:2px solid #444856;
+}
+
+.window-row{
+  position:absolute;
+  top:45px;
+  left:25px;
+  right:25px;
+  display:flex;
+  justify-content:space-around;
+}
+
+.window{
+  width:23px;
+  height:55px;
+  background:#030406;
+  border:2px solid #4a4d59;
+  box-shadow:0 0 12px #111;
+}
+
+.door{
+  position:absolute;
+  bottom:0;
+  left:45%;
+  width:10%;
+  height:100px;
+  background:#050608;
+  border:3px solid #454957;
+}
+
+/* miradors */
+
+.tower{
+  position:absolute;
+  bottom:0;
+  width:130px;
+  height:340px;
+  background:#181a23;
+  border:3px solid #3b3e4b;
+}
+
+.tower.left{
+  left:3%;
+}
+
+.tower.right{
+  right:3%;
+}
+
+.tower-roof{
+  position:absolute;
+  top:-38px;
+  left:-15px;
+  width:160px;
+  height:35px;
+  background:#292c38;
+  transform:skewX(-15deg);
+}
+
+.tower-window{
+  position:absolute;
+  top:70px;
+  left:35px;
+  width:60px;
+  height:80px;
+  background:#030406;
+  border:3px solid #555967;
+}
+
+.light{
+  position:absolute;
+  top:90px;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,#fff 4%,rgba(255,255,255,.2) 22%,transparent 70%);
+  filter:blur(2px);
+  opacity:.35;
+}
+
+.light.left{
+  left:5%;
+}
+
+.light.right{
+  right:5%;
+}
+
+/* ===== BARBELES ===== */
+
+.barbed{
+  position:absolute;
+  width:120%;
+  left:-10%;
+  height:3px;
+  background:#aeb4c2;
+  box-shadow:0 0 8px #fff;
+  opacity:.5;
+}
+
+.barbed.one{
+  top:150px;
+  transform:rotate(7deg);
+}
+
+.barbed.two{
+  top:215px;
+  transform:rotate(-5deg);
+}
+
+.barbed:before,
+.barbed:after{
+  content:"✦   ✦   ✦   ✦   ✦   ✦   ✦";
+  position:absolute;
+  width:100%;
+  top:-11px;
+  color:#d9dce4;
+  font-size:16px;
+  letter-spacing:35px;
+}
+
+/* ===== SURVEILLANTS ===== */
+
+.guard{
+  position:absolute;
+  bottom:0;
+  width:34px;
+  height:125px;
+  background:#050608;
+  border-radius:20px 20px 5px 5px;
+}
+
+.guard:before{
+  content:"";
+  position:absolute;
+  top:-30px;
+  left:5px;
+  width:25px;
+  height:30px;
+  border-radius:50%;
+  background:#050608;
+}
+
+.guard:after{
+  content:"";
+  position:absolute;
+  top:40px;
+  left:-22px;
+  width:78px;
+  height:7px;
+  background:#050608;
+  box-shadow:0 70px 0 #050608;
+}
+
+.guard.one{
+  left:12%;
+}
+
+.guard.two{
+  right:12%;
+}
+
+/* ===== CONTENU ===== */
+
+.content{
+  position:relative;
+  z-index:10;
+  max-width:900px;
+  margin:auto;
+  padding:30px 18px 60px;
+}
+
+/* ===== HEADER ===== */
+
+header{
+  text-align:center;
+  padding:18px 5px 28px;
+}
+
+.logo{
+  font-size:clamp(30px,8vw,58px);
+  font-weight:1000;
   letter-spacing:1px;
+  text-shadow:
+    0 0 8px white,
+    0 0 18px #ff1744,
+    0 0 38px #ff1744;
 }
 
-header p{
-  margin:9px 0 0;
-  color:#bbb;
+.subtitle{
+  color:#d0d5df;
+  margin-top:8px;
   font-size:14px;
 }
 
-/* GRILLE */
-
-.prison-grid{
-  position:absolute;
-  inset:0;
-  opacity:.08;
-  background-image:
-    linear-gradient(90deg,#fff 1px,transparent 1px),
-    linear-gradient(#fff 1px,transparent 1px);
-  background-size:35px 35px;
-}
-
-/* CONTENU */
-
-main{
-  width:100%;
-  max-width:760px;
-  margin:auto;
-  padding:25px 16px 70px;
-  position:relative;
-  z-index:2;
-}
-
-/* PAGE ACCUEIL */
-
-.hero{
-  position:relative;
-  text-align:center;
-  padding:55px 20px 35px;
-  min-height:330px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-
 .badge{
-  display:inline-block;
-  padding:7px 13px;
-  border:1px solid #555;
-  border-radius:30px;
-  color:#ccc;
-  font-size:12px;
-  margin-bottom:18px;
-  background:#151515;
-}
-
-.hero h2{
-  font-size:34px;
-  margin:0 0 15px;
-  line-height:1.1;
-}
-
-.hero p{
-  color:#ccc;
-  line-height:1.6;
-  max-width:600px;
-  margin:0 auto 25px;
-}
-
-/* BOUTONS */
-
-.buttons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  width:100%;
-  margin-top:15px;
-}
-
-button{
-  border:0;
-  border-radius:10px;
-  padding:16px 14px;
-  font-size:15px;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.2s;
-}
-
-button:active{
-  transform:scale(.97);
-}
-
-.primary{
-  background:#fff;
-  color:#111;
-}
-
-.dark-button{
-  background:#252525;
-  color:#fff;
-  border:1px solid #444;
-}
-
-.red-button{
-  background:#3a1717;
-  color:#fff;
-  border:1px solid #633;
-}
-
-/* CARTES */
-
-.card{
-  background:rgba(24,24,24,.95);
-  border:1px solid #363636;
-  border-radius:16px;
-  padding:22px;
-  margin-bottom:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,.25);
-}
-
-.card h2{
-  margin-top:0;
-}
-
-.card p{
-  color:#ccc;
-  line-height:1.6;
-}
-
-.option{
-  display:flex;
+  display:inline-flex;
   align-items:center;
-  gap:14px;
-  background:#101010;
-  border:1px solid #333;
-  border-radius:12px;
-  padding:17px;
-  margin:10px 0;
-  cursor:pointer;
+  gap:8px;
+  margin-top:14px;
+  padding:8px 13px;
+  border-radius:30px;
+  border:1px solid #353b4a;
+  background:#0d111b;
+  color:#aeb6c8;
+  font-size:12px;
 }
 
-.option:hover{
-  border-color:#777;
+.green-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#25ff88;
+  box-shadow:0 0 12px #25ff88;
+}
+
+/* ===== BOUTONS ===== */
+
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.menu button{
+  position:relative;
+  min-height:125px;
+  border-radius:20px;
+  border:1px solid #343a4b;
+  background:
+    linear-gradient(145deg,rgba(28,30,42,.94),rgba(7,9,15,.94));
+  color:white;
+  cursor:pointer;
+  padding:16px 10px;
+  transition:.2s;
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.08),
+    0 8px 30px rgba(0,0,0,.35);
+}
+
+.menu button:hover{
+  transform:translateY(-4px);
+  border-color:#ff1744;
+  box-shadow:
+    0 0 18px rgba(255,23,68,.35),
+    0 0 45px rgba(33,150,243,.15);
 }
 
 .icon{
-  font-size:25px;
-  width:35px;
-  text-align:center;
+  display:block;
+  font-size:32px;
+  margin-bottom:10px;
+  filter:drop-shadow(0 0 8px #ff1744);
 }
 
-/* FORMULAIRE */
+.title{
+  display:block;
+  font-size:15px;
+  font-weight:900;
+}
 
-.form-card{
-  background:#191919;
+.desc{
+  display:block;
+  color:#9098aa;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.menu .large{
+  grid-column:1 / -1;
+  min-height:90px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  text-align:left;
+  gap:14px;
+  padding-left:22px;
+  background:
+    linear-gradient(
+      100deg,
+      rgba(88,5,20,.9),
+      rgba(11,17,30,.95)
+    );
+}
+
+/* ===== PANELS ===== */
+
+.panel{
+  display:none;
+  margin-top:18px;
   padding:22px;
-  border-radius:16px;
-  border:1px solid #363636;
+  border-radius:22px;
+  border:1px solid #343a4b;
+  background:rgba(8,10,17,.94);
+  box-shadow:0 15px 50px rgba(0,0,0,.5);
+}
+
+.panel.active{
+  display:block;
+  animation:appear .25s ease;
+}
+
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.panel h2{
+  margin-top:0;
+  font-size:24px;
+}
+
+.panel p{
+  color:#b8bfce;
+  line-height:1.6;
+  font-size:14px;
+}
+
+.back{
+  border:1px solid #343a4b;
+  background:#151923;
+  color:white;
+  padding:11px 16px;
+  border-radius:12px;
+  cursor:pointer;
+  margin-bottom:16px;
+}
+
+.option{
+  display:block;
+  width:100%;
+  text-decoration:none;
+  color:white;
+  padding:15px;
+  margin-top:10px;
+  border-radius:14px;
+  border:1px solid #303747;
+  background:#11141d;
+}
+
+.option:hover{
+  border-color:#00e5ff;
+  box-shadow:0 0 18px rgba(0,229,255,.18);
+}
+
+.info{
+  padding:15px;
+  margin:10px 0;
+  border-radius:14px;
+  background:#0d1018;
+  border:1px solid #292f3d;
+}
+
+.info b{
+  display:block;
+  margin-bottom:5px;
+}
+
+.info span{
+  color:#969eaf;
+  font-size:13px;
+}
+
+/* ===== FORMULAIRE ===== */
+
+.form-group{
+  margin-top:15px;
 }
 
 label{
   display:block;
-  margin-top:17px;
   margin-bottom:7px;
   font-weight:bold;
+  font-size:14px;
 }
 
 input,
-textarea,
-select{
+textarea{
   width:100%;
-  padding:14px;
-  border-radius:9px;
-  border:1px solid #444;
-  background:#0e0e0e;
-  color:#fff;
+  border:1px solid #343a4b;
+  border-radius:11px;
+  background:#080a10;
+  color:white;
+  padding:13px;
   font-size:16px;
 }
 
@@ -260,489 +501,530 @@ textarea{
   resize:vertical;
 }
 
-.small{
-  color:#999;
-  font-size:13px;
-  line-height:1.5;
+.submit{
+  width:100%;
   margin-top:18px;
-}
-
-/* FAQ */
-
-.faq{
-  border-top:1px solid #333;
-}
-
-.faq-item{
-  padding:17px 0;
-  border-bottom:1px solid #333;
-}
-
-.faq-question{
-  font-weight:bold;
-}
-
-.faq-answer{
-  color:#aaa;
-  margin-top:8px;
-  line-height:1.5;
-}
-
-/* NAVIGATION */
-
-.back{
-  margin-bottom:18px;
-  background:#292929;
+  padding:16px;
+  border:0;
+  border-radius:13px;
   color:white;
-  border:1px solid #444;
+  font-weight:900;
+  font-size:15px;
+  cursor:pointer;
+  background:linear-gradient(90deg,#ff1744,#d5003f);
+  box-shadow:0 0 25px rgba(255,23,68,.3);
 }
 
-/* PIED DE PAGE */
+/* ===== FOOTER ===== */
 
 footer{
   text-align:center;
-  padding:25px 15px;
-  color:#777;
-  font-size:12px;
-  border-top:1px solid #222;
+  color:#697184;
+  font-size:11px;
+  padding:25px 5px 5px;
 }
 
-/* MOBILE */
+/* ===== MOBILE ===== */
 
-@media(max-width:560px){
+@media(max-width:500px){
 
-  .buttons{
-    grid-template-columns:1fr;
+  .content{
+    padding-left:13px;
+    padding-right:13px;
   }
 
-  .hero h2{
-    font-size:29px;
+  .menu{
+    gap:9px;
   }
 
-  header h1{
-    font-size:25px;
+  .menu button{
+    min-height:112px;
+    border-radius:17px;
   }
-}
 
-.hidden{
-  display:none !important;
+  .background-title{
+    font-size:42px;
+    top:90px;
+  }
+
+  .prison{
+    transform:translateX(-50%) scale(.8);
+    transform-origin:bottom center;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<div class="site">
 
-  <div class="prison-grid"></div>
+  <div class="background-title">
+    PRISON DE FRANCE
+  </div>
 
-  <h1>PRISON2FRANCE 🇫🇷⛓</h1>
+  <!-- Décor prison -->
+  <div class="prison">
 
-  <p>Informations et aide aux familles</p>
+    <div class="light left"></div>
+    <div class="light right"></div>
 
-</header>
+    <div class="tower left">
+      <div class="tower-roof"></div>
+      <div class="tower-window"></div>
+    </div>
 
-<main>
+    <div class="tower right">
+      <div class="tower-roof"></div>
+      <div class="tower-window"></div>
+    </div>
 
-<!-- ACCUEIL -->
+    <div class="main-building">
+      <div class="roof"></div>
 
-<section id="homePage">
+      <div class="window-row">
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+        <div class="window"></div>
+      </div>
 
-  <div class="hero">
+      <div class="door"></div>
+    </div>
 
-    <span class="badge">
-      SERVICE D'INFORMATION
-    </span>
+    <div class="guard one"></div>
+    <div class="guard two"></div>
 
-    <h2>
-      Retrouver un proche détenu
-    </h2>
+  </div>
 
-    <p>
-      Un espace d'information et d'orientation
-      destiné aux familles et aux proches de personnes
-      détenues en France.
-    </p>
+  <div class="barbed one"></div>
+  <div class="barbed two"></div>
 
-    <div class="buttons">
+  <div class="content">
 
-      <button
-        class="primary"
-        type="button"
-        onclick="showPage('searchPage')">
-        🔎 RETROUVER UN PROCHE
+    <header>
+
+      <div class="logo">
+        PRISON2FRANCE 🇫🇷⛓
+      </div>
+
+      <div class="subtitle">
+        Informations • orientation • aide aux familles
+      </div>
+
+      <div class="badge">
+        <span class="green-dot"></span>
+        Portail d'information
+      </div>
+
+    </header>
+
+
+    <!-- MENU PRINCIPAL -->
+
+    <div id="menu" class="menu">
+
+      <button onclick="openPanel('proche')">
+        <span class="icon">🔎</span>
+        <span class="title">Retrouver un proche</span>
+        <span class="desc">Faire une demande</span>
       </button>
 
-      <button
-        class="dark-button"
-        type="button"
-        onclick="showPage('infoPage')">
-        ℹ️ INFORMATIONS
+      <button onclick="openPanel('prisons')">
+        <span class="icon">🏢</span>
+        <span class="title">Prisons & centres</span>
+        <span class="desc">Annuaire national</span>
       </button>
 
-      <button
-        class="dark-button"
-        type="button"
-        onclick="showPage('faqPage')">
-        ❓ QUESTIONS FRÉQUENTES
+      <button onclick="openPanel('infos')">
+        <span class="icon">📚</span>
+        <span class="title">Informations</span>
+        <span class="desc">Démarches utiles</span>
       </button>
 
-      <button
-        class="dark-button"
-        type="button"
-        onclick="showPage('contactPage')">
-        ✉️ CONTACT
+      <button onclick="openPanel('faq')">
+        <span class="icon">❓</span>
+        <span class="title">Questions fréquentes</span>
+        <span class="desc">Les réponses utiles</span>
+      </button>
+
+      <button onclick="openPanel('reseaux')">
+        <span class="icon">📱</span>
+        <span class="title">Nos réseaux</span>
+        <span class="desc">Nous suivre</span>
+      </button>
+
+      <button onclick="openPanel('contact')">
+        <span class="icon">📩</span>
+        <span class="title">Nous contacter</span>
+        <span class="desc">Écrire à l'équipe</span>
+      </button>
+
+      <button class="large" onclick="openPanel('actus')">
+        <span class="icon">📰</span>
+
+        <span>
+          <span class="title">
+            Actualités & informations
+          </span>
+
+          <span class="desc">
+            Retrouvez les contenus publiés sur PRISON2FRANCE
+          </span>
+        </span>
       </button>
 
     </div>
 
-  </div>
 
-</section>
+    <!-- RETROUVER UN PROCHE -->
 
+    <section id="proche" class="panel">
 
-<!-- RECHERCHE -->
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
 
-<section id="searchPage" class="hidden">
+      <h2>🔎 Retrouver un proche</h2>
 
-  <button
-    class="back"
-    type="button"
-    onclick="showPage('homePage')">
-    ← Retour
-  </button>
+      <p>
+        Vous recherchez un proche détenu en France ?
+        Remplissez les informations nécessaires ci-dessous.
+      </p>
 
-  <form
-    class="form-card"
-    action="https://formsubmit.co/Nicolashodin76600@gmail.com"
-    method="POST">
+      <form
+        action="https://formsubmit.co/Nicolashodin76600@gmail.com"
+        method="POST"
+      >
 
-    <input
-      type="hidden"
-      name="_subject"
-      value="📩 Nouvelle demande PRISON2FRANCE">
+        <input
+          type="hidden"
+          name="_subject"
+          value="📩 Nouvelle demande PRISON2FRANCE"
+        >
 
-    <input
-      type="hidden"
-      name="_captcha"
-      value="false">
+        <div class="form-group">
+          <label>Nom du détenu *</label>
+          <input
+            type="text"
+            name="Nom du détenu"
+            required
+          >
+        </div>
 
-    <h2>🔎 Recherche d'un proche</h2>
+        <div class="form-group">
+          <label>Prénom *</label>
+          <input
+            type="text"
+            name="Prénom"
+            required
+          >
+        </div>
 
-    <p class="small">
-      Remplissez uniquement les informations nécessaires
-      à votre demande.
-    </p>
+        <div class="form-group">
+          <label>Surnom / pseudonyme</label>
+          <input
+            type="text"
+            name="Surnom"
+          >
+        </div>
 
-    <label for="nom">
-      Nom du détenu *
-    </label>
+        <div class="form-group">
+          <label>Établissement pénitentiaire</label>
+          <input
+            type="text"
+            name="Établissement"
+          >
+        </div>
 
-    <input
-      id="nom"
-      name="Nom du détenu"
-      type="text"
-      required>
+        <div class="form-group">
+          <label>Pourquoi recherchez-vous cette personne ? *</label>
+          <textarea
+            name="Motif"
+            required
+          ></textarea>
+        </div>
 
+        <div class="form-group">
+          <label>Informations concernant la situation</label>
+          <textarea
+            name="Informations"
+          ></textarea>
+        </div>
 
-    <label for="prenom">
-      Prénom *
-    </label>
+        <div class="form-group">
+          <label>Votre contact *</label>
+          <input
+            type="text"
+            name="Contact"
+            required
+          >
+        </div>
 
-    <input
-      id="prenom"
-      name="Prénom"
-      type="text"
-      required>
+        <button class="submit" type="submit">
+          ENVOYER LA DEMANDE
+        </button>
 
+      </form>
 
-    <label for="surnom">
-      Surnom / pseudonyme
-    </label>
-
-    <input
-      id="surnom"
-      name="Surnom / pseudonyme"
-      type="text">
-
-
-    <label for="etablissement">
-      Établissement pénitentiaire
-    </label>
-
-    <input
-      id="etablissement"
-      name="Établissement pénitentiaire"
-      type="text">
-
-
-    <label for="raison">
-      Pourquoi recherchez-vous cette personne ? *
-    </label>
-
-    <textarea
-      id="raison"
-      name="Pourquoi recherchez-vous cette personne"
-      required></textarea>
-
-
-    <label for="situation">
-      Informations concernant la situation
-    </label>
-
-    <textarea
-      id="situation"
-      name="Informations concernant la situation"></textarea>
+    </section>
 
 
-    <label for="contact">
-      Votre contact *
-    </label>
+    <!-- PRISONS -->
 
-    <input
-      id="contact"
-      name="Contact"
-      type="text"
-      required>
+    <section id="prisons" class="panel">
 
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
 
-    <p class="small">
-      Évitez de transmettre des informations sensibles
-      qui ne sont pas nécessaires à votre demande.
-    </p>
+      <h2>🏢 Prisons & centres de détention</h2>
 
-    <button
-      class="primary"
-      type="submit"
-      style="width:100%;margin-top:15px;">
-      ENVOYER LA DEMANDE
-    </button>
+      <p>
+        Retrouvez les établissements pénitentiaires
+        grâce aux ressources officielles.
+      </p>
 
-  </form>
+      <a
+        class="option"
+        href="https://www.justice.gouv.fr/annuaire/etablissements-services-penitentiaires"
+        target="_blank"
+        rel="noopener"
+      >
+        🏛️ Ouvrir l'annuaire officiel
+      </a>
 
-</section>
+      <a
+        class="option"
+        href="https://www.justice.gouv.fr/annuaire/recherche"
+        target="_blank"
+        rel="noopener"
+      >
+        🔍 Rechercher un établissement
+      </a>
 
-
-<!-- INFORMATIONS -->
-
-<section id="infoPage" class="hidden">
-
-  <button
-    class="back"
-    type="button"
-    onclick="showPage('homePage')">
-    ← Retour
-  </button>
-
-  <div class="card">
-
-    <h2>ℹ️ Informations</h2>
-
-    <p>
-      PRISON2FRANCE propose un espace permettant aux
-      familles et aux proches de transmettre une demande
-      concernant une personne détenue en France.
-    </p>
-
-  </div>
+    </section>
 
 
-  <div class="card">
+    <!-- INFORMATIONS -->
 
-    <div
-      class="option"
-      onclick="showPage('searchPage')">
+    <section id="infos" class="panel">
 
-      <span class="icon">🔎</span>
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
 
-      <div>
-        <strong>Rechercher un proche</strong><br>
-        <span class="small">
-          Transmettre une demande.
+      <h2>📚 Informations utiles</h2>
+
+      <div class="info">
+        <b>🏢 Types d'établissements</b>
+        <span>
+          Maisons d'arrêt, centres de détention,
+          centres pénitentiaires, maisons centrales,
+          centres de semi-liberté, etc.
         </span>
       </div>
 
-    </div>
-
-
-    <div
-      class="option"
-      onclick="showPage('faqPage')">
-
-      <span class="icon">❓</span>
-
-      <div>
-        <strong>Questions fréquentes</strong><br>
-        <span class="small">
-          Consulter les réponses aux questions courantes.
+      <div class="info">
+        <b>📄 Démarches</b>
+        <span>
+          Cette rubrique peut accueillir des explications
+          sur les démarches destinées aux familles.
         </span>
       </div>
 
-    </div>
+      <div class="info">
+        <b>⚠️ Informations vérifiées</b>
+        <span>
+          Pour les informations officielles, privilégiez
+          toujours les sources institutionnelles.
+        </span>
+      </div>
+
+    </section>
+
+
+    <!-- FAQ -->
+
+    <section id="faq" class="panel">
+
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
+
+      <h2>❓ Questions fréquentes</h2>
+
+      <div class="info">
+        <b>Comment retrouver un établissement ?</b>
+        <span>
+          Utilisez l'annuaire officiel depuis la rubrique
+          « Prisons & centres ».
+        </span>
+      </div>
+
+      <div class="info">
+        <b>Comment vous contacter ?</b>
+        <span>
+          Utilisez la rubrique « Nous contacter »
+          ou nos réseaux sociaux.
+        </span>
+      </div>
+
+      <div class="info">
+        <b>Les informations sont-elles officielles ?</b>
+        <span>
+          PRISON2FRANCE peut orienter vers des sources
+          officielles, mais ne remplace pas l'administration.
+        </span>
+      </div>
+
+    </section>
+
+
+    <!-- RESEAUX -->
+
+    <section id="reseaux" class="panel">
+
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
+
+      <h2>📱 Nos réseaux sociaux</h2>
+
+      <p>
+        Retrouvez ici les différents comptes officiels
+        de PRISON2FRANCE.
+      </p>
+
+      <!-- Remplace # par tes vrais liens -->
+
+      <a class="option" href="#">
+        👻 Snapchat
+      </a>
+
+      <a class="option" href="#">
+        📸 Instagram
+      </a>
+
+      <a class="option" href="#">
+        🎵 TikTok
+      </a>
+
+      <a class="option" href="#">
+        💬 Autre réseau
+      </a>
+
+    </section>
+
+
+    <!-- CONTACT -->
+
+    <section id="contact" class="panel">
+
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
+
+      <h2>📩 Nous contacter</h2>
+
+      <p>
+        Pour une question générale ou pour obtenir
+        davantage d'informations, utilisez le formulaire
+        de contact ou les réseaux sociaux.
+      </p>
+
+      <button
+        class="submit"
+        onclick="openPanel('proche')"
+      >
+        OUVRIR LE FORMULAIRE
+      </button>
+
+    </section>
+
+
+    <!-- ACTUALITES -->
+
+    <section id="actus" class="panel">
+
+      <button class="back" onclick="home()">
+        ← Retour
+      </button>
+
+      <h2>📰 Actualités & informations</h2>
+
+      <p>
+        Cette rubrique pourra accueillir les publications
+        et informations de PRISON2FRANCE.
+      </p>
+
+      <div class="info">
+        <b>📢 Publications</b>
+        <span>
+          Ajoute ici tes contenus, annonces et informations
+          vérifiées.
+        </span>
+      </div>
+
+      <div class="info">
+        <b>📅 Informations datées</b>
+        <span>
+          Pense à indiquer la date et la source des informations
+          importantes.
+        </span>
+      </div>
+
+    </section>
+
+
+    <footer>
+      PRISON2FRANCE 🇫🇷⛓
+      <br>
+      Informations et orientation
+    </footer>
 
   </div>
-
-</section>
-
-
-<!-- FAQ -->
-
-<section id="faqPage" class="hidden">
-
-  <button
-    class="back"
-    type="button"
-    onclick="showPage('homePage')">
-    ← Retour
-  </button>
-
-  <div class="card">
-
-    <h2>❓ Questions fréquentes</h2>
-
-    <div class="faq">
-
-      <div class="faq-item">
-
-        <div class="faq-question">
-          Comment transmettre une demande ?
-        </div>
-
-        <div class="faq-answer">
-          Utilisez le bouton « Retrouver un proche »
-          et remplissez le formulaire.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <div class="faq-question">
-          Quelles informations fournir ?
-        </div>
-
-        <div class="faq-answer">
-          Fournissez uniquement les informations utiles
-          à votre demande.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <div class="faq-question">
-          Puis-je demander des informations sur un proche ?
-        </div>
-
-        <div class="faq-answer">
-          Vous pouvez transmettre une demande. Les
-          informations pouvant être communiquées dépendent
-          notamment des règles applicables et de votre
-          situation.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <div class="faq-question">
-          Mes informations sont-elles publiques ?
-        </div>
-
-        <div class="faq-answer">
-          Les informations saisies dans le formulaire ne
-          sont pas affichées sur cette page. Évitez toutefois
-          de transmettre des données sensibles inutiles.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section id="contactPage" class="hidden">
-
-  <button
-    class="back"
-    type="button"
-    onclick="showPage('homePage')">
-    ← Retour
-  </button>
-
-  <div class="card">
-
-    <h2>✉️ Contact</h2>
-
-    <p>
-      Pour toute demande concernant le fonctionnement
-      du site ou une difficulté avec le formulaire,
-      vous pouvez utiliser le formulaire de contact.
-    </p>
-
-    <button
-      class="primary"
-      type="button"
-      style="width:100%;"
-      onclick="showPage('searchPage')">
-
-      OUVRIR LE FORMULAIRE
-
-    </button>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-  PRISON2FRANCE 🇫🇷⛓
-
-  <br><br>
-
-  Informations destinées aux familles et aux proches.
-
-</footer>
+</div>
 
 
 <script>
 
-function showPage(pageId){
+const menu = document.getElementById("menu");
 
-  const pages = [
-    "homePage",
-    "searchPage",
-    "infoPage",
-    "faqPage",
-    "contactPage"
-  ];
+const panels = document.querySelectorAll(".panel");
 
-  pages.forEach(function(id){
 
-    const page = document.getElementById(id);
+function openPanel(id){
 
-    if(page){
-      page.classList.add("hidden");
-    }
+  menu.style.display = "none";
 
+  panels.forEach(panel=>{
+    panel.classList.remove("active");
   });
 
-  const selectedPage = document.getElementById(pageId);
+  const selected = document.getElementById(id);
 
-  if(selectedPage){
-    selectedPage.classList.remove("hidden");
+  if(selected){
+    selected.classList.add("active");
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
   }
+}
+
+
+function home(){
+
+  panels.forEach(panel=>{
+    panel.classList.remove("active");
+  });
+
+  menu.style.display = "grid";
 
   window.scrollTo({
     top:0,
