@@ -1,111 +1,122 @@
-<button class="back" onclick="home()">
-        ← Retour
-      </button>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101827">
+<title>PRISON2FRANCE — Mini App</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#101827;color:#fff}
+body{min-height:100dvh;overflow-x:hidden}
+.app{min-height:100dvh;position:relative;background:
+linear-gradient(180deg,rgba(4,10,20,.12),rgba(3,7,15,.68)),
+url("./prison2france-bg.png") center top/cover fixed no-repeat}
+.overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0 30%,rgba(2,5,10,.55) 60%,#07101d 100%);pointer-events:none}
+.content{position:relative;z-index:2;max-width:760px;margin:auto;padding:14px 14px 28px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.logo{font-weight:1000;font-size:21px;letter-spacing:-.8px;text-shadow:0 2px 8px #000}
+.logo b{color:#ff2638}
+.badge{font-size:10px;font-weight:800;padding:7px 10px;border-radius:99px;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
+.hero{padding:42px 4px 24px;text-shadow:0 3px 12px #000}
+.hero small{font-weight:900;letter-spacing:2px}
+.hero h1{font-size:clamp(36px,11vw,62px);line-height:.86;margin:8px 0;font-weight:1000;letter-spacing:-3px}
+.hero h1 span{color:#ff2638}
+.hero p{font-size:13px;line-height:1.5;max-width:480px;margin:12px 0 0}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.card{border:1px solid rgba(255,255,255,.32);border-radius:19px;min-height:92px;padding:14px;color:#fff;text-align:left;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.28);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);transition:transform .12s,border-color .12s}
+.card:active{transform:scale(.97)}
+.card .icon{font-size:25px}.card strong{display:block;font-size:15px;margin-top:7px}.card em{display:block;font-style:normal;font-size:10px;margin-top:4px;opacity:.88}
+.blue{background:linear-gradient(135deg,rgba(0,72,255,.88),rgba(0,153,255,.48))}
+.red{background:linear-gradient(135deg,rgba(220,0,30,.88),rgba(255,70,30,.48))}
+.green{background:linear-gradient(135deg,rgba(0,145,55,.88),rgba(100,205,20,.43))}
+.orange{background:linear-gradient(135deg,rgba(230,115,0,.9),rgba(255,190,0,.45))}
+.purple{background:linear-gradient(135deg,rgba(130,0,210,.88),rgba(230,30,210,.45))}
+.cyan{background:linear-gradient(135deg,rgba(0,120,150,.9),rgba(0,210,230,.45))}
+.panel{display:none;margin-top:12px;padding:18px;border-radius:18px;background:rgba(6,10,18,.9);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(12px)}
+.panel.show{display:block}
+.panel h2{margin:0 0 7px;font-size:20px}.panel p{margin:0;color:#d7dbe2;font-size:13px;line-height:1.55}
+.close{margin-top:13px;border:0;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
+.cta{margin-top:12px;border-radius:17px;padding:15px;background:linear-gradient(90deg,#111827,#24344e);border:1px solid rgba(255,255,255,.25);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.cta strong{font-size:14px}.cta span{font-size:10px;color:#b9c3d0;display:block;margin-top:4px}
+.cta button{border:0;border-radius:12px;padding:11px 14px;font-weight:900;background:#fff;color:#111;cursor:pointer}
+.nav{position:sticky;bottom:10px;margin-top:14px;padding:9px;border-radius:18px;background:rgba(3,8,15,.88);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(14px);display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.nav button{background:transparent;border:0;color:#cbd2dc;padding:9px 4px;border-radius:12px;font-size:10px;cursor:pointer}.nav button.active{color:#4ecbff;background:rgba(255,255,255,.08)}
+@media(min-width:600px){.content{padding:20px}.grid{grid-template-columns:repeat(3,1fr)}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="overlay"></div>
+<main class="content">
+<header class="top">
+<div class="logo">PRISON<span style="color:#ff2638">2</span>FRANCE</div>
+<div class="badge">✈️ MINI APP TELEGRAM</div>
+</header>
 
-      <h2>📩 Nous contacter</h2>
+<section class="hero">
+<small>🇫🇷 BIENVENUE SUR</small>
+<h1>PRISON<span>2</span><br>FRANCE</h1>
+<p>L’actualité, les informations et la communauté autour du monde carcéral.</p>
+</section>
 
-      <p>
-        Pour une question générale ou pour obtenir
-        davantage d'informations, utilisez le formulaire
-        de contact ou les réseaux sociaux.
-      </p>
+<section class="grid" aria-label="Menu principal">
+<button class="card blue" data-page="familles"><span class="icon">👥</span><strong>FAMILLES</strong><em>Ressources & soutien</em></button>
+<button class="card red" data-page="actus"><span class="icon">📰</span><strong>ACTUALITÉS</strong><em>Infos & contenus</em></button>
+<button class="card green" data-page="etablissements"><span class="icon">🏛️</span><strong>ÉTABLISSEMENTS</strong><em>Prisons & infos utiles</em></button>
+<button class="card orange" data-page="guides"><span class="icon">📖</span><strong>GUIDES</strong><em>Démarches & conseils</em></button>
+<button class="card purple" data-page="communaute"><span class="icon">💬</span><strong>COMMUNAUTÉ</strong><em>Échanger & s’entraider</em></button>
+<button class="card cyan" data-page="contact"><span class="icon">✈️</span><strong>CONTACT</strong><em>Rejoindre sur Telegram</em></button>
+</section>
 
-      <button
-        class="submit"
-        onclick="openPanel('proche')"
-      >
-        OUVRIR LE FORMULAIRE
-      </button>
+<section id="panel" class="panel" aria-live="polite"></section>
 
-    </section>
+<section class="cta">
+<div><strong>📣 RESTE CONNECTÉ !</strong><span>Ne manque aucune actualité de PRISON2FRANCE.</span></div>
+<button id="topBtn" type="button">ACCUEIL ↑</button>
+</section>
 
-
-    <!-- ACTUALITES -->
-
-    <section id="actus" class="panel">
-
-      <button class="back" onclick="home()">
-        ← Retour
-      </button>
-
-      <h2>📰 Actualités & informations</h2>
-
-      <p>
-        Cette rubrique pourra accueillir les publications
-        et informations de PRISON2FRANCE.
-      </p>
-
-      <div class="info">
-        <b>📢 Publications</b>
-        <span>
-          Ajoute ici tes contenus, annonces et informations
-          vérifiées.
-        </span>
-      </div>
-
-      <div class="info">
-        <b>📅 Informations datées</b>
-        <span>
-          Pense à indiquer la date et la source des informations
-          importantes.
-        </span>
-      </div>
-
-    </section>
-
-
-    <footer>
-      PRISON2FRANCE 🇫🇷⛓
-      <br>
-      Informations et orientation
-    </footer>
-
-  </div>
+<nav class="nav" aria-label="Navigation">
+<button class="active" data-nav="home">⌂<br>Accueil</button>
+<button data-nav="actus">▤<br>Actus</button>
+<button data-nav="communaute">♟<br>Communauté</button>
+<button data-nav="contact">⚙<br>Contact</button>
+</nav>
+</main>
 </div>
 
-
 <script>
-
-const menu = document.getElementById("menu");
-
-const panels = document.querySelectorAll(".panel");
-
-
-function openPanel(id){
-
-  menu.style.display = "none";
-
-  panels.forEach(panel=>{
-    panel.classList.remove("active");
-  });
-
-  const selected = document.getElementById(id);
-
-  if(selected){
-    selected.classList.add("active");
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-  }
+(function(){
+const tg=window.Telegram?.WebApp;
+if(tg){tg.ready();tg.expand();}
+const panel=document.getElementById("panel");
+const pages={
+familles:["FAMILLES","Espace consacré aux ressources générales destinées aux proches de personnes détenues. Les informations pourront être enrichies dans la version connectée."],
+actus:["ACTUALITÉS","Fil d’actualités de PRISON2FRANCE. Cette rubrique est prête à recevoir tes contenus et publications."],
+etablissements:["ÉTABLISSEMENTS","Répertoire d’informations publiques et vérifiées sur les établissements pénitentiaires."],
+guides:["GUIDES","Guides pratiques pour expliquer clairement les démarches et informations utiles."],
+communaute:["COMMUNAUTÉ","Espace communautaire pour échanger, partager des informations et créer du lien."],
+contact:["CONTACT","Espace de contact et d’accès Telegram. Tu pourras relier cette zone à ton bot ou canal."]
+};
+function openPage(key){
+const d=pages[key]; if(!d)return;
+panel.innerHTML="<h2>"+d[0]+"</h2><p>"+d[1]+"</p><button class='close' type='button' id='close'>Fermer</button>";
+panel.classList.add("show");
+document.getElementById("close").onclick=()=>panel.classList.remove("show");
+panel.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
-
-
-function home(){
-
-  panels.forEach(panel=>{
-    panel.classList.remove("active");
-  });
-
-  menu.style.display = "grid";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-}
-
+document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>openPage(b.dataset.page)));
+document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>{
+document.querySelectorAll("[data-nav]").forEach(x=>x.classList.remove("active"));
+b.classList.add("active");
+const k=b.dataset.nav;
+if(k==="home"){panel.classList.remove("show");window.scrollTo({top:0,behavior:"smooth"});}
+else openPage(k);
+}));
+document.getElementById("topBtn").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
+})();
 </script>
-
 </body>
 </html>
