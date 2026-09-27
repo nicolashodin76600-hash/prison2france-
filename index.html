@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#10151c">
-<title>PRISON DE FRANCE</title>
-
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>PRISON2FRANCE</title>
 
 <style>
 *{
@@ -18,7 +16,7 @@ html,body{
   margin:0;
   padding:0;
   min-height:100%;
-  background:#0b1016;
+  background:#080b10;
   color:#fff;
   font-family:Arial,Helvetica,sans-serif;
 }
@@ -27,47 +25,45 @@ body{
   overflow-x:hidden;
 }
 
-/* FOND */
 .app{
   min-height:100vh;
   position:relative;
   overflow:hidden;
   background:
-    radial-gradient(circle at 15% 20%,rgba(0,190,255,.25),transparent 28%),
-    radial-gradient(circle at 90% 35%,rgba(255,30,90,.25),transparent 30%),
-    radial-gradient(circle at 50% 85%,rgba(150,30,255,.22),transparent 35%),
-    linear-gradient(180deg,#121923 0%,#090d13 100%);
+    radial-gradient(circle at 10% 15%,rgba(0,210,255,.22),transparent 27%),
+    radial-gradient(circle at 90% 30%,rgba(255,20,80,.20),transparent 28%),
+    radial-gradient(circle at 50% 90%,rgba(140,30,255,.18),transparent 35%),
+    linear-gradient(180deg,#121923 0%,#080b10 100%);
 }
 
 .wall{
   position:absolute;
   inset:0;
-  opacity:.55;
   pointer-events:none;
+  opacity:.5;
   background:
     repeating-linear-gradient(
       0deg,
-      transparent 0px,
-      transparent 46px,
-      rgba(255,255,255,.035) 47px
+      transparent 0,
+      transparent 45px,
+      rgba(255,255,255,.035) 46px
     ),
     repeating-linear-gradient(
       90deg,
-      transparent 0px,
-      transparent 72px,
-      rgba(255,255,255,.025) 73px
+      transparent 0,
+      transparent 70px,
+      rgba(255,255,255,.025) 71px
     );
 }
 
-/* GRAFFITI */
 .graffiti{
   position:absolute;
-  top:75px;
-  left:-20px;
-  right:-20px;
+  top:58px;
+  left:-15px;
+  right:-15px;
   text-align:center;
   font-weight:1000;
-  font-size:42px;
+  font-size:39px;
   line-height:.9;
   transform:rotate(-4deg);
   letter-spacing:-3px;
@@ -75,94 +71,78 @@ body{
   text-shadow:
     3px 3px 0 #ff174f,
     -2px -2px 0 #ffd21c,
-    5px 6px 0 #702cff,
-    0 0 20px rgba(0,210,255,.4);
+    5px 6px 0 #702cff;
   pointer-events:none;
 }
 
 .graffiti small{
   display:block;
-  font-size:14px;
+  font-size:13px;
   letter-spacing:4px;
   color:#fff;
   text-shadow:2px 2px #ff174f;
   margin-top:12px;
 }
 
-/* BARBELÉS */
 .wire{
   position:absolute;
-  top:155px;
+  top:145px;
   left:-10%;
   width:120%;
   height:18px;
-  border-top:3px solid #b9c2ca;
+  border-top:3px solid #c5cbd1;
   transform:rotate(-5deg);
-  opacity:.55;
+  opacity:.5;
+  pointer-events:none;
 }
 
-.wire:after{
-  content:"";
-  position:absolute;
-  width:100%;
-  height:100%;
-  top:-7px;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      transparent 0 35px,
-      #c8d0d7 36px 39px,
-      transparent 40px 70px
-    );
-}
-
-/* MIRADOR */
 .tower{
   position:absolute;
   right:7%;
-  top:195px;
-  width:70px;
-  height:170px;
-  opacity:.45;
+  top:175px;
+  width:65px;
+  height:160px;
+  opacity:.4;
+  pointer-events:none;
 }
 
 .tower .box{
-  width:70px;
-  height:55px;
+  width:65px;
+  height:50px;
   border:4px solid #8995a2;
   background:#202a34;
-  transform:skew(-8deg);
 }
 
 .tower .light{
-  width:22px;
-  height:12px;
-  background:#ffdf55;
-  margin:17px auto;
+  width:20px;
+  height:11px;
+  background:#ffe66d;
+  margin:15px auto;
   border-radius:10px;
-  box-shadow:0 0 20px #ffe66d;
+  box-shadow:0 0 18px #ffe66d;
 }
 
 .tower .legs{
-  height:115px;
+  height:110px;
   border-left:5px solid #8995a2;
   border-right:5px solid #8995a2;
   margin:auto;
-  width:42px;
+  width:40px;
 }
 
-/* CONTENU */
 .content{
   position:relative;
   z-index:2;
-  padding:205px 16px 105px;
+  padding:190px 16px 100px;
+  max-width:650px;
+  margin:auto;
 }
 
 .brand{
   margin-bottom:18px;
 }
 
-.brand .tag{
+.tag{
   display:inline-block;
   background:#16d7ff;
   color:#071018;
@@ -183,10 +163,8 @@ h1{
   color:#aeb9c6;
   font-size:14px;
   line-height:1.45;
-  max-width:370px;
 }
 
-/* CARTES */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -199,12 +177,8 @@ h1{
   padding:16px 13px;
   border:1px solid rgba(255,255,255,.08);
   border-radius:18px;
-  background:rgba(25,33,43,.88);
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.28),
-    inset 0 1px rgba(255,255,255,.05);
-  position:relative;
-  overflow:hidden;
+  background:rgba(25,33,43,.92);
+  box-shadow:0 10px 30px rgba(0,0,0,.28);
   cursor:pointer;
   transition:.15s;
 }
@@ -213,15 +187,13 @@ h1{
   transform:scale(.97);
 }
 
-.card:after{
-  content:"";
-  position:absolute;
-  width:70px;
-  height:70px;
-  right:-25px;
-  bottom:-25px;
-  border-radius:50%;
-  background:rgba(0,210,255,.12);
+.card.main{
+  grid-column:1 / -1;
+  min-height:110px;
+  background:
+    linear-gradient(135deg,rgba(0,190,255,.16),rgba(255,20,80,.10)),
+    rgba(25,33,43,.95);
+  border-color:rgba(0,205,255,.25);
 }
 
 .icon{
@@ -232,7 +204,6 @@ h1{
 .card strong{
   display:block;
   font-size:15px;
-  line-height:1.15;
 }
 
 .card span{
@@ -243,21 +214,11 @@ h1{
   line-height:1.3;
 }
 
-.card.main{
-  grid-column:1 / -1;
-  min-height:110px;
-  background:
-    linear-gradient(135deg,rgba(0,190,255,.16),rgba(255,20,80,.10)),
-    rgba(25,33,43,.94);
-  border-color:rgba(0,205,255,.22);
-}
-
-/* SECTIONS */
 .section{
   margin-top:18px;
   padding:17px;
   border-radius:18px;
-  background:rgba(20,27,36,.9);
+  background:rgba(20,27,36,.92);
   border:1px solid rgba(255,255,255,.07);
 }
 
@@ -272,7 +233,135 @@ h1{
   line-height:1.5;
 }
 
-/* BAS */
+.form-page{
+  display:none;
+}
+
+.form-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.back{
+  border:0;
+  background:#202a34;
+  color:white;
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.form-title{
+  font-size:22px;
+  font-weight:900;
+}
+
+.form-intro{
+  color:#9ca8b5;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:18px;
+}
+
+.form-card{
+  padding:18px;
+  border-radius:20px;
+  background:rgba(19,26,35,.96);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+label{
+  display:block;
+  font-size:12px;
+  font-weight:800;
+  margin:0 0 7px;
+}
+
+input,textarea{
+  width:100%;
+  border:1px solid #35404d;
+  border-radius:12px;
+  background:#0d131a;
+  color:white;
+  padding:13px;
+  font-size:16px;
+  outline:none;
+  margin-bottom:15px;
+}
+
+input:focus,textarea:focus{
+  border-color:#16d7ff;
+}
+
+textarea{
+  min-height:105px;
+  resize:vertical;
+}
+
+.file-box{
+  padding:14px;
+  border:1px dashed #465361;
+  border-radius:14px;
+  background:#0d131a;
+  margin-bottom:15px;
+}
+
+.file-box input{
+  border:0;
+  padding:0;
+  margin:0;
+  background:transparent;
+}
+
+.privacy{
+  padding:14px;
+  border-radius:14px;
+  background:rgba(0,190,255,.08);
+  border-left:3px solid #16d7ff;
+  margin-bottom:17px;
+}
+
+.privacy strong{
+  display:block;
+  margin-bottom:5px;
+  font-size:13px;
+}
+
+.privacy span{
+  color:#aab5c1;
+  font-size:11px;
+  line-height:1.45;
+}
+
+.submit{
+  width:100%;
+  border:0;
+  border-radius:14px;
+  padding:15px;
+  background:linear-gradient(90deg,#16d7ff,#702cff,#ff174f);
+  color:white;
+  font-weight:900;
+  font-size:14px;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(0,0,0,.35);
+}
+
+.notice{
+  display:none;
+  margin-top:15px;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(49,233,129,.10);
+  border:1px solid rgba(49,233,129,.3);
+  color:#caffdf;
+  font-size:12px;
+  line-height:1.45;
+}
+
 .bottom{
   position:fixed;
   z-index:20;
@@ -281,13 +370,11 @@ h1{
   bottom:10px;
   height:70px;
   border-radius:22px;
-  background:rgba(20,27,36,.96);
+  background:rgba(20,27,36,.97);
   border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 15px 35px rgba(0,0,0,.45);
   display:grid;
   grid-template-columns:repeat(5,1fr);
   align-items:center;
-  backdrop-filter:blur(15px);
 }
 
 .nav{
@@ -307,24 +394,9 @@ h1{
   color:#fff;
 }
 
-.nav.active .nicon{
-  filter:drop-shadow(0 0 7px #16d7ff);
-}
-
-/* PETITS ÉLÉMENTS */
-.dot{
-  display:inline-block;
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#31e981;
-  box-shadow:0 0 10px #31e981;
-  margin-right:6px;
-}
-
 @media(max-width:360px){
   .graffiti{
-    font-size:35px;
+    font-size:34px;
   }
 
   .grid{
@@ -342,171 +414,257 @@ h1{
 
 <div class="app">
 
-  <div class="wall"></div>
+<div class="wall"></div>
 
-  <div class="graffiti">
-    PRISON DE FRANCE
-    <small>PRISON2FRANCE 🇫🇷 ⛓</small>
+<div class="graffiti">
+PRISON DE FRANCE
+<small>PRISON2FRANCE 🇫🇷 ⛓</small>
+</div>
+
+<div class="wire"></div>
+
+<div class="tower">
+  <div class="box">
+    <div class="light"></div>
   </div>
+  <div class="legs"></div>
+</div>
 
-  <div class="wire"></div>
+<main class="content">
 
-  <div class="tower">
-    <div class="box">
-      <div class="light"></div>
-    </div>
-    <div class="legs"></div>
-  </div>
+<!-- ACCUEIL -->
 
-  <main class="content">
+<section id="homePage">
 
-    <div class="brand">
-      <span class="tag">PRISON2FRANCE</span>
+<div class="brand">
+<span class="tag">PRISON2FRANCE</span>
 
-      <h1>Bienvenue 👋</h1>
+<h1>Bienvenue 👋</h1>
 
-      <div class="subtitle">
-        Retrouvez les informations utiles concernant les établissements
-        pénitentiaires et effectuez vos demandes en toute confidentialité.
-      </div>
-    </div>
+<div class="subtitle">
+Retrouvez les informations utiles concernant les établissements
+pénitentiaires et effectuez vos demandes.
+</div>
+</div>
 
-    <div class="grid">
+<div class="grid">
 
-      <div class="card main" onclick="openSection('search')">
-        <div class="icon">🔎</div>
-        <strong>RECHERCHER UN PROCHE</strong>
-        <span>Effectuer une demande de recherche ou transmettre des informations.</span>
-      </div>
+<div class="card main" onclick="openSearch()">
+<div class="icon">🔎</div>
+<strong>RECHERCHER UN PROCHE</strong>
+<span>
+Effectuer une demande de recherche ou transmettre des informations.
+</span>
+</div>
 
-      <div class="card" onclick="openSection('prisons')">
-        <div class="icon">🏢</div>
-        <strong>ÉTABLISSEMENTS</strong>
-        <span>Annuaire des établissements pénitentiaires.</span>
-      </div>
+<div class="card" onclick="message('Établissements')">
+<div class="icon">🏢</div>
+<strong>ÉTABLISSEMENTS</strong>
+<span>Annuaire des établissements pénitentiaires.</span>
+</div>
 
-      <div class="card" onclick="openSection('request')">
-        <div class="icon">📝</div>
-        <strong>FAIRE UNE DEMANDE</strong>
-        <span>Créer un dossier confidentiel.</span>
-      </div>
+<div class="card" onclick="message('Faire une demande')">
+<div class="icon">📝</div>
+<strong>FAIRE UNE DEMANDE</strong>
+<span>Créer un dossier.</span>
+</div>
 
-      <div class="card" onclick="openSection('messages')">
-        <div class="icon">💬</div>
-        <strong>MESSAGES</strong>
-        <span>Échanger avec l'équipe.</span>
-      </div>
+<div class="card" onclick="message('Messages')">
+<div class="icon">💬</div>
+<strong>MESSAGES</strong>
+<span>Échanger avec l'équipe.</span>
+</div>
 
-      <div class="card" onclick="openSection('info')">
-        <div class="icon">ℹ️</div>
-        <strong>INFOS & DÉMARCHES</strong>
-        <span>Informations pratiques et démarches.</span>
-      </div>
+<div class="card" onclick="message('Informations')">
+<div class="icon">ℹ️</div>
+<strong>INFOS & DÉMARCHES</strong>
+<span>Informations pratiques.</span>
+</div>
 
-      <div class="card" onclick="openSection('account')">
-        <div class="icon">👤</div>
-        <strong>MON COMPTE</strong>
-        <span>Voir vos demandes et dossiers.</span>
-      </div>
+<div class="card" onclick="message('Compte')">
+<div class="icon">👤</div>
+<strong>MON COMPTE</strong>
+<span>Voir vos demandes.</span>
+</div>
 
-    </div>
+</div>
 
-    <div class="section">
-      <div class="section-title">
-        <span class="dot"></span>
-        Service confidentiel
-      </div>
+<div class="section">
+<div class="section-title">🔒 Service confidentiel</div>
+<div class="section-text">
+Les informations saisies dans une demande ne sont pas affichées
+publiquement sur le site.
+</div>
+</div>
 
-      <div class="section-text">
-        Les informations transmises dans le cadre d'une demande sont
-        destinées au traitement du dossier et ne sont pas affichées
-        publiquement.
-      </div>
-    </div>
+</section>
 
-  </main>
 
-  <nav class="bottom">
+<!-- FORMULAIRE -->
 
-    <div class="nav active" onclick="home()">
-      <span class="nicon">⌂</span>
-      Accueil
-    </div>
+<section id="searchPage" class="form-page">
 
-    <div class="nav" onclick="openSection('search')">
-      <span class="nicon">⌕</span>
-      Rechercher
-    </div>
+<div class="form-header">
+<button class="back" onclick="goHome()">← Retour</button>
+<div class="form-title">Rechercher un proche</div>
+</div>
 
-    <div class="nav" onclick="openSection('prisons')">
-      <span class="nicon">▣</span>
-      Établissements
-    </div>
+<div class="form-intro">
+Remplissez uniquement les informations dont vous disposez.
+Les champs marqués d'un * sont obligatoires.
+</div>
 
-    <div class="nav" onclick="openSection('messages')">
-      <span class="nicon">▢</span>
-      Messages
-    </div>
+<form id="searchForm" class="form-card">
 
-    <div class="nav" onclick="openSection('account')">
-      <span class="nicon">♙</span>
-      Compte
-    </div>
+<label for="nom">Nom du détenu *</label>
+<input id="nom" type="text" required placeholder="Nom">
 
-  </nav>
+<label for="prenom">Prénom *</label>
+<input id="prenom" type="text" required placeholder="Prénom">
+
+<label for="surnom">Surnom / pseudonyme</label>
+<input id="surnom" type="text" placeholder="Surnom éventuel">
+
+<label for="etablissement">Établissement pénitentiaire</label>
+<input id="etablissement" type="text" placeholder="Si vous le connaissez">
+
+<label for="raison">Pourquoi recherchez-vous cette personne ? *</label>
+<textarea id="raison" required placeholder="Expliquez votre démarche..."></textarea>
+
+<label for="motif">Informations concernant la situation</label>
+<textarea id="motif" placeholder="Informations utiles dont vous disposez..."></textarea>
+
+<label for="photo">Photo facultative</label>
+
+<div class="file-box">
+<input id="photo" type="file" accept="image/*">
+</div>
+
+<div class="privacy">
+
+<strong>🔒 CONFIDENTIALITÉ</strong>
+
+<span>
+La photo et les informations saisies ne sont pas affichées publiquement
+sur le site. La photo est facultative. Aucun envoi ou stockage de ces
+données n'est effectué par cette version du formulaire.
+</span>
+
+</div>
+
+<label for="contact">Comment pouvons-nous vous recontacter ? *</label>
+
+<input
+id="contact"
+type="text"
+required
+placeholder="Téléphone, e-mail ou autre moyen de contact">
+
+<button class="submit" type="submit">
+ENVOYER LA DEMANDE
+</button>
+
+<div id="notice" class="notice">
+✅ Votre demande a été préparée.
+<br><br>
+Cette version du site ne transmet pas encore les données à un serveur.
+L'étape suivante permettra de mettre en place une réception sécurisée.
+</div>
+
+</form>
+
+</section>
+
+</main>
+
+<nav class="bottom">
+
+<div class="nav active" onclick="goHome()">
+<span class="nicon">⌂</span>
+Accueil
+</div>
+
+<div class="nav" onclick="openSearch()">
+<span class="nicon">⌕</span>
+Rechercher
+</div>
+
+<div class="nav" onclick="message('Établissements')">
+<span class="nicon">▣</span>
+Établissements
+</div>
+
+<div class="nav" onclick="message('Messages')">
+<span class="nicon">▢</span>
+Messages
+</div>
+
+<div class="nav" onclick="message('Compte')">
+<span class="nicon">♙</span>
+Compte
+</div>
+
+</nav>
 
 </div>
 
 <script>
-const tg = window.Telegram && window.Telegram.WebApp;
 
-if(tg){
-  tg.ready();
-  tg.expand();
+const homePage = document.getElementById("homePage");
+const searchPage = document.getElementById("searchPage");
+const searchForm = document.getElementById("searchForm");
+const notice = document.getElementById("notice");
 
-  if(tg.setHeaderColor){
-    tg.setHeaderColor("#10151c");
-  }
+function openSearch(){
 
-  if(tg.setBackgroundColor){
-    tg.setBackgroundColor("#0b1016");
-  }
-}
+  homePage.style.display="none";
+  searchPage.style.display="block";
 
-function openSection(section){
-
-  const names = {
-    search:"🔎 Rechercher un proche",
-    prisons:"🏢 Annuaire des établissements",
-    request:"📝 Faire une demande",
-    messages:"💬 Messages",
-    info:"ℹ️ Informations & démarches",
-    account:"👤 Mon compte"
-  };
-
-  const title = names[section] || "PRISON2FRANCE";
-
-  if(tg && tg.showPopup){
-
-    tg.showPopup({
-      title:title,
-      message:"Cette section sera activée dans la prochaine étape.",
-      buttons:[
-        {id:"ok",type:"default",text:"OK"}
-      ]
-    });
-
-  }else{
-    alert(title + "\n\nCette section sera activée dans la prochaine étape.");
-  }
-}
-
-function home(){
   window.scrollTo({
     top:0,
     behavior:"smooth"
   });
 }
+
+function goHome(){
+
+  searchPage.style.display="none";
+  homePage.style.display="block";
+
+  notice.style.display="none";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+function message(section){
+
+  alert(
+    section +
+    "\n\nCette section sera activée dans une prochaine étape."
+  );
+}
+
+searchForm.addEventListener("submit",function(event){
+
+  event.preventDefault();
+
+  if(!searchForm.checkValidity()){
+    searchForm.reportValidity();
+    return;
+  }
+
+  notice.style.display="block";
+
+  notice.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+});
+
 </script>
 
 </body>
