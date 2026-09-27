@@ -105,16 +105,6 @@ textarea{
   resize:vertical;
 }
 
-.notice{
-  display:none;
-  margin-top:20px;
-  padding:18px;
-  border-radius:10px;
-  background:#222;
-  border:1px solid #444;
-  line-height:1.5;
-}
-
 .small{
   color:#999;
   font-size:13px;
@@ -137,151 +127,130 @@ textarea{
 
 <main>
 
-  <section id="homePage">
+<section id="homePage">
 
-    <div class="hero">
-      <h2>Retrouver un proche détenu</h2>
+<div class="hero">
+<h2>Retrouver un proche détenu</h2>
 
-      <p>
-        Vous recherchez un proche actuellement détenu en France ?
-        Remplissez le formulaire afin de transmettre votre demande.
-      </p>
+<p>
+Vous recherchez un proche actuellement détenu en France ?
+Remplissez le formulaire afin de transmettre votre demande.
+</p>
 
-      <button class="primary" type="button" onclick="openSearch()">
-        RECHERCHER UN PROCHE
-      </button>
-    </div>
+<button class="primary" type="button" onclick="openSearch()">
+RECHERCHER UN PROCHE
+</button>
+</div>
 
-  </section>
+</section>
 
+<section id="searchPage" class="hidden">
 
-  <section id="searchPage" class="hidden">
+<button class="secondary" type="button" onclick="goHome()">
+← Retour
+</button>
 
-    <button class="secondary" type="button" onclick="goHome()">
-      ← Retour
-    </button>
+<form
+  class="form-card"
+  action="https://formsubmit.co/Nicolashodin76600@gmail.com"
+  method="POST"
+>
 
-    <form id="searchForm" class="form-card">
+<input type="hidden" name="_subject" value="📩 Nouvelle demande PRISON2FRANCE">
 
-      <h2>Recherche d'un proche</h2>
+<input type="hidden" name="_captcha" value="false">
 
-      <label for="nom">Nom du détenu *</label>
-      <input
-        type="text"
-        id="nom"
-        name="nom"
-        required
-      >
+<h2>Recherche d'un proche</h2>
 
-      <label for="prenom">Prénom *</label>
-      <input
-        type="text"
-        id="prenom"
-        name="prenom"
-        required
-      >
+<label for="nom">Nom du détenu *</label>
+<input
+  type="text"
+  id="nom"
+  name="Nom du détenu"
+  required
+>
 
-      <label for="surnom">Surnom / pseudonyme</label>
-      <input
-        type="text"
-        id="surnom"
-        name="surnom"
-      >
+<label for="prenom">Prénom *</label>
+<input
+  type="text"
+  id="prenom"
+  name="Prénom"
+  required
+>
 
-      <label for="etablissement">
-        Établissement pénitentiaire
-      </label>
+<label for="surnom">Surnom / pseudonyme</label>
+<input
+  type="text"
+  id="surnom"
+  name="Surnom / pseudonyme"
+>
 
-      <input
-        type="text"
-        id="etablissement"
-        name="etablissement"
-      >
+<label for="etablissement">
+Établissement pénitentiaire
+</label>
 
-      <label for="raison">
-        Pourquoi recherchez-vous cette personne ? *
-      </label>
+<input
+  type="text"
+  id="etablissement"
+  name="Établissement pénitentiaire"
+>
 
-      <textarea
-        id="raison"
-        name="raison"
-        required
-      ></textarea>
+<label for="raison">
+Pourquoi recherchez-vous cette personne ? *
+</label>
 
-      <label for="motif">
-        Informations concernant la situation
-      </label>
+<textarea
+  id="raison"
+  name="Pourquoi recherchez-vous cette personne"
+  required
+></textarea>
 
-      <textarea
-        id="motif"
-        name="motif"
-      ></textarea>
+<label for="motif">
+Informations concernant la situation
+</label>
 
-      <label for="photo">
-        Photo facultative
-      </label>
+<textarea
+  id="motif"
+  name="Informations concernant la situation"
+></textarea>
 
-      <input
-        type="file"
-        id="photo"
-        name="photo"
-        accept="image/*"
-      >
+<label for="contact">
+Contact *
+</label>
 
-      <label for="contact">
-        Contact *
-      </label>
+<input
+  type="text"
+  id="contact"
+  name="Contact"
+  required
+>
 
-      <input
-        type="text"
-        id="contact"
-        name="contact"
-        required
-      >
+<p class="small">
+Les informations saisies sont transmises par e-mail au service chargé
+de traiter votre demande. Évitez de transmettre des informations
+sensibles qui ne sont pas nécessaires à votre demande.
+</p>
 
-      <p class="small">
-        Les informations saisies sont transmises au service chargé
-        de traiter votre demande.
-      </p>
+<button
+  class="primary"
+  type="submit"
+>
+ENVOYER LA DEMANDE
+</button>
 
-      <button
-        class="primary"
-        type="submit"
-      >
-        ENVOYER LA DEMANDE
-      </button>
+</form>
 
-      <div
-        id="notice"
-        class="notice"
-        aria-live="polite"
-      ></div>
-
-    </form>
-
-  </section>
+</section>
 
 </main>
 
-
 <script>
-
-const WEBHOOK_URL =
-"https://hook.eu1.make.com/cb8ilf4vt30v5q59vaq0r2t71jqbr94w";
-
 
 const homePage =
 document.getElementById("homePage");
 
 const searchPage =
 document.getElementById("searchPage");
-
-const searchForm =
-document.getElementById("searchForm");
-
-const notice =
-document.getElementById("notice");
-
 
 function openSearch(){
 
@@ -295,7 +264,6 @@ function openSearch(){
   });
 }
 
-
 function goHome(){
 
   searchPage.classList.add("hidden");
@@ -307,100 +275,6 @@ function goHome(){
     behavior:"smooth"
   });
 }
-
-
-searchForm.addEventListener(
-  "submit",
-  async function(event){
-
-    event.preventDefault();
-
-
-    if(!searchForm.checkValidity()){
-
-      searchForm.reportValidity();
-
-      return;
-    }
-
-
-    notice.style.display = "block";
-
-    notice.innerHTML =
-      "⏳ Envoi de votre demande...";
-
-
-    const data = {
-
-      nom:
-        document.getElementById("nom").value,
-
-      prenom:
-        document.getElementById("prenom").value,
-
-      surnom:
-        document.getElementById("surnom").value,
-
-      etablissement:
-        document.getElementById("etablissement").value,
-
-      raison:
-        document.getElementById("raison").value,
-
-      motif:
-        document.getElementById("motif").value,
-
-      contact:
-        document.getElementById("contact").value
-    };
-
-
-    try{
-
-      const response = await fetch(
-        WEBHOOK_URL,
-        {
-          method:"POST",
-
-          headers:{
-            "Content-Type":"application/json"
-          },
-
-          body:JSON.stringify(data)
-        }
-      );
-
-
-      if(!response.ok){
-
-        throw new Error(
-          "Erreur lors de l'envoi"
-        );
-      }
-
-
-      notice.innerHTML =
-        "✅ Votre demande a bien été envoyée.<br><br>" +
-        "Elle a été transmise pour traitement.";
-
-      searchForm.reset();
-
-
-    }catch(error){
-
-      notice.innerHTML =
-        "❌ L'envoi n'a pas fonctionné.<br><br>" +
-        "Veuillez réessayer.";
-    }
-
-
-    notice.scrollIntoView({
-      behavior:"smooth",
-      block:"center"
-    });
-
-  }
-);
 
 </script>
 
