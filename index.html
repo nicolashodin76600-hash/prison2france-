@@ -1,321 +1,1987 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram App Builder</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #1e293b;
-      --accent: #2563eb;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --border: #334155;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#09030d">
+<title>Company 33 — Bordeaux</title>
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
+<style>
+:root{
+  --bg:#07030b;
+  --panel:#120817;
+  --panel2:#1b0d22;
+  --pink:#ff20c8;
+  --pink2:#ff65d9;
+  --rose:#ffb0e6;
+  --violet:#9d45ff;
+  --cyan:#50eaff;
+  --white:#fff8fd;
+  --muted:#cbb8ca;
+  --line:#43234d;
+  --green:#63ffc4;
+}
 
-    /* Panneau Chat */
-    .chat-panel {
-      width: 450px;
-      border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      background: var(--panel);
-    }
+*{box-sizing:border-box}
 
-    .chat-header {
-      padding: 16px;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+html,body{
+  margin:0;
+  min-height:100%;
+  background:
+    radial-gradient(circle at 10% 0%,#57175a 0%,transparent 30%),
+    radial-gradient(circle at 100% 10%,#142f55 0%,transparent 27%),
+    linear-gradient(135deg,#050207,#130719,#050207);
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
+}
 
-    .messages {
-      flex: 1;
-      padding: 16px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+button,input,select,textarea{
+  font:inherit;
+}
 
-    .msg {
-      max-width: 88%;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      line-height: 1.5;
-      white-space: pre-wrap;
-    }
+button{
+  cursor:pointer;
+}
 
-    .msg.bot { background: #334155; align-self: flex-start; }
-    .msg.user { background: var(--accent); align-self: flex-end; }
+.app{
+  width:100%;
+  max-width:700px;
+  min-height:100vh;
+  margin:auto;
+  background:
+    radial-gradient(circle at 50% -10%,#ff20c817,transparent 35%),
+    #09050d;
+  box-shadow:
+    0 0 80px #ff20c81c,
+    inset 0 0 80px #ff20c808;
+}
 
-    .chat-input {
-      padding: 16px;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      display: flex;
-      gap: 8px;
-    }
+/* HEADER */
 
-    input[type="text"] {
-      flex: 1;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--panel);
-      color: #fff;
-      outline: none;
-    }
+.header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 17px;
+  background:#09050eee;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid #402044;
+}
 
-    button {
-      padding: 12px 18px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+.logo{
+  font-size:23px;
+  font-weight:1000;
+  letter-spacing:1px;
+  text-shadow:
+    0 0 7px var(--pink),
+    0 0 18px var(--pink),
+    0 0 35px #9d45ff;
+}
 
-    button:hover { opacity: 0.9; }
+.logo span{
+  color:var(--pink2);
+}
 
-    /* Panneau Code & Aperçu */
-    .workspace {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      background: #000;
-    }
+.logo-icon{
+  color:#fff;
+  margin-left:3px;
+  text-shadow:0 0 15px var(--pink);
+}
 
-    .tabs {
-      display: flex;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-    }
+.online{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:var(--green);
+  font-size:10px;
+  font-weight:bold;
+}
 
-    .tab {
-      padding: 12px 24px;
-      background: none;
-      border: none;
-      color: var(--muted);
-      border-radius: 0;
-      cursor: pointer;
-    }
+.online-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:
+    0 0 8px var(--green),
+    0 0 18px var(--green);
+  animation:pulse 1.5s infinite;
+}
 
-    .tab.active {
-      color: #fff;
-      border-bottom: 2px solid var(--accent);
-      background: var(--panel);
-    }
+@keyframes pulse{
+  50%{opacity:.45;transform:scale(.7)}
+}
 
-    .content-area {
-      flex: 1;
-      position: relative;
-    }
+/* MAIN */
 
-    textarea {
-      width: 100%;
-      height: 100%;
-      background: #090d16;
-      color: #7dd3fc;
-      border: none;
-      padding: 16px;
-      font-family: monospace;
-      font-size: 13px;
-      resize: none;
-      outline: none;
-    }
+main{
+  padding:17px 14px 110px;
+}
 
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      background: #fff;
-    }
+.screen{
+  display:none;
+}
 
-    .hidden { display: none; }
-  </style>
+.screen.active{
+  display:block;
+  animation:screenIn .3s ease;
+}
+
+@keyframes screenIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* HERO */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:25px 19px;
+  border-radius:27px;
+  border:1px solid #712b70;
+  background:
+    radial-gradient(circle at 90% 0%,#ff20c82d,transparent 35%),
+    linear-gradient(145deg,#211027,#100815);
+  box-shadow:
+    0 0 30px #ff20c81b,
+    inset 0 0 35px #ff20c80c;
+}
+
+.hero:after{
+  content:"♡";
+  position:absolute;
+  right:12px;
+  top:-18px;
+  font-size:110px;
+  color:#ff7bd31a;
+  text-shadow:0 0 30px #ff20c855;
+  transform:rotate(-12deg);
+}
+
+.eyebrow{
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--rose);
+  font-weight:bold;
+}
+
+h1{
+  font-size:42px;
+  line-height:1;
+  margin:10px 0;
+  font-weight:1000;
+}
+
+h2{
+  font-size:27px;
+  margin:8px 0 15px;
+}
+
+h3{
+  margin-top:24px;
+}
+
+.gradient{
+  background:
+    linear-gradient(
+      90deg,
+      #fff,
+      var(--rose),
+      var(--pink),
+      var(--violet),
+      var(--cyan)
+    );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.description{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.btn{
+  position:relative;
+  overflow:hidden;
+  width:100%;
+  padding:13px 15px;
+  border-radius:14px;
+  border:1px solid #ff72db;
+  color:white;
+  font-weight:900;
+  background:
+    linear-gradient(
+      100deg,
+      #ff159f,
+      #9b42e8,
+      #5b43ff
+    );
+  box-shadow:
+    0 0 7px #ff20c8,
+    0 0 22px #ff20c855,
+    0 0 40px #9d45ff22,
+    inset 0 0 12px #ffffff22;
+  transition:.18s;
+}
+
+.btn:before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-80%;
+  width:55%;
+  height:100%;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #ffffff88,
+      transparent
+    );
+  transform:skewX(-20deg);
+  animation:shine 2.7s infinite;
+}
+
+@keyframes shine{
+  55%,100%{left:130%}
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 0 12px var(--pink),
+    0 0 30px var(--pink),
+    0 0 55px #9d45ff55;
+}
+
+.btn:active{
+  transform:scale(.96);
+}
+
+.btn.secondary{
+  background:#160c1e;
+  border-color:#633c70;
+  box-shadow:
+    0 0 8px #50eaff22,
+    inset 0 0 12px #50eaff08;
+}
+
+.small-btn{
+  padding:9px;
+  font-size:12px;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:11px;
+}
+
+.grid3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+}
+
+.mt{
+  margin-top:14px;
+}
+
+/* CARDS */
+
+.card{
+  padding:14px;
+  border-radius:20px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(
+      145deg,
+      #1b0e24e8,
+      #0e0714e8
+    );
+  box-shadow:
+    0 10px 30px #0007,
+    inset 0 0 20px #ff20c808;
+}
+
+.card:hover{
+  border-color:#713b78;
+}
+
+/* STATS */
+
+.stat{
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:23px;
+  color:var(--cyan);
+  text-shadow:
+    0 0 8px var(--cyan),
+    0 0 18px var(--cyan);
+}
+
+.stat span{
+  font-size:10px;
+  color:var(--muted);
+}
+
+/* PROFILES */
+
+.profile-photo{
+  height:155px;
+  border-radius:15px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:48px;
+  font-weight:1000;
+  background:
+    radial-gradient(
+      circle at 70% 15%,
+      #ff72d955,
+      transparent 27%
+    ),
+    linear-gradient(
+      135deg,
+      #3b1647,
+      #151029
+    );
+  color:white;
+  text-shadow:
+    0 0 15px var(--pink),
+    0 0 30px var(--pink);
+}
+
+.profile-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profile-name{
+  margin-top:10px;
+  font-size:17px;
+  font-weight:1000;
+}
+
+.meta{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:5px;
+}
+
+.tag{
+  display:inline-block;
+  margin:7px 4px 0 0;
+  padding:5px 8px;
+  border-radius:50px;
+  border:1px solid #62396f;
+  background:#1b0d24;
+  color:#ffd9f2;
+  font-size:10px;
+}
+
+/* INPUT */
+
+input,
+select,
+textarea{
+  width:100%;
+  padding:13px;
+  margin-top:8px;
+  border-radius:13px;
+  border:1px solid #4b2d57;
+  background:#09050e;
+  color:white;
+  outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:var(--pink);
+  box-shadow:0 0 13px #ff20c833;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+/* CHAT */
+
+.chat{
+  height:390px;
+  overflow:auto;
+  padding:13px;
+  border-radius:20px;
+  border:1px solid #40294c;
+  background:
+    radial-gradient(
+      circle at 20% 0,
+      #ff20c80c,
+      transparent 35%
+    ),
+    #09050f;
+}
+
+.message{
+  max-width:84%;
+  margin:8px 0;
+  padding:11px 13px;
+  border-radius:17px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.message.ai{
+  background:#191021;
+  border:1px solid #493052;
+}
+
+.message.user{
+  margin-left:auto;
+  background:
+    linear-gradient(
+      135deg,
+      #8424d6,
+      #f02a9d
+    );
+  box-shadow:0 0 13px #ff20c833;
+}
+
+.typing{
+  display:none;
+  color:#bba6bc;
+  font-size:12px;
+  padding:5px;
+}
+
+.typing.active{
+  display:block;
+}
+
+/* BOTTOM NAV */
+
+.bottom-nav{
+  position:fixed;
+  z-index:40;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(100%,700px);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:6px;
+  padding:9px 8px calc(9px + env(safe-area-inset-bottom));
+  background:#08040deb;
+  backdrop-filter:blur(18px);
+  border-top:1px solid #42254c;
+}
+
+.nav-btn{
+  border-radius:13px;
+  border:1px solid #33213e;
+  background:#12091a;
+  color:#c9b9cc;
+  padding:8px 3px;
+  font-size:10px;
+  box-shadow:0 0 8px #50eaff15;
+}
+
+.nav-btn.active{
+  color:white;
+  border-color:var(--pink);
+  box-shadow:
+    0 0 10px var(--pink),
+    0 0 25px #ff20c855;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  z-index:100;
+  left:50%;
+  bottom:90px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  pointer-events:none;
+  padding:11px 15px;
+  border-radius:14px;
+  border:1px solid var(--pink);
+  background:#190b20;
+  box-shadow:0 0 25px #ff20c855;
+  transition:.25s;
+  font-size:12px;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+@media(max-width:420px){
+  h1{font-size:34px}
+  .profile-photo{height:125px}
+  main{padding-left:10px;padding-right:10px}
+}
+</style>
 </head>
+
 <body>
 
-<div class="chat-panel">
-  <div class="chat-header">🤖 Telegram MiniApp Architect</div>
-  <div class="messages" id="messages">
-    <div class="msg bot">Bonjour ! Je vais t'aider à construire le code complet de ta Telegram Mini App.
+<div class="app">
 
-Quel type de projet souhaites-tu concevoir ?
-1. Un formulaire / système de réservation
-2. Un mini-catalogue de produits
-3. Un tableau de bord interactif</div>
+<header class="header">
+  <div class="logo">
+    COMPANY <span>33</span> ♡
   </div>
-  <div class="chat-input">
-    <input type="text" id="userInput" placeholder="Réponds ou décris ton idée..." onkeydown="if(event.key==='Enter') sendMessage()">
-    <button onclick="sendMessage()">Envoyer</button>
+
+  <div class="online">
+    <span class="online-dot"></span>
+    IA EN LIGNE
   </div>
+</header>
+
+<main>
+
+<!-- ACCUEIL -->
+
+<section class="screen active" id="home">
+
+  <div class="hero">
+
+    <div class="eyebrow">
+      BORDEAUX • COMPANY 33
+    </div>
+
+    <h1>
+      Une expérience
+      <span class="gradient">girly & néon</span>
+    </h1>
+
+    <p class="description">
+      Découvre les profils, consulte les informations,
+      prépare une demande et échange avec l'assistant Company 33.
+    </p>
+
+    <div class="grid mt">
+
+      <button class="btn" data-page="profiles">
+        ♡ VOIR LES PROFILS
+      </button>
+
+      <button class="btn secondary" data-page="ai">
+        ✦ ASSISTANT IA
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="grid3 mt">
+
+    <div class="card stat">
+      <strong>4</strong>
+      <span>PROFILS</span>
+    </div>
+
+    <div class="card stat">
+      <strong>24/7</strong>
+      <span>ASSISTANT</span>
+    </div>
+
+    <div class="card stat">
+      <strong>33</strong>
+      <span>SECTEUR</span>
+    </div>
+
+  </div>
+
+  <h3>Accès rapide</h3>
+
+  <div class="grid">
+
+    <button class="btn secondary" data-page="requests">
+      📅<br>DEMANDE
+    </button>
+
+    <button class="btn secondary" data-page="messages">
+      💬<br>MESSAGES
+    </button>
+
+    <button class="btn secondary" data-page="favorites">
+      ♡<br>FAVORIS
+    </button>
+
+    <button class="btn secondary" data-page="account">
+      ⚙<br>COMPTE
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- PROFILS -->
+
+<section class="screen" id="profiles">
+
+  <h2>♡ Profils</h2>
+
+  <input
+    id="search"
+    placeholder="Rechercher un prénom..."
+  >
+
+  <div
+    id="profilesContainer"
+    class="grid mt"
+  ></div>
+
+</section>
+
+
+<!-- PROFIL -->
+
+<section class="screen" id="profile">
+
+  <button
+    class="btn secondary"
+    data-page="profiles"
+  >
+    ← RETOUR
+  </button>
+
+  <div
+    id="profileDetail"
+    class="mt"
+  ></div>
+
+</section>
+
+
+<!-- IA -->
+
+<section class="screen" id="ai">
+
+  <div class="hero">
+
+    <div class="eyebrow">
+      ASSISTANT AUTOMATISÉ
+    </div>
+
+    <h1>
+      ✦ <span class="gradient">Company AI</span>
+    </h1>
+
+    <p class="description">
+      L'assistant peut répondre aux questions fréquentes,
+      présenter les informations du catalogue et guider
+      le client vers le bon menu.
+    </p>
+
+    <button
+      class="btn"
+      data-page="messages"
+    >
+      OUVRIR L'ASSISTANT
+    </button>
+
+  </div>
+
+  <div class="card mt">
+
+    <b>Questions rapides</b>
+
+    <div class="grid mt">
+
+      <button
+        class="btn secondary quick"
+        data-question="Quels sont les profils disponibles ?"
+      >
+        👩 PROFILS
+      </button>
+
+      <button
+        class="btn secondary quick"
+        data-question="Quels sont les tarifs ?"
+      >
+        💗 TARIFS
+      </button>
+
+      <button
+        class="btn secondary quick"
+        data-question="Quels sont les services ?"
+      >
+        ✨ SERVICES
+      </button>
+
+      <button
+        class="btn secondary quick"
+        data-question="Comment faire une demande ?"
+      >
+        📅 DEMANDE
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- MESSAGES -->
+
+<section class="screen" id="messages">
+
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2>💬 Assistant</h2>
+
+    <span class="tag">
+      AUTOMATIQUE
+    </span>
+  </div>
+
+  <div
+    id="chat"
+    class="chat"
+  >
+
+    <div class="message ai">
+      Coucou 👋<br><br>
+      Je suis l'assistant Company 33.
+      Tu peux me demander les profils,
+      les tarifs, les services ou comment
+      faire une demande.
+    </div>
+
+  </div>
+
+  <div
+    id="typing"
+    class="typing"
+  >
+    Assistant écrit...
+  </div>
+
+  <div style="display:flex;gap:7px;margin-top:8px">
+
+    <input
+      id="messageInput"
+      placeholder="Écris ton message..."
+      style="margin:0"
+    >
+
+    <button
+      id="sendMessage"
+      class="btn"
+      style="width:58px"
+    >
+      ➤
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- DEMANDE -->
+
+<section class="screen" id="requests">
+
+  <h2>📅 Nouvelle demande</h2>
+
+  <div class="card">
+
+    <label>Profil</label>
+
+    <select id="requestProfile">
+      <option>Carla</option>
+      <option>Tina</option>
+      <option>Maria</option>
+      <option>Carlita</option>
+    </select>
+
+    <label>Type de demande</label>
+
+    <select id="requestType">
+      <option>Sortie / restaurant</option>
+      <option>Événement</option>
+      <option>Accompagnement</option>
+      <option>Compagnie privée</option>
+    </select>
+
+    <label>Date</label>
+
+    <input
+      id="requestDate"
+      type="date"
+    >
+
+    <label>Message</label>
+
+    <textarea
+      id="requestMessage"
+      placeholder="Décris ta demande..."
+    ></textarea>
+
+    <button
+      id="submitRequest"
+      class="btn mt"
+    >
+      ENVOYER LA DEMANDE
+    </button>
+
+  </div>
+
+  <div
+    id="requestConfirmation"
+    class="card mt"
+    style="display:none"
+  ></div>
+
+</section>
+
+
+<!-- FAVORIS -->
+
+<section class="screen" id="favorites">
+
+  <h2>♡ Mes favoris</h2>
+
+  <div
+    id="favoritesContainer"
+    class="grid"
+  ></div>
+
+</section>
+
+
+<!-- COMPTE -->
+
+<section class="screen" id="account">
+
+  <h2>⚙ Mon compte</h2>
+
+  <div class="card">
+
+    <b>Compte client</b>
+
+    <p class="description">
+      Retrouve tes demandes et les différentes
+      fonctionnalités de Company 33.
+    </p>
+
+    <button
+      class="btn secondary"
+      data-page="requests"
+    >
+      CRÉER UNE DEMANDE
+    </button>
+
+  </div>
+
+  <div class="card mt">
+
+    <b>Administration</b>
+
+    <p class="description">
+      Gestion des profils, demandes et assistant.
+    </p>
+
+    <button
+      class="btn"
+      data-page="admin"
+    >
+      OUVRIR L'ADMINISTRATION
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section class="screen" id="admin">
+
+  <h2>⚙ Administration</h2>
+
+  <div class="grid3">
+
+    <div class="card stat">
+      <strong>4</strong>
+      <span>PROFILS</span>
+    </div>
+
+    <div class="card stat">
+      <strong id="adminRequests">
+        0
+      </strong>
+      <span>DEMANDES</span>
+    </div>
+
+    <div class="card stat">
+      <strong>ON</strong>
+      <span>IA</span>
+    </div>
+
+  </div>
+
+  <div class="card mt">
+
+    <b>Catalogue</b>
+
+    <p class="description">
+      Les profils, tarifs et services sont
+      configurés directement dans le JavaScript
+      situé en bas de cette page.
+    </p>
+
+    <button
+      class="btn secondary"
+      data-page="profiles"
+    >
+      GÉRER LES PROFILS
+    </button>
+
+  </div>
+
+  <div class="card mt">
+
+    <b>Assistant IA</b>
+
+    <p class="description">
+      Cette version fonctionne avec une IA locale
+      de démonstration. Elle ne nécessite aucune
+      clé API pour fonctionner sur GitHub Pages.
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<!-- NAVIGATION -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="nav-btn active"
+    data-page="home"
+  >
+    ⌂<br>Accueil
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="profiles"
+  >
+    ♡<br>Profils
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="ai"
+  >
+    ✦<br>IA
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="messages"
+  >
+    💬<br>Messages
+  </button>
+
+  <button
+    class="nav-btn"
+    data-page="account"
+  >
+    ☰<br>Compte
+  </button>
+
+</nav>
+
+<div
+  id="toast"
+  class="toast"
+></div>
+
 </div>
 
-<div class="workspace">
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('code')">Code Source HTML/JS</button>
-    <button class="tab" onclick="switchTab('preview')">Aperçu WebApp</button>
-  </div>
-  <div class="content-area">
-    <textarea id="codeView" readonly></textarea>
-    <iframe id="previewView" class="hidden"></iframe>
-  </div>
-</div>
 
 <script>
-  let currentStep = 0;
-  let generatedCode = {
-    title: "Telegram App",
-    inputs: [],
-    buttons: []
-  };
 
-  function switchTab(type) {
-    const tabs = document.querySelectorAll('.tab');
-    const codeView = document.getElementById('codeView');
-    const previewView = document.getElementById('previewView');
+/* =====================================
+   COMPANY 33
+   DONNÉES
+===================================== */
 
-    tabs.forEach(t => t.classList.remove('active'));
+const profiles = [
 
-    if (type === 'code') {
-      tabs[0].classList.add('active');
-      codeView.classList.remove('hidden');
-      previewView.classList.add('hidden');
-    } else {
-      tabs[1].classList.add('active');
-      codeView.classList.add('hidden');
-      previewView.classList.remove('hidden');
-      updatePreview();
-    }
+  {
+    name:"Carla",
+    age:24,
+    city:"Bordeaux",
+    price:120,
+    tags:["Sorties","Restaurant","Événements"],
+    image:""
+  },
+
+  {
+    name:"Tina",
+    age:27,
+    city:"Bordeaux",
+    price:150,
+    tags:["Événements","Sorties","Voyages"],
+    image:""
+  },
+
+  {
+    name:"Maria",
+    age:22,
+    city:"Bordeaux",
+    price:100,
+    tags:["Restaurant","Compagnie","Sorties"],
+    image:""
+  },
+
+  {
+    name:"Carlita",
+    age:30,
+    city:"Bordeaux",
+    price:160,
+    tags:["Événements","Restaurant","Compagnie"],
+    image:""
   }
 
-  function addMessage(text, sender) {
-    const box = document.getElementById('messages');
-    const msg = document.createElement('div');
-    msg.className = `msg ${sender}`;
-    msg.textContent = text;
-    box.appendChild(msg);
-    box.scrollTop = box.scrollHeight;
+];
+
+
+/* TARIFS FOURNIS */
+
+const prices = [
+
+  ["15 minutes",60],
+  ["20 minutes",80],
+  ["30 minutes",100],
+  ["40 minutes",120],
+  ["1 heure",150],
+  ["2 heures",300]
+
+];
+
+
+/* SERVICES */
+
+const services = [
+
+  "Twerk",
+  "Fétiches pieds",
+  "Moment petite copine"
+
+];
+
+
+/* =====================================
+   STOCKAGE
+===================================== */
+
+let favorites =
+JSON.parse(
+  localStorage.getItem(
+    "company33_favorites"
+  ) || "[]"
+);
+
+let requests =
+Number(
+  localStorage.getItem(
+    "company33_requests"
+  ) || 0
+);
+
+
+/* =====================================
+   OUTILS
+===================================== */
+
+function escapeHTML(text){
+
+  return String(text)
+    .replace(/[&<>"']/g,function(char){
+
+      return {
+
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#039;"
+
+      }[char];
+
+    });
+
+}
+
+
+function toast(message){
+
+  const box =
+  document.getElementById("toast");
+
+  box.textContent = message;
+
+  box.classList.add("show");
+
+  setTimeout(function(){
+
+    box.classList.remove("show");
+
+  },2200);
+
+}
+
+
+/* =====================================
+   NAVIGATION
+===================================== */
+
+function showPage(page){
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(function(screen){
+
+      screen.classList.remove("active");
+
+    });
+
+
+  const target =
+  document.getElementById(page);
+
+  if(target){
+
+    target.classList.add("active");
+
   }
 
-  function sendMessage() {
-    const input = document.getElementById('userInput');
-    const text = input.value.trim();
-    if (!text) return;
 
-    addMessage(text, 'user');
-    input.value = '';
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(function(button){
 
-    setTimeout(() => {
-      processInput(text);
-    }, 400);
+      button.classList.toggle(
+        "active",
+        button.dataset.page === page
+      );
+
+    });
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+
+  if(page==="profiles"){
+    renderProfiles();
   }
 
-  function processInput(text) {
-    currentStep++;
-
-    if (currentStep === 1) {
-      generatedCode.title = text;
-      addMessage("Très bien. Quels champs de saisie ou fonctionnalités souhaites-tu ajouter ? (ex: Nom, Date, Sélection d'options)", "bot");
-    } 
-    else if (currentStep === 2) {
-      generatedCode.inputs = text.split(',').map(s => s.trim());
-      addMessage("Parfait. Quel doit être le libellé du bouton principal de confirmation Telegram ?", "bot");
-    } 
-    else {
-      generatedCode.buttonText = text;
-      addMessage("Code généré avec succès ! Tu peux consulter l'onglet 'Code Source' ou basculer sur 'Aperçu WebApp'.", "bot");
-    }
-
-    renderFullApp();
+  if(page==="favorites"){
+    renderFavorites();
   }
 
-  function renderFullApp() {
-    const inputsHtml = generatedCode.inputs.map(i => `
-      <div class="field">
-        <label>${i}</label>
-        <input type="text" placeholder="Saisir ${i.toLowerCase()}...">
+}
+
+
+/* =====================================
+   PROFILS
+===================================== */
+
+function profileCard(profile){
+
+  let photo = "";
+
+  if(profile.image){
+
+    photo =
+      `<img
+        src="${profile.image}"
+        alt="${escapeHTML(profile.name)}"
+        onerror="this.style.display='none'"
+      >`;
+
+  }
+
+
+  return `
+
+    <div class="card">
+
+      <div class="profile-photo">
+
+        ${photo}
+
+        <span>
+          ${profile.name.charAt(0)}
+        </span>
+
       </div>
-    `).join('') || '<p>Aucun champ configuré.</p>';
 
-    const fullHTML = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${generatedCode.title}</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"><\/script>
-  <style>
-    body {
-      font-family: sans-serif;
-      background: var(--tg-theme-bg-color, #18222d);
-      color: var(--tg-theme-text-color, #ffffff);
-      padding: 16px;
-      margin: 0;
-    }
-    h2 { font-size: 18px; margin-bottom: 16px; }
-    .field { margin-bottom: 12px; }
-    label { display: block; font-size: 12px; opacity: 0.7; margin-bottom: 4px; }
-    input {
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(0,0,0,0.2);
-      color: #fff;
-    }
-  </style>
-</head>
-<body>
+      <div class="profile-name">
+        ${escapeHTML(profile.name)},
+        ${profile.age}
+      </div>
 
-  <h2>${generatedCode.title}</h2>
-  ${inputsHtml}
+      <div class="meta">
+        📍 ${escapeHTML(profile.city)}
+        • Disponible
+      </div>
 
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.expand();
+      <div>
 
-    if (tg.MainButton) {
-      tg.MainButton.setText("${generatedCode.buttonText || 'CONFIRMER'}");
-      tg.MainButton.show();
-      tg.MainButton.onClick(() => {
-        tg.sendData("Données envoyées depuis la WebApp");
+        ${profile.tags.map(function(tag){
+
+          return `
+            <span class="tag">
+              ${escapeHTML(tag)}
+            </span>
+          `;
+
+        }).join("")}
+
+      </div>
+
+      <div class="grid mt">
+
+        <button
+          class="btn small-btn"
+          data-profile="${escapeHTML(profile.name)}"
+        >
+          VOIR
+        </button>
+
+        <button
+          class="btn secondary small-btn"
+          data-favorite="${escapeHTML(profile.name)}"
+        >
+          ${favorites.includes(profile.name)
+            ? "♥"
+            : "♡"}
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function renderProfiles(){
+
+  const search =
+    (
+      document.getElementById("search")
+      ?.value || ""
+    ).toLowerCase();
+
+
+  const result =
+    profiles.filter(function(profile){
+
+      return profile.name
+        .toLowerCase()
+        .includes(search);
+
+    });
+
+
+  document.getElementById(
+    "profilesContainer"
+  ).innerHTML =
+    result.map(profileCard).join("");
+
+}
+
+
+function openProfile(name){
+
+  const profile =
+    profiles.find(function(item){
+
+      return item.name === name;
+
+    });
+
+
+  if(!profile)return;
+
+
+  document.getElementById(
+    "profileDetail"
+  ).innerHTML = `
+
+    <div class="hero">
+
+      <div class="profile-photo">
+
+        ${
+          profile.image
+          ?
+          `<img
+            src="${profile.image}"
+            alt="${escapeHTML(profile.name)}"
+          >`
+          :
+          `<span>
+            ${profile.name.charAt(0)}
+          </span>`
+        }
+
+      </div>
+
+      <h1 style="font-size:34px">
+
+        ${escapeHTML(profile.name)},
+        ${profile.age}
+
+      </h1>
+
+      <p class="description">
+
+        📍 ${escapeHTML(profile.city)}
+        <br><br>
+
+        Statut :
+        <b style="color:var(--green)">
+          Disponible
+        </b>
+
+        <br><br>
+
+        Tarif indicatif :
+        <b>${profile.price} €</b>
+
+      </p>
+
+      <div>
+
+        ${profile.tags.map(function(tag){
+
+          return `
+            <span class="tag">
+              ${escapeHTML(tag)}
+            </span>
+          `;
+
+        }).join("")}
+
+      </div>
+
+      <div class="grid mt">
+
+        <button
+          class="btn"
+          data-page="requests"
+        >
+          📅 DEMANDE
+        </button>
+
+        <button
+          class="btn secondary"
+          data-favorite="${escapeHTML(profile.name)}"
+        >
+          ♡ FAVORI
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+
+  showPage("profile");
+
+}
+
+
+/* =====================================
+   FAVORIS
+===================================== */
+
+function toggleFavorite(name){
+
+  if(favorites.includes(name)){
+
+    favorites =
+      favorites.filter(
+        item => item !== name
+      );
+
+    toast("Retiré des favoris");
+
+  }else{
+
+    favorites.push(name);
+
+    toast("Ajouté aux favoris ❤️");
+
+  }
+
+
+  localStorage.setItem(
+    "company33_favorites",
+    JSON.stringify(favorites)
+  );
+
+
+  renderProfiles();
+  renderFavorites();
+
+}
+
+
+function renderFavorites(){
+
+  const selected =
+    profiles.filter(function(profile){
+
+      return favorites.includes(
+        profile.name
+      );
+
+    });
+
+
+  document.getElementById(
+    "favoritesContainer"
+  ).innerHTML =
+
+    selected.length
+
+    ?
+
+    selected.map(profileCard).join("")
+
+    :
+
+    `
+
+      <div class="card">
+
+        <p class="description">
+
+          Aucun favori pour le moment.
+
+        </p>
+
+        <button
+          class="btn"
+          data-page="profiles"
+        >
+          DÉCOUVRIR LES PROFILS
+        </button>
+
+      </div>
+
+    `;
+
+}
+
+
+/* =====================================
+   IA LOCALE
+===================================== */
+
+function assistantReply(message){
+
+  const text =
+    message.toLowerCase();
+
+
+  if(
+    text.includes("prix") ||
+    text.includes("tarif") ||
+    text.includes("combien") ||
+    text.includes("euro") ||
+    text.includes("€")
+  ){
+
+    return `
+
+      Voici les tarifs actuellement
+      configurés :
+
+      ${prices.map(function(price){
+
+        return `
+          • ${price[0]} :
+          ${price[1]} €
+        `;
+
+      }).join("<br>")}
+
+    `;
+
+  }
+
+
+  if(
+    text.includes("profil") ||
+    text.includes("carla") ||
+    text.includes("tina") ||
+    text.includes("maria") ||
+    text.includes("carlita")
+  ){
+
+    const found =
+      profiles.find(function(profile){
+
+        return text.includes(
+          profile.name.toLowerCase()
+        );
+
       });
+
+
+    if(found){
+
+      return `
+        ${found.name} est actuellement
+        indiqué(e) comme disponible à
+        ${found.city}.
+
+        Tu peux ouvrir son profil ou
+        préparer une demande.
+      `;
+
     }
-  <\/script>
-</body>
-</html>`;
 
-    document.getElementById('codeView').value = fullHTML;
+
+    return `
+
+      Les profils disponibles dans
+      cette démonstration sont :
+
+      ${profiles
+        .map(p=>p.name)
+        .join(", ")}.
+
+    `;
+
   }
 
-  function updatePreview() {
-    const iframe = document.getElementById('previewView');
-    const code = document.getElementById('codeView').value;
-    iframe.srcdoc = code;
+
+  if(
+    text.includes("service") ||
+    text.includes("presta")
+  ){
+
+    return `
+
+      Les services configurés dans
+      le catalogue sont :
+
+      ${services.join(", ")}.
+
+    `;
+
   }
 
-  // Initialisation
-  renderFullApp();
+
+  if(
+    text.includes("demande") ||
+    text.includes("réserver") ||
+    text.includes("reservation") ||
+    text.includes("réservation")
+  ){
+
+    return `
+
+      Je peux t'orienter vers le
+      formulaire de demande.
+
+      Choisis ensuite le profil,
+      le type de demande, la date
+      et ajoute ton message.
+
+    `;
+
+  }
+
+
+  if(
+    text.includes("humain") ||
+    text.includes("contact") ||
+    text.includes("nicolas")
+  ){
+
+    return `
+
+      Je peux préparer ta demande
+      et indiquer qu'une intervention
+      humaine est nécessaire.
+
+      Dans cette version test,
+      le transfert est simulé.
+
+    `;
+
+  }
+
+
+  if(
+    text.includes("bonjour") ||
+    text.includes("salut") ||
+    text.includes("hello") ||
+    text.includes("coucou")
+  ){
+
+    return `
+
+      Coucou 👋
+
+      Bienvenue sur Company 33.
+
+      Tu veux voir les profils,
+      les tarifs ou préparer
+      une demande ?
+
+    `;
+
+  }
+
+
+  return `
+
+    Je peux t'aider avec :
+
+    • les profils
+    • les tarifs
+    • les services
+    • les demandes
+    • les informations disponibles
+
+    Dis-moi simplement ce que
+    tu recherches.
+
+  `;
+
+}
+
+
+/* =====================================
+   CHAT
+===================================== */
+
+function addMessage(text,type){
+
+  const chat =
+    document.getElementById("chat");
+
+
+  const message =
+    document.createElement("div");
+
+
+  message.className =
+    "message " + type;
+
+
+  message.innerHTML =
+    text.replace(/\n/g,"<br>");
+
+
+  chat.appendChild(message);
+
+
+  chat.scrollTop =
+    chat.scrollHeight;
+
+}
+
+
+function sendMessage(){
+
+  const input =
+    document.getElementById(
+      "messageInput"
+    );
+
+
+  const text =
+    input.value.trim();
+
+
+  if(!text)return;
+
+
+  addMessage(
+    escapeHTML(text),
+    "user"
+  );
+
+
+  input.value = "";
+
+
+  const typing =
+    document.getElementById(
+      "typing"
+    );
+
+
+  typing.classList.add(
+    "active"
+  );
+
+
+  setTimeout(function(){
+
+    typing.classList.remove(
+      "active"
+    );
+
+
+    addMessage(
+      assistantReply(text),
+      "ai"
+    );
+
+  },500);
+
+}
+
+
+/* =====================================
+   DEMANDE
+===================================== */
+
+document
+  .getElementById("submitRequest")
+  .addEventListener(
+    "click",
+    function(){
+
+      requests++;
+
+
+      localStorage.setItem(
+        "company33_requests",
+        requests
+      );
+
+
+      document.getElementById(
+        "adminRequests"
+      ).textContent =
+        requests;
+
+
+      const profile =
+        document.getElementById(
+          "requestProfile"
+        ).value;
+
+
+      document.getElementById(
+        "requestConfirmation"
+      ).style.display =
+        "block";
+
+
+      document.getElementById(
+        "requestConfirmation"
+      ).innerHTML = `
+
+        <b>✅ Demande enregistrée</b>
+
+        <p class="description">
+
+          Ta demande concernant
+          <b>${escapeHTML(profile)}</b>
+          a été enregistrée dans
+          cette version de démonstration.
+
+        </p>
+
+      `;
+
+
+      toast(
+        "Demande enregistrée 💗"
+      );
+
+    }
+  );
+
+
+/* =====================================
+   CLICS GLOBAUX
+===================================== */
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    const pageButton =
+      event.target.closest(
+        "[data-page]"
+      );
+
+
+    if(pageButton){
+
+      showPage(
+        pageButton.dataset.page
+      );
+
+      return;
+
+    }
+
+
+    const profileButton =
+      event.target.closest(
+        "[data-profile]"
+      );
+
+
+    if(profileButton){
+
+      openProfile(
+        profileButton.dataset.profile
+      );
+
+      return;
+
+    }
+
+
+    const favoriteButton =
+      event.target.closest(
+        "[data-favorite]"
+      );
+
+
+    if(favoriteButton){
+
+      toggleFavorite(
+        favoriteButton.dataset.favorite
+      );
+
+      return;
+
+    }
+
+
+    const quickButton =
+      event.target.closest(
+        ".quick"
+      );
+
+
+    if(quickButton){
+
+      showPage("messages");
+
+      document.getElementById(
+        "messageInput"
+      ).value =
+        quickButton.dataset.question;
+
+
+      sendMessage();
+
+    }
+
+  }
+);
+
+
+/* =====================================
+   RECHERCHE
+===================================== */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    renderProfiles
+  );
+
+
+/* =====================================
+   ENVOI CHAT
+===================================== */
+
+document
+  .getElementById("sendMessage")
+  .addEventListener(
+    "click",
+    sendMessage
+  );
+
+
+document
+  .getElementById("messageInput")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key==="Enter"){
+        sendMessage();
+      }
+
+    }
+  );
+
+
+/* =====================================
+   INITIALISATION
+===================================== */
+
+document.getElementById(
+  "adminRequests"
+).textContent =
+  requests;
+
+
+renderProfiles();
+
 </script>
 
 </body>
