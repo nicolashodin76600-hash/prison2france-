@@ -3,171 +3,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Compagnie 33</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
 
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    background:#03040a;
+    font-family:Inter,Arial,sans-serif;
+    background:#050307;
     color:white;
+    min-height:100vh;
+}
+
+button,input,select{
+    font-family:inherit;
+}
+
+button{
+    cursor:pointer;
 }
 
 .app{
     width:100%;
-    max-width:430px;
+    max-width:480px;
     min-height:100vh;
     margin:auto;
     background:
-    radial-gradient(circle at 50% -10%,#541044 0%,#170b20 35%,#050711 75%);
+        radial-gradient(circle at 50% 0%,rgba(255,0,153,.16),transparent 35%),
+        radial-gradient(circle at 0% 60%,rgba(128,0,255,.12),transparent 35%),
+        #050307;
     position:relative;
     overflow:hidden;
 }
 
-.screen{
-    min-height:100vh;
-    padding:20px 18px 100px;
-}
+/* HEADER */
 
-.hidden{
-    display:none!important;
+.header{
+    height:70px;
+    padding:15px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:rgba(5,3,7,.86);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,0,170,.12);
 }
-
-/* LOGO */
 
 .logo{
-    text-align:center;
-    font-family:cursive;
-    font-size:38px;
-    text-shadow:0 0 20px #ff1685;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Playfair Display",serif;
+    font-size:22px;
+}
+
+.logo-heart{
+    color:#ff1493;
+    font-size:27px;
+    text-shadow:
+        0 0 5px #ff1493,
+        0 0 15px #ff1493,
+        0 0 30px #ff1493;
 }
 
 .logo span{
-    color:#ff1685;
+    color:#ff2aa6;
 }
 
-/* ACCUEIL */
-
-.home{
-    min-height:100vh;
-    padding:0;
+.header-icon{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    border:1px solid #552052;
+    background:#0d0811;
+    color:white;
     display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+}
 
+/* SCREENS */
+
+.screen{
+    display:none;
+    padding:20px 17px 105px;
+    animation:fadeIn .3s ease;
+}
+
+.screen.active{
+    display:block;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* HOME */
+
+.hero{
+    min-height:520px;
+    border-radius:28px;
+    overflow:hidden;
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    padding:28px;
     background:
-    linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.05),
-        rgba(0,0,0,0.35),
-        rgba(0,0,0,0.95)
-    ),
-    url("https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=90")
-    center/cover;
+        linear-gradient(to top,#09030b 5%,rgba(5,3,7,.45) 55%,transparent),
+        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85")
+        center/cover;
+    box-shadow:
+        0 0 30px rgba(255,0,153,.13),
+        inset 0 0 80px rgba(0,0,0,.5);
 }
 
-.home-content{
-    padding:25px 22px 35px;
+.hero-content{
+    width:100%;
 }
 
-.pink{
-    color:#ff2a96;
-    font-weight:bold;
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:45px;
+    line-height:1;
+    margin-bottom:12px;
 }
 
-.home h1{
-    font-size:32px;
-    line-height:1.1;
-    margin:10px 0;
+.hero h1 span{
+    color:#ff1493;
+    text-shadow:0 0 20px rgba(255,20,147,.8);
 }
 
-.home p{
-    color:#ddd;
+.hero p{
+    color:#d8ced9;
     line-height:1.5;
     margin-bottom:22px;
 }
 
+.badges{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.badge{
+    padding:7px 11px;
+    border-radius:30px;
+    background:rgba(255,20,147,.10);
+    border:1px solid rgba(255,20,147,.4);
+    font-size:11px;
+    color:#ff8aca;
+}
+
+/* BUTTONS */
+
 .btn{
     width:100%;
-    border:none;
-    border-radius:30px;
-    padding:16px;
+    border:0;
+    border-radius:16px;
+    padding:16px 20px;
+    font-size:14px;
+    font-weight:700;
     color:white;
-    font-weight:bold;
-    font-size:15px;
-    cursor:pointer;
-
-    background:linear-gradient(
-        90deg,
-        #ff087f,
-        #ff4eae
-    );
-
-    box-shadow:0 5px 25px rgba(255,20,135,.30);
+    position:relative;
+    overflow:hidden;
+    transition:.15s ease;
+    margin-bottom:10px;
 }
 
-.btn-dark{
-    background:#151827;
-    border:1px solid #34394e;
-    box-shadow:none;
-    margin-top:10px;
+.btn-primary{
+    background:linear-gradient(135deg,#ff1493,#ff42b3);
+    box-shadow:
+        0 0 8px rgba(255,20,147,.8),
+        0 0 25px rgba(255,20,147,.35);
 }
 
-/* CHAMPS */
-
-.input{
-    width:100%;
-    padding:15px;
-    border-radius:13px;
-    border:1px solid #2c3145;
-    background:#111524;
-    color:white;
-    outline:none;
-    margin-bottom:11px;
+.btn-secondary{
+    background:#0c0810;
+    border:1px solid #d0178b;
+    box-shadow:0 0 10px rgba(255,20,147,.12);
 }
 
-.title{
-    font-size:25px;
-    margin:18px 0;
+.btn-danger{
+    background:#13070c;
+    border:1px solid #e33b65;
+    color:#ff6687;
 }
 
-.subtitle{
-    color:#999fb3;
-    font-size:13px;
-    margin-bottom:18px;
+.btn:active{
+    transform:scale(.95);
+    box-shadow:
+        0 0 5px #ff1493,
+        0 0 20px #ff1493,
+        0 0 45px rgba(255,20,147,.9);
 }
 
-/* CHIPS */
+.ripple{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.55);
+    transform:scale(0);
+    animation:ripple .55s linear;
+    pointer-events:none;
+}
 
-.chips{
-    display:flex;
-    gap:8px;
-    overflow:auto;
+@keyframes ripple{
+    to{
+        transform:scale(5);
+        opacity:0;
+    }
+}
+
+/* TITLES */
+
+.section-title{
+    font-size:21px;
     margin-bottom:15px;
 }
 
-.chip{
-    padding:9px 14px;
-    border-radius:20px;
-    background:#151a2a;
-    border:1px solid #292e42;
+.section-title span{
+    color:#ff269e;
+}
+
+/* SEARCH */
+
+.search-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:14px;
+    border:1px solid #42233f;
+    border-radius:15px;
+    background:#0b0710;
+    margin-bottom:15px;
+}
+
+.search-box input{
+    width:100%;
+    background:none;
+    border:0;
+    outline:0;
+    color:white;
+}
+
+.search-box input::placeholder{
+    color:#807383;
+}
+
+.filters{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:20px;
+    scrollbar-width:none;
+}
+
+.filter{
     white-space:nowrap;
+    padding:9px 14px;
+    border-radius:30px;
+    background:#0b0710;
+    border:1px solid #39243a;
+    color:#aaa;
     font-size:12px;
 }
 
-.chip.active{
-    background:#ff1685;
-    border-color:#ff1685;
+.filter.active{
+    background:#ff1493;
+    border-color:#ff1493;
+    color:white;
+    box-shadow:0 0 15px rgba(255,20,147,.45);
 }
 
-/* PROFILS */
+/* CARDS */
 
 .grid{
     display:grid;
@@ -176,928 +301,1325 @@ body{
 }
 
 .card{
-    background:#101424;
-    border:1px solid #252a3d;
-    border-radius:18px;
+    background:linear-gradient(145deg,#120b16,#08060a);
+    border:1px solid #291b2c;
+    border-radius:20px;
     overflow:hidden;
+    position:relative;
+    transition:.2s;
 }
 
-.card img{
-    width:100%;
-    height:205px;
-    object-fit:cover;
+.card:active{
+    transform:scale(.97);
+    border-color:#ff1493;
+    box-shadow:0 0 25px rgba(255,20,147,.35);
 }
 
-.card-body{
-    padding:10px;
-}
-
-.card-name{
-    font-weight:bold;
-    font-size:15px;
-}
-
-.card-city{
-    color:#9ca2b4;
-    font-size:12px;
-    margin-top:4px;
+.card-image{
+    height:190px;
+    position:relative;
+    background-size:cover;
+    background-position:center;
 }
 
 .online{
-    color:#45e29a;
+    position:absolute;
+    left:9px;
+    bottom:9px;
+    padding:5px 8px;
+    border-radius:20px;
+    background:rgba(0,0,0,.75);
+    font-size:9px;
+}
+
+.online i{
+    display:inline-block;
+    width:6px;
+    height:6px;
+    background:#20e57a;
+    border-radius:50%;
+    margin-right:4px;
+    box-shadow:0 0 8px #20e57a;
+}
+
+.heart{
+    position:absolute;
+    right:9px;
+    top:9px;
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.2);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.heart.active{
+    color:#ff1493;
+    text-shadow:0 0 12px #ff1493;
+}
+
+.card-body{
+    padding:12px;
+}
+
+.card-name{
+    font-size:15px;
+    font-weight:700;
+}
+
+.card-info{
+    color:#9d92a1;
     font-size:11px;
     margin-top:5px;
 }
 
-.heart{
-    float:right;
-    background:none;
-    border:none;
-    color:#ff319a;
-    font-size:24px;
-    cursor:pointer;
+.card-tag{
+    display:inline-block;
+    margin-top:9px;
+    padding:5px 7px;
+    background:#21101d;
+    color:#ff72c4;
+    border-radius:7px;
+    font-size:9px;
 }
 
-.small-btn{
-    width:100%;
-    border:none;
-    border-radius:20px;
-    padding:9px;
-    margin-top:10px;
-    background:#ff1685;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
+/* PROFILE */
+
+.profile-cover{
+    height:410px;
+    border-radius:25px;
+    overflow:hidden;
+    position:relative;
+    background-size:cover;
+    background-position:center;
 }
 
-/* PROFIL */
-
-.profile-image{
-    width:100%;
-    height:390px;
-    object-fit:cover;
-    border-radius:22px;
+.profile-cover::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(transparent 50%,#060307);
 }
 
 .back{
-    font-size:30px;
-    cursor:pointer;
-    margin-bottom:10px;
+    position:absolute;
+    z-index:2;
+    top:15px;
+    left:15px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:rgba(0,0,0,.55);
+    border:1px solid rgba(255,255,255,.2);
+    color:white;
 }
 
-.badges{
+.profile-content{
+    position:relative;
+    margin-top:-90px;
+    z-index:3;
+    padding:0 15px;
+}
+
+.profile-name{
+    font-size:28px;
+    font-weight:700;
+}
+
+.verified{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    color:#55e89a;
+    font-size:11px;
+    margin-top:6px;
+}
+
+.profile-location{
+    color:#aaa;
+    font-size:12px;
+    margin-top:8px;
+}
+
+.profile-description{
+    margin-top:18px;
+    color:#c7becb;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.tags{
     display:flex;
-    gap:8px;
     flex-wrap:wrap;
-    margin:12px 0;
+    gap:7px;
+    margin:15px 0;
 }
 
-.badge{
-    background:#171c2d;
-    border:1px solid #2b3044;
-    padding:8px 11px;
+.tag{
+    padding:7px 10px;
+    background:#100a13;
+    border:1px solid #362238;
     border-radius:20px;
+    color:#cfc3d0;
+    font-size:10px;
+}
+
+/* INFO BOX */
+
+.info-box{
+    background:linear-gradient(145deg,#100911,#08060a);
+    border:1px solid #312033;
+    border-radius:18px;
+    padding:15px;
+    margin:15px 0;
+}
+
+.info-row{
+    display:flex;
+    justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px solid #211723;
     font-size:12px;
 }
 
-.bio{
-    color:#d0d3de;
-    line-height:1.5;
-    margin:10px 0 20px;
+.info-row:last-child{
+    border-bottom:0;
 }
 
-/* FAVORIS / MESSAGES */
-
-.notice{
-    background:#111625;
-    border:1px solid #282e42;
-    padding:16px;
-    border-radius:15px;
-    margin-bottom:10px;
-    color:#d5d7df;
+.info-label{
+    color:#89808b;
 }
 
-/* NAVIGATION */
+.info-value{
+    color:white;
+}
+
+/* MESSAGES */
+
+.message{
+    display:flex;
+    gap:11px;
+    padding:14px 5px;
+    border-bottom:1px solid #1b131e;
+}
+
+.avatar{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background-size:cover;
+    background-position:center;
+    flex-shrink:0;
+}
+
+.message-content{
+    flex:1;
+}
+
+.message-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.message-name{
+    font-weight:600;
+    font-size:14px;
+}
+
+.message-time{
+    color:#777;
+    font-size:10px;
+}
+
+.message-text{
+    color:#8e8590;
+    font-size:11px;
+    margin-top:5px;
+}
+
+/* FORM */
+
+.form-card{
+    background:#0b0710;
+    border:1px solid #2d1b30;
+    border-radius:22px;
+    padding:18px;
+}
+
+.label{
+    display:block;
+    font-size:11px;
+    color:#a79aa9;
+    margin-bottom:7px;
+}
+
+.input{
+    width:100%;
+    padding:14px;
+    margin-bottom:14px;
+    border-radius:13px;
+    border:1px solid #39263d;
+    background:#07050a;
+    color:white;
+    outline:none;
+}
+
+.input:focus{
+    border-color:#ff1493;
+    box-shadow:0 0 12px rgba(255,20,147,.2);
+}
+
+/* BOTTOM NAV */
 
 .bottom-nav{
     position:fixed;
     bottom:0;
     left:50%;
     transform:translateX(-50%);
-
     width:100%;
-    max-width:430px;
-
-    background:rgba(7,9,18,.97);
-    border-top:1px solid #252a3d;
-
+    max-width:480px;
+    height:76px;
+    background:rgba(8,5,10,.94);
+    backdrop-filter:blur(18px);
+    border-top:1px solid rgba(255,20,147,.18);
     display:flex;
     justify-content:space-around;
-
-    padding:10px 3px 12px;
-
-    z-index:20;
+    align-items:center;
+    z-index:50;
 }
 
-.nav{
-    color:#8d93a8;
-    text-align:center;
-    font-size:11px;
-    cursor:pointer;
+.nav-btn{
+    background:none;
+    border:0;
+    color:#756b78;
+    font-size:10px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
 }
 
 .nav-icon{
-    display:block;
-    font-size:21px;
-    margin-bottom:3px;
+    font-size:19px;
 }
 
-.nav.active{
-    color:#ff218e;
+.nav-btn.active{
+    color:#ff2aa6;
+    text-shadow:0 0 12px #ff1493;
+}
+
+.nav-btn.active .nav-icon{
+    transform:translateY(-2px);
+}
+
+/* TOAST */
+
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:95px;
+    transform:translate(-50%,20px);
+    background:#160b17;
+    border:1px solid #ff1493;
+    padding:13px 18px;
+    border-radius:30px;
+    font-size:12px;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:100;
+    box-shadow:0 0 25px rgba(255,20,147,.35);
+    white-space:nowrap;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    z-index:200;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:480px;
+    background:#0b0710;
+    border:1px solid #45213f;
+    border-radius:28px 28px 0 0;
+    padding:25px 20px;
+    animation:slideUp .3s ease;
+}
+
+@keyframes slideUp{
+    from{transform:translateY(100%);}
+    to{transform:translateY(0);}
+}
+
+.modal-title{
+    font-size:20px;
+    margin-bottom:7px;
+}
+
+.modal-text{
+    color:#968b99;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.close{
+    float:right;
+    background:none;
+    border:0;
+    color:#aaa;
+    font-size:20px;
 }
 
 /* DESKTOP */
 
-@media(min-width:600px){
-
+@media(min-width:700px){
     body{
-        background:
-        radial-gradient(circle,#251026,#03040a);
+        padding:30px 0;
+        background:#020103;
     }
 
     .app{
-        box-shadow:0 0 80px rgba(255,20,135,.15);
+        border-radius:30px;
+        box-shadow:0 0 80px rgba(255,0,153,.12);
     }
-
 }
-
 </style>
 </head>
-
 
 <body>
 
 <div class="app">
 
+<header class="header">
+    <div class="logo">
+        <div class="logo-heart">♡</div>
+        Compagnie <span>33</span>
+    </div>
 
-<!-- ========================= -->
+    <button class="header-icon" onclick="showToast('Aucune nouvelle notification')">
+        ♡
+    </button>
+</header>
+
+
 <!-- ACCUEIL -->
-<!-- ========================= -->
 
-<section id="home" class="screen home">
+<section id="home" class="screen active">
 
-<div class="home-content">
+    <div class="hero">
 
-<div class="pink">
-18+ • PROFILS ADULTES
-</div>
+        <div class="hero-content">
 
-<h1>
-Plus qu'une rencontre…<br>
-une belle compagnie.
-</h1>
+            <div class="badges">
+                <div class="badge">18+</div>
+                <div class="badge">Profils vérifiés</div>
+                <div class="badge">Discrétion</div>
+            </div>
 
-<p>
-Découvre des profils, échange et trouve
-des personnes avec qui partager de bons moments,
-dans le respect et la discrétion.
-</p>
+            <h1>
+                Compagnie<br>
+                <span>33</span>
+            </h1>
 
-<button class="btn" onclick="showScreen('signup')">
-Commencer
-</button>
+            <p>
+                Trouvez une personne disponible pour vous accompagner
+                lors d'une sortie, d'un repas, d'un événement ou simplement
+                pour passer un moment convivial.
+            </p>
 
-<button class="btn btn-dark"
-onclick="showScreen('login')">
-Se connecter
-</button>
+            <button class="btn btn-primary" onclick="showScreen('profiles')">
+                Découvrir les profils →
+            </button>
 
-</div>
+            <button class="btn btn-secondary" onclick="showScreen('register')">
+                Créer mon compte
+            </button>
 
-</section>
+        </div>
 
+    </div>
 
-<!-- ========================= -->
-<!-- INSCRIPTION -->
-<!-- ========================= -->
+    <div style="margin-top:25px">
 
-<section id="signup" class="screen hidden">
+        <h2 class="section-title">
+            Pourquoi <span>Compagnie 33 ?</span>
+        </h2>
 
-<div class="logo">
-♡ Compagnie <span>33</span>
-</div>
+        <div class="info-box">
 
-<div class="subtitle" style="text-align:center">
-Créer ton compte
-</div>
+            <div class="info-row">
+                <span class="info-label">✓ Profils</span>
+                <span class="info-value">Présentés clairement</span>
+            </div>
 
-<input
-class="input"
-placeholder="Pseudo">
+            <div class="info-row">
+                <span class="info-label">✓ Disponibilités</span>
+                <span class="info-value">Visibles</span>
+            </div>
 
-<input
-class="input"
-placeholder="Email">
+            <div class="info-row">
+                <span class="info-label">✓ Confidentialité</span>
+                <span class="info-value">Respectée</span>
+            </div>
 
-<input
-class="input"
-type="password"
-placeholder="Mot de passe">
+            <div class="info-row">
+                <span class="info-label">✓ Réservation</span>
+                <span class="info-value">Simple</span>
+            </div>
 
-<div style="display:flex;gap:10px;margin-bottom:12px">
+        </div>
 
-<button class="btn btn-dark">
-Homme
-</button>
-
-<button class="btn btn-dark">
-Femme
-</button>
-
-</div>
-
-<div class="notice">
-<input type="checkbox">
-&nbsp;
-J'ai 18 ans ou plus et j'accepte les conditions.
-</div>
-
-<button class="btn"
-onclick="showScreen('discover')">
-
-S'inscrire
-
-</button>
+    </div>
 
 </section>
 
 
-<!-- ========================= -->
-<!-- CONNEXION -->
-<!-- ========================= -->
+<!-- PROFILS -->
 
-<section id="login" class="screen hidden">
+<section id="profiles" class="screen">
 
-<div class="logo">
-♡ Compagnie <span>33</span>
-</div>
+    <h2 class="section-title">
+        Profils <span>disponibles</span>
+    </h2>
 
-<h2 class="title">
-Connexion
-</h2>
+    <div class="search-box">
+        🔎
+        <input id="searchInput"
+               type="text"
+               placeholder="Rechercher une ville..."
+               oninput="searchProfiles()">
+    </div>
 
-<input
-class="input"
-placeholder="Email ou pseudo">
+    <div class="filters">
 
-<input
-class="input"
-type="password"
-placeholder="Mot de passe">
+        <button class="filter active" onclick="filterCity('Toutes',this)">
+            Toutes
+        </button>
 
-<button class="btn"
-onclick="showScreen('discover')">
+        <button class="filter" onclick="filterCity('Bordeaux',this)">
+            Bordeaux
+        </button>
 
-Se connecter
+        <button class="filter" onclick="filterCity('Pessac',this)">
+            Pessac
+        </button>
 
-</button>
+        <button class="filter" onclick="filterCity('Libourne',this)">
+            Libourne
+        </button>
 
-<button class="btn btn-dark"
-onclick="showScreen('signup')">
+    </div>
 
-Créer un compte
-
-</button>
-
-</section>
-
-
-<!-- ========================= -->
-<!-- ACCUEIL PROFILS -->
-<!-- ========================= -->
-
-<section id="discover" class="screen hidden">
-
-<div style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:15px;
-">
-
-<div class="logo"
-style="font-size:27px">
-
-Compagnie <span>33</span>
-
-</div>
-
-<div style="font-size:23px">
-☰
-</div>
-
-</div>
-
-
-<input
-class="input"
-placeholder="⌕ Rechercher une ville, un pseudo…">
-
-
-<div class="chips">
-
-<div class="chip active">
-Toutes
-</div>
-
-<div class="chip">
-À proximité
-</div>
-
-<div class="chip">
-En ligne
-</div>
-
-<div class="chip">
-Vérifiées
-</div>
-
-</div>
-
-
-<div id="profiles"
-class="grid">
-</div>
+    <div id="profileGrid" class="grid"></div>
 
 </section>
 
 
-<!-- ========================= -->
-<!-- PROFIL -->
-<!-- ========================= -->
+<!-- DETAIL PROFIL -->
 
-<section id="detail" class="screen hidden">
+<section id="detail" class="screen">
 
-<div
-class="back"
-onclick="showScreen('discover')">
-
-‹
-
-</div>
-
-<img
-id="detailImage"
-class="profile-image">
-
-<h1
-id="detailName"
-class="title">
-</h1>
-
-<div
-id="detailCity"
-class="subtitle">
-</div>
-
-<div class="badges">
-
-<div class="badge">
-✓ Profil vérifié
-</div>
-
-<div class="badge">
-● En ligne
-</div>
-
-</div>
-
-<h3>
-À propos de moi
-</h3>
-
-<p
-id="detailBio"
-class="bio">
-</p>
-
-<h3>
-Centres d'intérêt
-</h3>
-
-<div class="badges">
-
-<div class="badge">
-Sorties
-</div>
-
-<div class="badge">
-Voyages
-</div>
-
-<div class="badge">
-Musique
-</div>
-
-<div class="badge">
-Cinéma
-</div>
-
-</div>
-
-<button
-class="btn"
-style="margin-top:20px"
-onclick="alert('Messagerie : prochaine étape')">
-
-➤ Contacter
-
-</button>
+    <div id="detailContent"></div>
 
 </section>
 
 
-<!-- ========================= -->
 <!-- FAVORIS -->
-<!-- ========================= -->
 
-<section id="favorites" class="screen hidden">
+<section id="favorites" class="screen">
 
-<h2 class="title">
-♡ Favoris
-</h2>
+    <h2 class="section-title">
+        Mes <span>favoris</span>
+    </h2>
 
-<div id="favoriteList">
-
-<div class="notice">
-Aucun favori pour le moment.
-</div>
-
-</div>
+    <div id="favoriteGrid" class="grid"></div>
 
 </section>
 
 
-<!-- ========================= -->
 <!-- MESSAGES -->
-<!-- ========================= -->
 
-<section id="messages" class="screen hidden">
+<section id="messages" class="screen">
 
-<h2 class="title">
-Messages
-</h2>
+    <h2 class="section-title">
+        Mes <span>messages</span>
+    </h2>
 
-<div class="notice">
-💬 Tes conversations apparaîtront ici.
-</div>
+    <div id="messagesList"></div>
 
 </section>
 
 
-<!-- ========================= -->
-<!-- PROFIL PERSONNEL -->
-<!-- ========================= -->
+<!-- PROFIL -->
 
-<section id="profile" class="screen hidden">
+<section id="account" class="screen">
 
-<h2 class="title">
-Mon profil
-</h2>
+    <h2 class="section-title">
+        Mon <span>compte</span>
+    </h2>
 
-<div class="notice">
+    <div class="form-card">
 
-✓ Profil vérifié
+        <label class="label">Prénom / pseudo</label>
+        <input class="input" value="Nicolas">
 
-<br><br>
+        <label class="label">Ville</label>
+        <input class="input" value="Bordeaux">
 
-Photo réelle
+        <label class="label">Présentation</label>
+        <textarea class="input" rows="5"
+        style="resize:none">Bienvenue sur mon profil.</textarea>
 
-<br><br>
+        <button class="btn btn-primary"
+        onclick="showToast('Profil enregistré ✓')">
+            Enregistrer les modifications
+        </button>
 
-Âge 18+ confirmé
+        <button class="btn btn-secondary"
+        onclick="showToast('Paramètres ouverts')">
+            ⚙ Paramètres
+        </button>
 
-</div>
+        <button class="btn btn-secondary"
+        onclick="showToast('Centre de sécurité')">
+            🛡 Sécurité & confidentialité
+        </button>
 
-<button class="btn btn-dark">
-
-Confidentialité & sécurité
-
-</button>
+    </div>
 
 </section>
 
 
-<!-- ========================= -->
+<!-- INSCRIPTION -->
+
+<section id="register" class="screen">
+
+    <h2 class="section-title">
+        Créer mon <span>compte</span>
+    </h2>
+
+    <div class="form-card">
+
+        <label class="label">Pseudo</label>
+        <input class="input" placeholder="Votre pseudo">
+
+        <label class="label">Email</label>
+        <input class="input" type="email" placeholder="votre@email.com">
+
+        <label class="label">Mot de passe</label>
+        <input class="input" type="password" placeholder="••••••••">
+
+        <label class="label">Ville</label>
+        <select class="input">
+            <option>Bordeaux</option>
+            <option>Pessac</option>
+            <option>Libourne</option>
+            <option>Autre</option>
+        </select>
+
+        <div style="font-size:11px;color:#aaa;margin-bottom:18px">
+            ☑ Je confirme avoir 18 ans ou plus et accepter les
+            conditions d'utilisation.
+        </div>
+
+        <button class="btn btn-primary"
+        onclick="createAccount()">
+            Créer mon compte →
+        </button>
+
+    </div>
+
+</section>
+
+
 <!-- NAVIGATION -->
-<!-- ========================= -->
 
-<nav
-id="navigation"
-class="bottom-nav hidden">
+<nav class="bottom-nav">
 
-<div
-class="nav active"
-onclick="showScreen('discover')">
+    <button class="nav-btn active"
+            onclick="showScreen('home',this)">
+        <span class="nav-icon">⌂</span>
+        Accueil
+    </button>
 
-<span class="nav-icon">
-⌂
-</span>
+    <button class="nav-btn"
+            onclick="showScreen('profiles',this)">
+        <span class="nav-icon">⌕</span>
+        Profils
+    </button>
 
-Accueil
+    <button class="nav-btn"
+            onclick="showScreen('favorites',this)">
+        <span class="nav-icon">♡</span>
+        Favoris
+    </button>
 
-</div>
+    <button class="nav-btn"
+            onclick="showScreen('messages',this)">
+        <span class="nav-icon">♧</span>
+        Messages
+    </button>
 
-
-<div
-class="nav"
-onclick="showScreen('discover')">
-
-<span class="nav-icon">
-⌕
-</span>
-
-Recherche
-
-</div>
-
-
-<div
-class="nav"
-onclick="showScreen('favorites')">
-
-<span class="nav-icon">
-♡
-</span>
-
-Favoris
-
-</div>
-
-
-<div
-class="nav"
-onclick="showScreen('messages')">
-
-<span class="nav-icon">
-▢
-</span>
-
-Messages
-
-</div>
-
-
-<div
-class="nav"
-onclick="showScreen('profile')">
-
-<span class="nav-icon">
-♙
-</span>
-
-Profil
-
-</div>
+    <button class="nav-btn"
+            onclick="showScreen('account',this)">
+        <span class="nav-icon">♙</span>
+        Compte
+    </button>
 
 </nav>
 
+</div>
+
+
+<!-- TOAST -->
+
+<div id="toast" class="toast"></div>
+
+
+<!-- MODAL RESERVATION -->
+
+<div id="bookingModal" class="modal">
+
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal()">×</button>
+
+        <h2 class="modal-title">
+            Demander une prestation
+        </h2>
+
+        <p class="modal-text">
+            Sélectionnez la date, l'horaire et indiquez le type
+            de compagnie souhaité. La demande pourra ensuite être
+            confirmée par la personne concernée.
+        </p>
+
+        <label class="label">Date</label>
+        <input class="input" type="date">
+
+        <label class="label">Horaire</label>
+        <input class="input" type="time">
+
+        <label class="label">Type de prestation</label>
+
+        <select class="input">
+            <option>Sortie / événement</option>
+            <option>Restaurant</option>
+            <option>Accompagnement</option>
+            <option>Conversation / compagnie</option>
+            <option>Autre demande</option>
+        </select>
+
+        <button class="btn btn-primary"
+                onclick="sendRequest()">
+            Envoyer la demande →
+        </button>
+
+    </div>
 
 </div>
 
 
 <script>
 
-/* =========================
-   DONNÉES DE DÉMONSTRATION
-========================= */
+/* DONNÉES DE DÉMONSTRATION */
 
 const profiles = [
 
 {
-name:"Lina",
-age:24,
-city:"Bordeaux",
-distance:"3 km",
-
-image:
-"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=90",
-
-bio:
-"Je suis Lina, j'aime les sorties, les voyages, la musique et les bons moments partagés."
+    id:1,
+    name:"Lina",
+    age:24,
+    city:"Bordeaux",
+    distance:"3 km",
+    image:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85",
+    tags:["Sorties","Restaurant","Événements"],
+    description:"Profil disponible pour des sorties, repas et événements. Présentation claire et échanges directement depuis l'application.",
+    online:true
 },
 
 {
-name:"Chloé",
-age:27,
-city:"Bordeaux",
-distance:"5 km",
-
-image:
-"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=90",
-
-bio:
-"Souriante et sociable, je recherche des échanges simples et respectueux."
+    id:2,
+    name:"Chloé",
+    age:27,
+    city:"Bordeaux",
+    distance:"5 km",
+    image:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=85",
+    tags:["Événements","Voyages","Sorties"],
+    description:"Disponible sur réservation selon les créneaux affichés dans l'application.",
+    online:true
 },
 
 {
-name:"Mélissa",
-age:22,
-city:"Talence",
-distance:"8 km",
-
-image:
-"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=90",
-
-bio:
-"J'aime le cinéma, la cuisine et découvrir de nouveaux endroits."
+    id:3,
+    name:"Mélissa",
+    age:22,
+    city:"Pessac",
+    distance:"8 km",
+    image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85",
+    tags:["Restaurant","Sorties","Culture"],
+    description:"Compagnie pour sorties et moments conviviaux.",
+    online:false
 },
 
 {
-name:"Sarah",
-age:30,
-city:"Bègles",
-distance:"10 km",
-
-image:
-"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=700&q=90",
-
-bio:
-"Passionnée de musique et de voyages, toujours partante pour une sortie."
+    id:4,
+    name:"Sarah",
+    age:30,
+    city:"Libourne",
+    distance:"18 km",
+    image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
+    tags:["Événements","Restaurant","Voyages"],
+    description:"Profil disponible selon calendrier et réservation.",
+    online:true
 }
 
 ];
 
-
-let favorites=[];
-
-
-/* =========================
-   CHANGEMENT D'ÉCRAN
-========================= */
-
-function showScreen(id){
-
-document
-.querySelectorAll(".screen")
-.forEach(screen=>{
-screen.classList.add("hidden");
-});
+let favorites = [];
+let selectedProfile = null;
 
 
-document
-.getElementById(id)
-.classList.remove("hidden");
+/* AFFICHAGE PROFILS */
 
+function renderProfiles(list=profiles){
 
-const nav=
-document.getElementById("navigation");
+    const grid=document.getElementById("profileGrid");
 
+    grid.innerHTML="";
 
-const publicPages=[
-"discover",
-"favorites",
-"messages",
-"profile"
-];
+    if(list.length===0){
 
+        grid.innerHTML=`
+        <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:50px 20px;
+        color:#888">
+            Aucun profil trouvé.
+        </div>`;
 
-if(publicPages.includes(id)){
+        return;
+    }
 
-nav.classList.remove("hidden");
+    list.forEach(profile=>{
 
-}else{
+        const isFav=favorites.includes(profile.id);
 
-nav.classList.add("hidden");
+        grid.innerHTML+=`
 
-}
+        <div class="card"
+             onclick="openProfile(${profile.id})">
 
+            <div class="card-image"
+                 style="background-image:url('${profile.image}')">
 
-if(id==="discover"){
+                <button class="heart ${isFav?'active':''}"
+                        onclick="event.stopPropagation();toggleFavorite(${profile.id})">
 
-renderProfiles();
+                    ${isFav?'♥':'♡'}
 
-}
+                </button>
 
+                <div class="online">
 
-if(id==="favorites"){
+                    ${profile.online
+                    ?'<i></i> En ligne'
+                    :'Disponible sur réservation'}
 
-renderFavorites();
+                </div>
 
-}
+            </div>
 
-}
+            <div class="card-body">
 
+                <div class="card-name">
+                    ${profile.name}, ${profile.age}
+                </div>
 
-/* =========================
-   AFFICHAGE PROFILS
-========================= */
+                <div class="card-info">
+                    📍 ${profile.city} · ${profile.distance}
+                </div>
 
-function renderProfiles(){
+                <div class="card-tag">
+                    ${profile.tags[0]}
+                </div>
 
-const container=
-document.getElementById("profiles");
+            </div>
 
+        </div>`;
 
-container.innerHTML="";
-
-
-profiles.forEach((profile,index)=>{
-
-const isFavorite=
-favorites.includes(index);
-
-
-container.innerHTML+=`
-
-<div class="card">
-
-<img
-src="${profile.image}"
-alt="${profile.name}">
-
-<div class="card-body">
-
-<button
-class="heart"
-onclick="toggleFavorite(${index})">
-
-${isFavorite ? "♥":"♡"}
-
-</button>
-
-<div class="card-name">
-
-${profile.name}, ${profile.age}
-✓
-
-</div>
-
-<div class="card-city">
-
-${profile.city}
-•
-${profile.distance}
-
-</div>
-
-<div class="online">
-
-● En ligne
-
-</div>
-
-<button
-class="small-btn"
-onclick="openProfile(${index})">
-
-Voir le profil
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
+    });
 
 }
 
 
-/* =========================
-   PROFIL DÉTAILLÉ
-========================= */
+/* PROFIL DETAIL */
 
-function openProfile(index){
+function openProfile(id){
 
-const profile=
-profiles[index];
+    selectedProfile=profiles.find(p=>p.id===id);
 
+    const p=selectedProfile;
 
-document
-.getElementById("detailImage")
-.src=
-profile.image;
+    const isFav=favorites.includes(p.id);
 
+    document.getElementById("detailContent").innerHTML=`
 
-document
-.getElementById("detailName")
-.textContent=
-profile.name+", "+profile.age;
+    <div class="profile-cover"
+         style="background-image:url('${p.image}')">
 
+        <button class="back"
+                onclick="showScreen('profiles')">
+            ←
+        </button>
 
-document
-.getElementById("detailCity")
-.textContent=
-"⌖ "+
-profile.city+
-" • "+
-profile.distance;
+    </div>
 
+    <div class="profile-content">
 
-document
-.getElementById("detailBio")
-.textContent=
-profile.bio;
+        <div class="profile-name">
+            ${p.name}, ${p.age}
+        </div>
 
+        <div class="verified">
+            ● Profil présenté comme vérifié
+        </div>
 
-showScreen("detail");
+        <div class="profile-location">
+            📍 ${p.city} · ${p.distance}
+        </div>
+
+        <div class="profile-description">
+            ${p.description}
+        </div>
+
+        <div class="tags">
+
+            ${p.tags.map(tag=>`
+                <span class="tag">${tag}</span>
+            `).join("")}
+
+        </div>
+
+        <div class="info-box">
+
+            <div class="info-row">
+                <span class="info-label">Disponibilité</span>
+                <span class="info-value">
+                    ${p.online?"Aujourd'hui":"Sur réservation"}
+                </span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Secteur</span>
+                <span class="info-value">${p.city}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">Réservation</span>
+                <span class="info-value">Sur demande</span>
+            </div>
+
+        </div>
+
+        <button class="btn btn-primary"
+                onclick="openBooking()">
+
+            Demander une prestation →
+
+        </button>
+
+        <button class="btn btn-secondary"
+                onclick="toggleFavorite(${p.id});openProfile(${p.id})">
+
+            ${isFav
+            ?"♥ Retirer des favoris"
+            :"♡ Ajouter aux favoris"}
+
+        </button>
+
+        <button class="btn btn-secondary"
+                onclick="startMessage()">
+
+            💬 Envoyer un message
+
+        </button>
+
+        <button class="btn btn-danger"
+                onclick="showToast('Signalement enregistré')">
+
+            ⚠ Signaler ce profil
+
+        </button>
+
+    </div>
+    `;
+
+    showScreen("detail");
 
 }
 
 
-/* =========================
-   FAVORIS
-========================= */
+/* FAVORIS */
 
-function toggleFavorite(index){
+function toggleFavorite(id){
 
-if(favorites.includes(index)){
+    if(favorites.includes(id)){
 
-favorites=
-favorites.filter(
-item=>item!==index
-);
+        favorites=favorites.filter(x=>x!==id);
 
-}else{
+        showToast("Retiré des favoris");
 
-favorites.push(index);
+    }else{
+
+        favorites.push(id);
+
+        showToast("Ajouté aux favoris ♥");
+
+    }
+
+    renderProfiles();
+    renderFavorites();
 
 }
 
-renderProfiles();
 
-}
-
+/* AFFICHAGE FAVORIS */
 
 function renderFavorites(){
 
-const container=
-document.getElementById("favoriteList");
+    const grid=document.getElementById("favoriteGrid");
 
+    const list=profiles.filter(p=>favorites.includes(p.id));
 
-if(favorites.length===0){
+    if(list.length===0){
 
-container.innerHTML=`
+        grid.innerHTML=`
+        <div style="
+        grid-column:1/-1;
+        text-align:center;
+        padding:60px 20px;
+        color:#888">
 
-<div class="notice">
+            Aucun favori pour le moment.<br><br>
+            Ajoutez des profils avec le ♡.
 
-Aucun favori pour le moment.
+        </div>`;
 
-</div>
+        return;
+    }
 
-`;
+    grid.innerHTML="";
 
-return;
+    list.forEach(p=>{
+
+        grid.innerHTML+=`
+
+        <div class="card"
+             onclick="openProfile(${p.id})">
+
+            <div class="card-image"
+                 style="background-image:url('${p.image}')">
+
+                <div class="heart active">
+                    ♥
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="card-name">
+                    ${p.name}, ${p.age}
+                </div>
+
+                <div class="card-info">
+                    📍 ${p.city}
+                </div>
+
+            </div>
+
+        </div>`;
+
+    });
 
 }
 
 
-container.innerHTML="";
+/* RECHERCHE */
+
+function searchProfiles(){
+
+    const value=
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    const result=profiles.filter(p=>
+        p.city.toLowerCase().includes(value) ||
+        p.name.toLowerCase().includes(value)
+    );
+
+    renderProfiles(result);
+
+}
 
 
-favorites.forEach(index=>{
+/* FILTRE VILLE */
 
-const p=
-profiles[index];
+function filterCity(city,button){
+
+    document
+        .querySelectorAll(".filter")
+        .forEach(b=>b.classList.remove("active"));
+
+    button.classList.add("active");
+
+    if(city==="Toutes"){
+
+        renderProfiles();
+
+    }else{
+
+        renderProfiles(
+            profiles.filter(p=>p.city===city)
+        );
+
+    }
+
+}
 
 
-container.innerHTML+=`
+/* NAVIGATION */
 
-<div
-class="notice"
-onclick="openProfile(${index})">
+function showScreen(id,button){
 
-<strong>
-${p.name}, ${p.age}
-</strong>
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.remove("active");
+        });
 
-<br>
+    document
+        .getElementById(id)
+        .classList.add("active");
 
-<span style="color:#9ca2b4">
+    if(button){
 
-${p.city}
-•
-${p.distance}
+        document
+            .querySelectorAll(".nav-btn")
+            .forEach(b=>b.classList.remove("active"));
 
-</span>
+        button.classList.add("active");
 
-</div>
+    }
 
-`;
+    if(id==="profiles"){
+        renderProfiles();
+    }
+
+    if(id==="favorites"){
+        renderFavorites();
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* MODAL */
+
+function openBooking(){
+
+    document
+        .getElementById("bookingModal")
+        .classList.add("show");
+
+}
+
+function closeModal(){
+
+    document
+        .getElementById("bookingModal")
+        .classList.remove("show");
+
+}
+
+function sendRequest(){
+
+    closeModal();
+
+    showToast(
+        "Demande envoyée ✓"
+    );
+
+}
+
+
+/* MESSAGE */
+
+function startMessage(){
+
+    showScreen("messages");
+
+    showToast(
+        "Conversation créée ✓"
+    );
+
+}
+
+
+/* COMPTE */
+
+function createAccount(){
+
+    showToast(
+        "Compte créé avec succès ✓"
+    );
+
+    setTimeout(()=>{
+        showScreen("profiles");
+    },700);
+
+}
+
+
+/* TOAST */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast=
+        document.getElementById("toast");
+
+    toast.textContent=message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer=setTimeout(()=>{
+        toast.classList.remove("show");
+    },2300);
+
+}
+
+
+/* MESSAGES DEMO */
+
+function renderMessages(){
+
+    const list=
+        document.getElementById("messagesList");
+
+    list.innerHTML="";
+
+    profiles.forEach((p,i)=>{
+
+        list.innerHTML+=`
+
+        <div class="message"
+             onclick="openProfile(${p.id})">
+
+            <div class="avatar"
+                 style="background-image:url('${p.image}')">
+            </div>
+
+            <div class="message-content">
+
+                <div class="message-top">
+
+                    <div class="message-name">
+                        ${p.name}
+                    </div>
+
+                    <div class="message-time">
+                        ${i+10}:2${i}
+                    </div>
+
+                </div>
+
+                <div class="message-text">
+                    Bonjour, merci pour votre message.
+                </div>
+
+            </div>
+
+        </div>`;
+
+    });
+
+}
+
+
+/* EFFET RIPPLE */
+
+document.addEventListener("click",function(e){
+
+    const button=e.target.closest(".btn");
+
+    if(!button)return;
+
+    const circle=document.createElement("span");
+
+    circle.classList.add("ripple");
+
+    const rect=button.getBoundingClientRect();
+
+    const size=Math.max(rect.width,rect.height);
+
+    circle.style.width=size+"px";
+    circle.style.height=size+"px";
+
+    circle.style.left=
+        (e.clientX-rect.left-size/2)+"px";
+
+    circle.style.top=
+        (e.clientY-rect.top-size/2)+"px";
+
+    button.appendChild(circle);
+
+    setTimeout(()=>{
+        circle.remove();
+    },600);
 
 });
 
-}
 
+/* INITIALISATION */
 
-/* =========================
-   INITIALISATION
-========================= */
-
-showScreen("home");
+renderProfiles();
+renderFavorites();
+renderMessages();
 
 </script>
 
