@@ -1,122 +1,1105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101827">
-<title>PRISON2FRANCE — Mini App</title>
-<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Compagnie 33</title>
+
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#101827;color:#fff}
-body{min-height:100dvh;overflow-x:hidden}
-.app{min-height:100dvh;position:relative;background:
-linear-gradient(180deg,rgba(4,10,20,.12),rgba(3,7,15,.68)),
-url("./prison2france-bg.png") center top/cover fixed no-repeat}
-.overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 0 30%,rgba(2,5,10,.55) 60%,#07101d 100%);pointer-events:none}
-.content{position:relative;z-index:2;max-width:760px;margin:auto;padding:14px 14px 28px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.logo{font-weight:1000;font-size:21px;letter-spacing:-.8px;text-shadow:0 2px 8px #000}
-.logo b{color:#ff2638}
-.badge{font-size:10px;font-weight:800;padding:7px 10px;border-radius:99px;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
-.hero{padding:42px 4px 24px;text-shadow:0 3px 12px #000}
-.hero small{font-weight:900;letter-spacing:2px}
-.hero h1{font-size:clamp(36px,11vw,62px);line-height:.86;margin:8px 0;font-weight:1000;letter-spacing:-3px}
-.hero h1 span{color:#ff2638}
-.hero p{font-size:13px;line-height:1.5;max-width:480px;margin:12px 0 0}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-.card{border:1px solid rgba(255,255,255,.32);border-radius:19px;min-height:92px;padding:14px;color:#fff;text-align:left;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.28);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);transition:transform .12s,border-color .12s}
-.card:active{transform:scale(.97)}
-.card .icon{font-size:25px}.card strong{display:block;font-size:15px;margin-top:7px}.card em{display:block;font-style:normal;font-size:10px;margin-top:4px;opacity:.88}
-.blue{background:linear-gradient(135deg,rgba(0,72,255,.88),rgba(0,153,255,.48))}
-.red{background:linear-gradient(135deg,rgba(220,0,30,.88),rgba(255,70,30,.48))}
-.green{background:linear-gradient(135deg,rgba(0,145,55,.88),rgba(100,205,20,.43))}
-.orange{background:linear-gradient(135deg,rgba(230,115,0,.9),rgba(255,190,0,.45))}
-.purple{background:linear-gradient(135deg,rgba(130,0,210,.88),rgba(230,30,210,.45))}
-.cyan{background:linear-gradient(135deg,rgba(0,120,150,.9),rgba(0,210,230,.45))}
-.panel{display:none;margin-top:12px;padding:18px;border-radius:18px;background:rgba(6,10,18,.9);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(12px)}
-.panel.show{display:block}
-.panel h2{margin:0 0 7px;font-size:20px}.panel p{margin:0;color:#d7dbe2;font-size:13px;line-height:1.55}
-.close{margin-top:13px;border:0;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
-.cta{margin-top:12px;border-radius:17px;padding:15px;background:linear-gradient(90deg,#111827,#24344e);border:1px solid rgba(255,255,255,.25);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.cta strong{font-size:14px}.cta span{font-size:10px;color:#b9c3d0;display:block;margin-top:4px}
-.cta button{border:0;border-radius:12px;padding:11px 14px;font-weight:900;background:#fff;color:#111;cursor:pointer}
-.nav{position:sticky;bottom:10px;margin-top:14px;padding:9px;border-radius:18px;background:rgba(3,8,15,.88);border:1px solid rgba(255,255,255,.24);backdrop-filter:blur(14px);display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-.nav button{background:transparent;border:0;color:#cbd2dc;padding:9px 4px;border-radius:12px;font-size:10px;cursor:pointer}.nav button.active{color:#4ecbff;background:rgba(255,255,255,.08)}
-@media(min-width:600px){.content{padding:20px}.grid{grid-template-columns:repeat(3,1fr)}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#03040a;
+    color:white;
+}
+
+.app{
+    width:100%;
+    max-width:430px;
+    min-height:100vh;
+    margin:auto;
+    background:
+    radial-gradient(circle at 50% -10%,#541044 0%,#170b20 35%,#050711 75%);
+    position:relative;
+    overflow:hidden;
+}
+
+.screen{
+    min-height:100vh;
+    padding:20px 18px 100px;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    font-family:cursive;
+    font-size:38px;
+    text-shadow:0 0 20px #ff1685;
+}
+
+.logo span{
+    color:#ff1685;
+}
+
+/* ACCUEIL */
+
+.home{
+    min-height:100vh;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    background:
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.95)
+    ),
+    url("https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=90")
+    center/cover;
+}
+
+.home-content{
+    padding:25px 22px 35px;
+}
+
+.pink{
+    color:#ff2a96;
+    font-weight:bold;
+}
+
+.home h1{
+    font-size:32px;
+    line-height:1.1;
+    margin:10px 0;
+}
+
+.home p{
+    color:#ddd;
+    line-height:1.5;
+    margin-bottom:22px;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    border-radius:30px;
+    padding:16px;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+
+    background:linear-gradient(
+        90deg,
+        #ff087f,
+        #ff4eae
+    );
+
+    box-shadow:0 5px 25px rgba(255,20,135,.30);
+}
+
+.btn-dark{
+    background:#151827;
+    border:1px solid #34394e;
+    box-shadow:none;
+    margin-top:10px;
+}
+
+/* CHAMPS */
+
+.input{
+    width:100%;
+    padding:15px;
+    border-radius:13px;
+    border:1px solid #2c3145;
+    background:#111524;
+    color:white;
+    outline:none;
+    margin-bottom:11px;
+}
+
+.title{
+    font-size:25px;
+    margin:18px 0;
+}
+
+.subtitle{
+    color:#999fb3;
+    font-size:13px;
+    margin-bottom:18px;
+}
+
+/* CHIPS */
+
+.chips{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    margin-bottom:15px;
+}
+
+.chip{
+    padding:9px 14px;
+    border-radius:20px;
+    background:#151a2a;
+    border:1px solid #292e42;
+    white-space:nowrap;
+    font-size:12px;
+}
+
+.chip.active{
+    background:#ff1685;
+    border-color:#ff1685;
+}
+
+/* PROFILS */
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.card{
+    background:#101424;
+    border:1px solid #252a3d;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    height:205px;
+    object-fit:cover;
+}
+
+.card-body{
+    padding:10px;
+}
+
+.card-name{
+    font-weight:bold;
+    font-size:15px;
+}
+
+.card-city{
+    color:#9ca2b4;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.online{
+    color:#45e29a;
+    font-size:11px;
+    margin-top:5px;
+}
+
+.heart{
+    float:right;
+    background:none;
+    border:none;
+    color:#ff319a;
+    font-size:24px;
+    cursor:pointer;
+}
+
+.small-btn{
+    width:100%;
+    border:none;
+    border-radius:20px;
+    padding:9px;
+    margin-top:10px;
+    background:#ff1685;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* PROFIL */
+
+.profile-image{
+    width:100%;
+    height:390px;
+    object-fit:cover;
+    border-radius:22px;
+}
+
+.back{
+    font-size:30px;
+    cursor:pointer;
+    margin-bottom:10px;
+}
+
+.badges{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin:12px 0;
+}
+
+.badge{
+    background:#171c2d;
+    border:1px solid #2b3044;
+    padding:8px 11px;
+    border-radius:20px;
+    font-size:12px;
+}
+
+.bio{
+    color:#d0d3de;
+    line-height:1.5;
+    margin:10px 0 20px;
+}
+
+/* FAVORIS / MESSAGES */
+
+.notice{
+    background:#111625;
+    border:1px solid #282e42;
+    padding:16px;
+    border-radius:15px;
+    margin-bottom:10px;
+    color:#d5d7df;
+}
+
+/* NAVIGATION */
+
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:100%;
+    max-width:430px;
+
+    background:rgba(7,9,18,.97);
+    border-top:1px solid #252a3d;
+
+    display:flex;
+    justify-content:space-around;
+
+    padding:10px 3px 12px;
+
+    z-index:20;
+}
+
+.nav{
+    color:#8d93a8;
+    text-align:center;
+    font-size:11px;
+    cursor:pointer;
+}
+
+.nav-icon{
+    display:block;
+    font-size:21px;
+    margin-bottom:3px;
+}
+
+.nav.active{
+    color:#ff218e;
+}
+
+/* DESKTOP */
+
+@media(min-width:600px){
+
+    body{
+        background:
+        radial-gradient(circle,#251026,#03040a);
+    }
+
+    .app{
+        box-shadow:0 0 80px rgba(255,20,135,.15);
+    }
+
+}
+
 </style>
 </head>
+
+
 <body>
+
 <div class="app">
-<div class="overlay"></div>
-<main class="content">
-<header class="top">
-<div class="logo">PRISON<span style="color:#ff2638">2</span>FRANCE</div>
-<div class="badge">✈️ MINI APP TELEGRAM</div>
-</header>
 
-<section class="hero">
-<small>🇫🇷 BIENVENUE SUR</small>
-<h1>PRISON<span>2</span><br>FRANCE</h1>
-<p>L’actualité, les informations et la communauté autour du monde carcéral.</p>
-</section>
 
-<section class="grid" aria-label="Menu principal">
-<button class="card blue" data-page="familles"><span class="icon">👥</span><strong>FAMILLES</strong><em>Ressources & soutien</em></button>
-<button class="card red" data-page="actus"><span class="icon">📰</span><strong>ACTUALITÉS</strong><em>Infos & contenus</em></button>
-<button class="card green" data-page="etablissements"><span class="icon">🏛️</span><strong>ÉTABLISSEMENTS</strong><em>Prisons & infos utiles</em></button>
-<button class="card orange" data-page="guides"><span class="icon">📖</span><strong>GUIDES</strong><em>Démarches & conseils</em></button>
-<button class="card purple" data-page="communaute"><span class="icon">💬</span><strong>COMMUNAUTÉ</strong><em>Échanger & s’entraider</em></button>
-<button class="card cyan" data-page="contact"><span class="icon">✈️</span><strong>CONTACT</strong><em>Rejoindre sur Telegram</em></button>
-</section>
+<!-- ========================= -->
+<!-- ACCUEIL -->
+<!-- ========================= -->
 
-<section id="panel" class="panel" aria-live="polite"></section>
+<section id="home" class="screen home">
 
-<section class="cta">
-<div><strong>📣 RESTE CONNECTÉ !</strong><span>Ne manque aucune actualité de PRISON2FRANCE.</span></div>
-<button id="topBtn" type="button">ACCUEIL ↑</button>
-</section>
+<div class="home-content">
 
-<nav class="nav" aria-label="Navigation">
-<button class="active" data-nav="home">⌂<br>Accueil</button>
-<button data-nav="actus">▤<br>Actus</button>
-<button data-nav="communaute">♟<br>Communauté</button>
-<button data-nav="contact">⚙<br>Contact</button>
-</nav>
-</main>
+<div class="pink">
+18+ • PROFILS ADULTES
 </div>
 
+<h1>
+Plus qu'une rencontre…<br>
+une belle compagnie.
+</h1>
+
+<p>
+Découvre des profils, échange et trouve
+des personnes avec qui partager de bons moments,
+dans le respect et la discrétion.
+</p>
+
+<button class="btn" onclick="showScreen('signup')">
+Commencer
+</button>
+
+<button class="btn btn-dark"
+onclick="showScreen('login')">
+Se connecter
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- INSCRIPTION -->
+<!-- ========================= -->
+
+<section id="signup" class="screen hidden">
+
+<div class="logo">
+♡ Compagnie <span>33</span>
+</div>
+
+<div class="subtitle" style="text-align:center">
+Créer ton compte
+</div>
+
+<input
+class="input"
+placeholder="Pseudo">
+
+<input
+class="input"
+placeholder="Email">
+
+<input
+class="input"
+type="password"
+placeholder="Mot de passe">
+
+<div style="display:flex;gap:10px;margin-bottom:12px">
+
+<button class="btn btn-dark">
+Homme
+</button>
+
+<button class="btn btn-dark">
+Femme
+</button>
+
+</div>
+
+<div class="notice">
+<input type="checkbox">
+&nbsp;
+J'ai 18 ans ou plus et j'accepte les conditions.
+</div>
+
+<button class="btn"
+onclick="showScreen('discover')">
+
+S'inscrire
+
+</button>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- CONNEXION -->
+<!-- ========================= -->
+
+<section id="login" class="screen hidden">
+
+<div class="logo">
+♡ Compagnie <span>33</span>
+</div>
+
+<h2 class="title">
+Connexion
+</h2>
+
+<input
+class="input"
+placeholder="Email ou pseudo">
+
+<input
+class="input"
+type="password"
+placeholder="Mot de passe">
+
+<button class="btn"
+onclick="showScreen('discover')">
+
+Se connecter
+
+</button>
+
+<button class="btn btn-dark"
+onclick="showScreen('signup')">
+
+Créer un compte
+
+</button>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- ACCUEIL PROFILS -->
+<!-- ========================= -->
+
+<section id="discover" class="screen hidden">
+
+<div style="
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+">
+
+<div class="logo"
+style="font-size:27px">
+
+Compagnie <span>33</span>
+
+</div>
+
+<div style="font-size:23px">
+☰
+</div>
+
+</div>
+
+
+<input
+class="input"
+placeholder="⌕ Rechercher une ville, un pseudo…">
+
+
+<div class="chips">
+
+<div class="chip active">
+Toutes
+</div>
+
+<div class="chip">
+À proximité
+</div>
+
+<div class="chip">
+En ligne
+</div>
+
+<div class="chip">
+Vérifiées
+</div>
+
+</div>
+
+
+<div id="profiles"
+class="grid">
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- PROFIL -->
+<!-- ========================= -->
+
+<section id="detail" class="screen hidden">
+
+<div
+class="back"
+onclick="showScreen('discover')">
+
+‹
+
+</div>
+
+<img
+id="detailImage"
+class="profile-image">
+
+<h1
+id="detailName"
+class="title">
+</h1>
+
+<div
+id="detailCity"
+class="subtitle">
+</div>
+
+<div class="badges">
+
+<div class="badge">
+✓ Profil vérifié
+</div>
+
+<div class="badge">
+● En ligne
+</div>
+
+</div>
+
+<h3>
+À propos de moi
+</h3>
+
+<p
+id="detailBio"
+class="bio">
+</p>
+
+<h3>
+Centres d'intérêt
+</h3>
+
+<div class="badges">
+
+<div class="badge">
+Sorties
+</div>
+
+<div class="badge">
+Voyages
+</div>
+
+<div class="badge">
+Musique
+</div>
+
+<div class="badge">
+Cinéma
+</div>
+
+</div>
+
+<button
+class="btn"
+style="margin-top:20px"
+onclick="alert('Messagerie : prochaine étape')">
+
+➤ Contacter
+
+</button>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- FAVORIS -->
+<!-- ========================= -->
+
+<section id="favorites" class="screen hidden">
+
+<h2 class="title">
+♡ Favoris
+</h2>
+
+<div id="favoriteList">
+
+<div class="notice">
+Aucun favori pour le moment.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- MESSAGES -->
+<!-- ========================= -->
+
+<section id="messages" class="screen hidden">
+
+<h2 class="title">
+Messages
+</h2>
+
+<div class="notice">
+💬 Tes conversations apparaîtront ici.
+</div>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- PROFIL PERSONNEL -->
+<!-- ========================= -->
+
+<section id="profile" class="screen hidden">
+
+<h2 class="title">
+Mon profil
+</h2>
+
+<div class="notice">
+
+✓ Profil vérifié
+
+<br><br>
+
+Photo réelle
+
+<br><br>
+
+Âge 18+ confirmé
+
+</div>
+
+<button class="btn btn-dark">
+
+Confidentialité & sécurité
+
+</button>
+
+</section>
+
+
+<!-- ========================= -->
+<!-- NAVIGATION -->
+<!-- ========================= -->
+
+<nav
+id="navigation"
+class="bottom-nav hidden">
+
+<div
+class="nav active"
+onclick="showScreen('discover')">
+
+<span class="nav-icon">
+⌂
+</span>
+
+Accueil
+
+</div>
+
+
+<div
+class="nav"
+onclick="showScreen('discover')">
+
+<span class="nav-icon">
+⌕
+</span>
+
+Recherche
+
+</div>
+
+
+<div
+class="nav"
+onclick="showScreen('favorites')">
+
+<span class="nav-icon">
+♡
+</span>
+
+Favoris
+
+</div>
+
+
+<div
+class="nav"
+onclick="showScreen('messages')">
+
+<span class="nav-icon">
+▢
+</span>
+
+Messages
+
+</div>
+
+
+<div
+class="nav"
+onclick="showScreen('profile')">
+
+<span class="nav-icon">
+♙
+</span>
+
+Profil
+
+</div>
+
+</nav>
+
+
+</div>
+
+
 <script>
-(function(){
-const tg=window.Telegram?.WebApp;
-if(tg){tg.ready();tg.expand();}
-const panel=document.getElementById("panel");
-const pages={
-familles:["FAMILLES","Espace consacré aux ressources générales destinées aux proches de personnes détenues. Les informations pourront être enrichies dans la version connectée."],
-actus:["ACTUALITÉS","Fil d’actualités de PRISON2FRANCE. Cette rubrique est prête à recevoir tes contenus et publications."],
-etablissements:["ÉTABLISSEMENTS","Répertoire d’informations publiques et vérifiées sur les établissements pénitentiaires."],
-guides:["GUIDES","Guides pratiques pour expliquer clairement les démarches et informations utiles."],
-communaute:["COMMUNAUTÉ","Espace communautaire pour échanger, partager des informations et créer du lien."],
-contact:["CONTACT","Espace de contact et d’accès Telegram. Tu pourras relier cette zone à ton bot ou canal."]
-};
-function openPage(key){
-const d=pages[key]; if(!d)return;
-panel.innerHTML="<h2>"+d[0]+"</h2><p>"+d[1]+"</p><button class='close' type='button' id='close'>Fermer</button>";
-panel.classList.add("show");
-document.getElementById("close").onclick=()=>panel.classList.remove("show");
-panel.scrollIntoView({behavior:"smooth",block:"nearest"});
+
+/* =========================
+   DONNÉES DE DÉMONSTRATION
+========================= */
+
+const profiles = [
+
+{
+name:"Lina",
+age:24,
+city:"Bordeaux",
+distance:"3 km",
+
+image:
+"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=90",
+
+bio:
+"Je suis Lina, j'aime les sorties, les voyages, la musique et les bons moments partagés."
+},
+
+{
+name:"Chloé",
+age:27,
+city:"Bordeaux",
+distance:"5 km",
+
+image:
+"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=90",
+
+bio:
+"Souriante et sociable, je recherche des échanges simples et respectueux."
+},
+
+{
+name:"Mélissa",
+age:22,
+city:"Talence",
+distance:"8 km",
+
+image:
+"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=90",
+
+bio:
+"J'aime le cinéma, la cuisine et découvrir de nouveaux endroits."
+},
+
+{
+name:"Sarah",
+age:30,
+city:"Bègles",
+distance:"10 km",
+
+image:
+"https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=700&q=90",
+
+bio:
+"Passionnée de musique et de voyages, toujours partante pour une sortie."
 }
-document.querySelectorAll("[data-page]").forEach(b=>b.addEventListener("click",()=>openPage(b.dataset.page)));
-document.querySelectorAll("[data-nav]").forEach(b=>b.addEventListener("click",()=>{
-document.querySelectorAll("[data-nav]").forEach(x=>x.classList.remove("active"));
-b.classList.add("active");
-const k=b.dataset.nav;
-if(k==="home"){panel.classList.remove("show");window.scrollTo({top:0,behavior:"smooth"});}
-else openPage(k);
-}));
-document.getElementById("topBtn").onclick=()=>window.scrollTo({top:0,behavior:"smooth"});
-})();
+
+];
+
+
+let favorites=[];
+
+
+/* =========================
+   CHANGEMENT D'ÉCRAN
+========================= */
+
+function showScreen(id){
+
+document
+.querySelectorAll(".screen")
+.forEach(screen=>{
+screen.classList.add("hidden");
+});
+
+
+document
+.getElementById(id)
+.classList.remove("hidden");
+
+
+const nav=
+document.getElementById("navigation");
+
+
+const publicPages=[
+"discover",
+"favorites",
+"messages",
+"profile"
+];
+
+
+if(publicPages.includes(id)){
+
+nav.classList.remove("hidden");
+
+}else{
+
+nav.classList.add("hidden");
+
+}
+
+
+if(id==="discover"){
+
+renderProfiles();
+
+}
+
+
+if(id==="favorites"){
+
+renderFavorites();
+
+}
+
+}
+
+
+/* =========================
+   AFFICHAGE PROFILS
+========================= */
+
+function renderProfiles(){
+
+const container=
+document.getElementById("profiles");
+
+
+container.innerHTML="";
+
+
+profiles.forEach((profile,index)=>{
+
+const isFavorite=
+favorites.includes(index);
+
+
+container.innerHTML+=`
+
+<div class="card">
+
+<img
+src="${profile.image}"
+alt="${profile.name}">
+
+<div class="card-body">
+
+<button
+class="heart"
+onclick="toggleFavorite(${index})">
+
+${isFavorite ? "♥":"♡"}
+
+</button>
+
+<div class="card-name">
+
+${profile.name}, ${profile.age}
+✓
+
+</div>
+
+<div class="card-city">
+
+${profile.city}
+•
+${profile.distance}
+
+</div>
+
+<div class="online">
+
+● En ligne
+
+</div>
+
+<button
+class="small-btn"
+onclick="openProfile(${index})">
+
+Voir le profil
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   PROFIL DÉTAILLÉ
+========================= */
+
+function openProfile(index){
+
+const profile=
+profiles[index];
+
+
+document
+.getElementById("detailImage")
+.src=
+profile.image;
+
+
+document
+.getElementById("detailName")
+.textContent=
+profile.name+", "+profile.age;
+
+
+document
+.getElementById("detailCity")
+.textContent=
+"⌖ "+
+profile.city+
+" • "+
+profile.distance;
+
+
+document
+.getElementById("detailBio")
+.textContent=
+profile.bio;
+
+
+showScreen("detail");
+
+}
+
+
+/* =========================
+   FAVORIS
+========================= */
+
+function toggleFavorite(index){
+
+if(favorites.includes(index)){
+
+favorites=
+favorites.filter(
+item=>item!==index
+);
+
+}else{
+
+favorites.push(index);
+
+}
+
+renderProfiles();
+
+}
+
+
+function renderFavorites(){
+
+const container=
+document.getElementById("favoriteList");
+
+
+if(favorites.length===0){
+
+container.innerHTML=`
+
+<div class="notice">
+
+Aucun favori pour le moment.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+container.innerHTML="";
+
+
+favorites.forEach(index=>{
+
+const p=
+profiles[index];
+
+
+container.innerHTML+=`
+
+<div
+class="notice"
+onclick="openProfile(${index})">
+
+<strong>
+${p.name}, ${p.age}
+</strong>
+
+<br>
+
+<span style="color:#9ca2b4">
+
+${p.city}
+•
+${p.distance}
+
+</span>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+/* =========================
+   INITIALISATION
+========================= */
+
+showScreen("home");
+
 </script>
+
 </body>
 </html>
