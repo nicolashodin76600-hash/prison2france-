@@ -1,375 +1,125 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Compagnie 33 — Bordeaux</title>
-<meta name="theme-color" content="#050207">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-
-:root{
-  --bg:#050207; --panel:#0d0810; --panel2:#130b16; --pink:#ff1595;
-  --pink2:#ff52bc; --line:#43203e; --text:#fff; --muted:#a89aa9;
-  --green:#23e58b; --yellow:#ffc857; --red:#ff4f78;
-}
-*{box-sizing:border-box} html,body{margin:0;background:#020103;color:var(--text);font-family:Inter,Arial,sans-serif}
-body{min-height:100vh}.app{max-width:480px;margin:auto;min-height:100vh;background:
-radial-gradient(circle at 50% -5%,rgba(255,21,149,.22),transparent 34%),
-radial-gradient(circle at 100% 50%,rgba(125,0,255,.13),transparent 35%),var(--bg);
-position:relative;overflow:hidden}
-button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}
-button:active{transform:scale(.96)}
-.top{height:70px;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;
-position:sticky;top:0;z-index:30;background:rgba(5,2,7,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,21,149,.15)}
-.logo{font:700 24px "Playfair Display",serif;text-shadow:0 0 12px rgba(255,21,149,.5)}
-.logo b{color:var(--pink)} .cuff{font-size:22px;color:var(--pink);text-shadow:0 0 14px var(--pink)}
-.iconbtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#0c0710;display:grid;place-items:center}
-.dot{position:absolute;width:8px;height:8px;background:var(--pink);border-radius:50%;margin: -24px 0 0 22px;box-shadow:0 0 10px var(--pink)}
-.screen{display:none;padding:18px 16px 105px;animation:up .25s ease}.screen.active{display:block}
-@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-h1,h2,h3,p{margin-top:0}.title{font-size:24px;margin:5px 0 16px}.title span{color:var(--pink)}
-.small{font-size:11px;color:var(--muted)}.muted{color:var(--muted)}
-.hero{min-height:560px;border-radius:28px;position:relative;overflow:hidden;background:
-linear-gradient(180deg,rgba(0,0,0,.12),rgba(5,2,7,.92)),
-url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85') center/cover;
-display:flex;align-items:flex-end;padding:25px;box-shadow:0 0 45px rgba(255,21,149,.16)}
-.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 32%,rgba(255,21,149,.18),transparent 27%)}
-.heroContent{position:relative;z-index:1;width:100%}.cuffBig{font-size:48px;text-shadow:0 0 25px var(--pink);color:var(--pink)}
-.hero h1{font:700 47px/1 "Playfair Display",serif;margin:12px 0}.hero h1 span{color:var(--pink)}
-.hero p{color:#ddd0dc;line-height:1.55;font-size:13px}.pills{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.pill{border:1px solid #633057;background:#180b17;padding:7px 10px;border-radius:20px;font-size:10px}
-.btn{width:100%;padding:15px;border-radius:16px;border:0;font-weight:800;margin:6px 0;position:relative;overflow:hidden}
-.primary{background:linear-gradient(135deg,#ff078d,#ff51bd);box-shadow:0 0 9px #ff1595,0 0 30px rgba(255,21,149,.42)}
-.secondary{background:#0b0710;border:1px solid #c52b93;box-shadow:0 0 12px rgba(255,21,149,.14)}
-.danger{background:#16070d;border:1px solid #e34a70;color:#ff7994}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.65);transform:scale(0);animation:rip .6s linear;pointer-events:none}
-@keyframes rip{to{transform:scale(5);opacity:0}}
-.banner{padding:13px;border:1px solid #54264e;border-radius:18px;background:linear-gradient(90deg,#180a17,#0b0710);margin-bottom:14px}
-.banner b{color:var(--pink)}.search{display:flex;gap:8px;padding:12px;border:1px solid #3b2138;border-radius:15px;background:#09060c;margin-bottom:12px}
-.search input{width:100%;border:0;outline:0;background:transparent;color:#fff}.filters{display:flex;gap:7px;overflow:auto;margin-bottom:14px}
-.filter{white-space:nowrap;border:1px solid #3c263b;background:#0b0710;border-radius:20px;padding:9px 12px;color:#a99aa8;font-size:11px}.filter.active{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 0 16px rgba(255,21,149,.5)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{background:linear-gradient(145deg,#130a16,#08050a);border:1px solid #2d1a2d;border-radius:20px;overflow:hidden}
-.photo{height:205px;background-size:cover;background-position:center;position:relative}.fav{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid #66405e}
-.fav.on{color:var(--pink);text-shadow:0 0 12px var(--pink)}.status{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.72);padding:5px 8px;border-radius:15px;font-size:9px}.green{color:var(--green)}
-.cardBody{padding:11px}.name{font-weight:800}.meta{font-size:10px;color:var(--muted);margin-top:5px}.tag{display:inline-block;margin-top:8px;padding:5px 7px;border-radius:7px;background:#210e1e;color:#ff81ca;font-size:9px}
-.profileHero{height:405px;border-radius:24px;background-size:cover;background-position:center;position:relative;overflow:hidden}.profileHero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,#070308)}
-.back{position:absolute;z-index:2;top:12px;left:12px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid #69405f}
-.profileInfo{position:relative;z-index:2;margin-top:-82px;padding:0 15px}.profileName{font-size:28px;font-weight:800}.verified{font-size:10px;color:var(--green);margin-top:5px}.desc{font-size:12px;line-height:1.6;color:#c8bdca;margin:15px 0}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{padding:7px 10px;border-radius:20px;border:1px solid #392139;color:#cbbfca;font-size:10px}
-.box{border:1px solid #321e31;background:#0c0710;border-radius:18px;padding:14px;margin:14px 0}.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #211520;font-size:11px}.row:last-child{border:0}.value{color:#fff}.live{color:#ff69bd;text-shadow:0 0 10px var(--pink)}
-.input,.select,.textarea{width:100%;background:#07050a;border:1px solid #3a253a;border-radius:13px;padding:13px;color:#fff;outline:none;margin:5px 0 12px}.input:focus,.select:focus,.textarea:focus{border-color:var(--pink);box-shadow:0 0 12px rgba(255,21,149,.22)}
-.label{font-size:10px;color:#a99baa}.chat{display:flex;gap:10px;padding:13px 3px;border-bottom:1px solid #201520}.avatar{width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0}.chatMain{flex:1}.chatTop{display:flex;justify-content:space-between}.chatText{font-size:11px;color:#9e929f;margin-top:4px}.badgeNum{background:var(--pink);border-radius:12px;padding:2px 6px;font-size:9px;box-shadow:0 0 9px rgba(255,21,149,.5)}
-.bubble{max-width:78%;padding:11px 13px;border-radius:17px;margin:8px 0;font-size:12px;line-height:1.45}.in{background:#17101b;border:1px solid #2d1c2e}.out{margin-left:auto;background:linear-gradient(135deg,#e90c82,#ff42b2);box-shadow:0 0 13px rgba(255,21,149,.18)}
-.chatInput{display:flex;gap:7px;position:sticky;bottom:82px;padding:7px 0;background:linear-gradient(transparent,#050207 35%)}.chatInput input{flex:1}.send{width:48px;border:0;border-radius:14px;background:var(--pink);box-shadow:0 0 18px rgba(255,21,149,.55)}
-.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:480px;width:100%;height:76px;background:rgba(7,4,9,.95);backdrop-filter:blur(18px);border-top:1px solid #321a30;display:flex;justify-content:space-around;align-items:center;z-index:40}
-.nav button{background:none;border:0;color:#776c79;font-size:9px;display:flex;flex-direction:column;gap:5px;align-items:center}.nav button b{font-size:20px}.nav button.active{color:var(--pink);text-shadow:0 0 12px var(--pink)}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.76);backdrop-filter:blur(8px);z-index:100;align-items:flex-end}.modal.show{display:flex}.sheet{width:100%;max-width:480px;margin:auto;background:#0b0710;border:1px solid #4b2243;border-radius:27px 27px 0 0;padding:20px;animation:sheet .25s ease}@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
-.toast{position:fixed;z-index:200;bottom:92px;left:50%;transform:translate(-50%,20px);opacity:0;background:#170a17;border:1px solid var(--pink);box-shadow:0 0 24px rgba(255,21,149,.35);padding:12px 17px;border-radius:30px;font-size:11px;transition:.25s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-.statGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{border:1px solid #382039;border-radius:15px;background:#0c0710;padding:13px 6px;text-align:center}.stat strong{display:block;font-size:20px;color:var(--pink)}.stat span{font-size:9px;color:#9b8e9c}
-.adminItem{padding:12px;border-bottom:1px solid #221521;font-size:11px}.adminItem:last-child{border:0}
-.liveCard{border:1px solid #6d2457;background:linear-gradient(135deg,#180916,#09060b);border-radius:18px;padding:14px;margin:10px 0}.liveCard b{color:#ff62bd}
-.empty{text-align:center;color:#8f8290;padding:45px 15px;font-size:12px}
-@media(min-width:700px){body{padding:25px 0}.app{border-radius:30px;box-shadow:0 0 90px rgba(255,21,149,.13)}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Démo Réseau de Neurones en HTML/JS</title>
+  <!-- Chargement de Synaptic.js (bibliothèque JS pour réseau de neurones) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/synaptic/1.0.8/synaptic.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 1.25rem;
+      margin-top: 0;
+      color: #38bdf8;
+    }
+    button {
+      width: 100%;
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0369a1;
+    }
+    .results {
+      margin-top: 1.5rem;
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-<div class="app">
 
-<header class="top">
-  <div class="logo"><span class="cuff">⛓</span> Compagnie <b>33</b></div>
-  <button class="iconbtn" onclick="notify('Aucune nouvelle notification')">♡<i class="dot"></i></button>
-</header>
+<div class="card">
+  <h1>IA : Apprentissage du XOR</h1>
+  <p>Entraîne un réseau de neurones en JavaScript pour résoudre un problème logique.</p>
+  
+  <button onclick="trainAI()">Lancer l'entraînement de l'IA</button>
 
-<!-- ACCUEIL -->
-<section id="home" class="screen active">
-  <div class="hero">
-    <div class="heroContent">
-      <div class="cuffBig">⛓♡⛓</div>
-      <h1>Bienvenue<br><span>Compagnie 33</span></h1>
-      <p>Une sélection privée de profils adultes disponibles à Bordeaux et ses alentours, pour des prestations de compagnie et des expériences vidéo privées 18+.</p>
-      <div class="pills"><span class="pill">18+</span><span class="pill">Bordeaux</span><span class="pill">Profils vérifiés</span><span class="pill">Discrétion</span></div>
-      <button class="btn primary" onclick="show('profiles')">ENTRER DANS L'APPLICATION →</button>
-    </div>
-  </div>
-  <div class="box">
-    <div class="row"><span>Profils disponibles</span><span class="value">4 aujourd'hui</span></div>
-    <div class="row"><span>Zone</span><span class="value">Bordeaux & alentours</span></div>
-    <div class="row"><span>Accès</span><span class="value">Réservé aux majeurs</span></div>
-  </div>
-</section>
-
-<!-- PROFILS -->
-<section id="profiles" class="screen">
-  <h2 class="title">Femmes <span>disponibles</span></h2>
-  <div class="banner">💗 <b>4 profils</b> disponibles à Bordeaux aujourd'hui.</div>
-  <div class="search">⌕ <input id="search" placeholder="Rechercher un prénom ou une ville..." oninput="renderProfiles()"></div>
-  <div class="filters">
-    <button class="filter active" onclick="setFilter('Toutes',this)">Toutes</button>
-    <button class="filter" onclick="setFilter('Bordeaux',this)">Bordeaux</button>
-    <button class="filter" onclick="setFilter('Disponible',this)">Disponibles</button>
-    <button class="filter" onclick="setFilter('Live',this)">Live</button>
-  </div>
-  <div id="profilesGrid" class="grid"></div>
-</section>
-
-<!-- PROFIL -->
-<section id="profile" class="screen"><div id="profileContent"></div></section>
-
-<!-- LIVE -->
-<section id="live" class="screen">
-  <h2 class="title">Sexcam <span>LIVE</span></h2>
-  <div class="banner">🔴 <b>Live privé 18+</b><br><span class="small">Accès payant par crédits. Les profils affichent leurs propres disponibilités et tarifs.</span></div>
-  <div id="liveList"></div>
-</section>
-
-<!-- MESSAGES -->
-<section id="messages" class="screen">
-  <h2 class="title">Ma <span>messagerie</span></h2>
-  <div id="conversationList"></div>
-</section>
-
-<!-- CONVERSATION -->
-<section id="conversation" class="screen">
-  <button class="filter" onclick="show('messages')">← Retour</button>
-  <h2 id="conversationTitle" class="title" style="margin-top:15px"></h2>
-  <div id="chatBody"></div>
-  <div class="chatInput">
-    <input id="chatMessage" class="input" style="margin:0" placeholder="Écrire un message..." onkeydown="if(event.key==='Enter')sendMessage()">
-    <button class="send" onclick="sendMessage()">➤</button>
-  </div>
-</section>
-
-<!-- DEMANDES -->
-<section id="requests" class="screen">
-  <h2 class="title">Mes <span>demandes</span></h2>
-  <div id="requestList"></div>
-</section>
-
-<!-- FAVORIS -->
-<section id="favorites" class="screen">
-  <h2 class="title">Mes <span>favoris</span></h2>
-  <div id="favoriteGrid" class="grid"></div>
-</section>
-
-<!-- COMPTE -->
-<section id="account" class="screen">
-  <h2 class="title">Mon <span>profil</span></h2>
-  <div class="box">
-    <label class="label">Pseudo</label><input class="input" id="myName" value="Nicolas">
-    <label class="label">Ville</label><input class="input" value="Bordeaux">
-    <button class="btn primary" onclick="notify('Profil enregistré ✓')">Enregistrer</button>
-    <button class="btn secondary" onclick="notify('Paramètres ouverts')">⚙ Préférences</button>
-    <button class="btn secondary" onclick="notify('Confidentialité ouverte')">🔒 Confidentialité</button>
-  </div>
-</section>
-
-<!-- ADMIN -->
-<section id="admin" class="screen">
-  <h2 class="title">Espace <span>administrateur</span></h2>
-  <div class="statGrid">
-    <div class="stat"><strong id="statProfiles">4</strong><span>Profils actifs</span></div>
-    <div class="stat"><strong id="statRequests">0</strong><span>Demandes</span></div>
-    <div class="stat"><strong id="statMessages">0</strong><span>Messages</span></div>
-  </div>
-  <div class="box">
-    <h3>🔔 Nouvelles demandes</h3>
-    <div id="adminRequests"></div>
-  </div>
-  <div class="box">
-    <h3>💬 Messages reçus</h3>
-    <div id="adminMessages"></div>
-  </div>
-  <button class="btn secondary" onclick="notify('Actualisation effectuée')">Actualiser les données</button>
-</section>
-
-<nav class="nav">
-  <button onclick="show('home',this)" class="active"><b>⌂</b>Accueil</button>
-  <button onclick="show('profiles',this)"><b>♡</b>Profils</button>
-  <button onclick="show('live',this)"><b>◉</b>Live</button>
-  <button onclick="show('messages',this)"><b>✉</b>Messages</button>
-  <button onclick="show('account',this)"><b>♙</b>Profil</button>
-</nav>
-</div>
-
-<div id="toast" class="toast"></div>
-
-<!-- DEMANDE -->
-<div id="requestModal" class="modal">
-  <div class="sheet">
-    <button class="filter" style="float:right" onclick="closeModal('requestModal')">×</button>
-    <h2>Demander une <span style="color:var(--pink)">prestation</span></h2>
-    <p class="small">Choisis une date, une heure et le type de prestation. La demande sera visible dans ton espace et dans l'espace administrateur.</p>
-    <label class="label">Date</label><input id="reqDate" class="input" type="date">
-    <label class="label">Heure</label><input id="reqTime" class="input" type="time">
-    <label class="label">Prestation</label>
-    <select id="reqType" class="select"><option>Sortie / restaurant</option><option>Événement</option><option>Accompagnement</option><option>Compagnie privée</option></select>
-    <label class="label">Message</label><textarea id="reqText" class="textarea" rows="3" placeholder="Votre demande..."></textarea>
-    <button class="btn primary" onclick="submitRequest()">ENVOYER LA DEMANDE →</button>
-  </div>
-</div>
-
-<!-- LIVE PAYMENT -->
-<div id="liveModal" class="modal">
-  <div class="sheet">
-    <button class="filter" style="float:right" onclick="closeModal('liveModal')">×</button>
-    <h2>Live privé <span style="color:var(--pink)">18+</span></h2>
-    <p id="liveInfo" class="small"></p>
-    <div class="box">
-      <div class="row"><span>Crédits disponibles</span><span id="creditsValue" class="value">25</span></div>
-      <div class="row"><span>Tarif</span><span id="livePrice" class="value"></span></div>
-    </div>
-    <button class="btn primary" onclick="buyLive()">ACCÉDER AU LIVE →</button>
-    <button class="btn secondary" onclick="addCredits()">RECHARGER MES CRÉDITS</button>
+  <div class="results" id="output">
+    Clique sur le bouton pour démarrer...
   </div>
 </div>
 
 <script>
-const profiles=[
- {id:1,name:"Léa",age:24,city:"Bordeaux",distance:"3 km",available:true,live:true,price:120,
- image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
- tags:["Sorties","Restaurant","Événements"],desc:"Profil adulte disponible sur réservation. Échanges directs, disponibilités affichées et demandes traitées via l'application."},
- {id:2,name:"Chloé",age:27,city:"Bordeaux",distance:"5 km",available:true,live:true,price:150,
- image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
- tags:["Événements","Sorties","Voyages"],desc:"Profil adulte disponible selon les créneaux affichés. Réservation et messages depuis l'application."},
- {id:3,name:"Mélissa",age:22,city:"Bordeaux",distance:"8 km",available:true,live:false,price:100,
- image:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=85",
- tags:["Restaurant","Compagnie","Sorties"],desc:"Profil adulte disponible pour des prestations de compagnie selon disponibilités."},
- {id:4,name:"Sarah",age:30,city:"Bordeaux",distance:"10 km",available:true,live:true,price:160,
- image:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85",
- tags:["Événements","Restaurant","Compagnie"],desc:"Profil adulte disponible sur réservation. Consultez les créneaux puis envoyez une demande."}
-];
+  // 1. Création de l'architecture du réseau de neurones
+  // 2 entrées, 3 neurones dans la couche cachée, 1 sortie
+  const { Layer, Network, Trainer } = synaptic;
+  
+  const inputLayer = new Layer(2);
+  const hiddenLayer = new Layer(3);
+  const outputLayer = new Layer(1);
 
-let filter="Toutes", favorites=JSON.parse(localStorage.getItem("c33fav")||"[]");
-let requests=JSON.parse(localStorage.getItem("c33requests")||"[]");
-let messages=JSON.parse(localStorage.getItem("c33messages")||"[]");
-let credits=Number(localStorage.getItem("c33credits")||25);
-let selected=null,currentChat=null;
+  inputLayer.project(hiddenLayer);
+  hiddenLayer.project(outputLayer);
 
-function save(){
- localStorage.setItem("c33fav",JSON.stringify(favorites));
- localStorage.setItem("c33requests",JSON.stringify(requests));
- localStorage.setItem("c33messages",JSON.stringify(messages));
- localStorage.setItem("c33credits",credits);
-}
-function show(id,navBtn){
- document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- if(navBtn){document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));navBtn.classList.add("active")}
- if(id==="profiles")renderProfiles();
- if(id==="live")renderLive();
- if(id==="favorites")renderFavorites();
- if(id==="messages")renderConversations();
- if(id==="requests")renderRequests();
- if(id==="admin")renderAdmin();
- scrollTo(0,0);
-}
-function notify(msg){
- const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
- clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove("show"),2200);
-}
-function setFilter(v,b){filter=v;document.querySelectorAll(".filter").forEach(x=>{if(x.parentElement.classList.contains("filters"))x.classList.remove("active")});b.classList.add("active");renderProfiles()}
-function renderProfiles(){
- const q=(document.getElementById("search")?.value||"").toLowerCase();
- let list=profiles.filter(p=>(p.name+" "+p.city).toLowerCase().includes(q));
- if(filter==="Bordeaux")list=list.filter(p=>p.city==="Bordeaux");
- if(filter==="Disponible")list=list.filter(p=>p.available);
- if(filter==="Live")list=list.filter(p=>p.live);
- const el=document.getElementById("profilesGrid");el.innerHTML=list.map(card).join("")||'<div class="empty" style="grid-column:1/-1">Aucun profil trouvé.</div>';
-}
-function card(p){
- const fav=favorites.includes(p.id);
- return `<div class="card" onclick="openProfile(${p.id})">
- <div class="photo" style="background-image:url('${p.image}')">
- <button class="fav ${fav?"on":""}" onclick="event.stopPropagation();toggleFav(${p.id})">${fav?"♥":"♡"}</button>
- <div class="status"><span class="${p.available?"green":""}">●</span> ${p.available?"Disponible":"Sur réservation"}</div></div>
- <div class="cardBody"><div class="name">${p.name}, ${p.age}</div><div class="meta">📍 ${p.city} · ${p.distance}</div><span class="tag">${p.tags[0]}</span>${p.live?'<span class="tag" style="margin-left:4px">LIVE</span>':""}</div>
- </div>`;
-}
-function openProfile(id){
- selected=profiles.find(p=>p.id===id);
- const p=selected,fav=favorites.includes(id);
- document.getElementById("profileContent").innerHTML=`
- <div class="profileHero" style="background-image:url('${p.image}')"><button class="back" onclick="show('profiles')">←</button></div>
- <div class="profileInfo">
- <div class="profileName">${p.name}, ${p.age}</div><div class="verified">● Profil adulte vérifié</div>
- <div class="small" style="margin-top:6px">📍 ${p.city} · ${p.distance}</div>
- <p class="desc">${p.desc}</p><div class="chips">${p.tags.map(x=>`<span class="chip">${x}</span>`).join("")}</div>
- <div class="box"><div class="row"><span>Disponibilité</span><span class="value">${p.available?"Aujourd'hui":"Sur réservation"}</span></div>
- <div class="row"><span>Live privé</span><span class="value ${p.live?"live":""}">${p.live?"Disponible":"Indisponible"}</span></div>
- <div class="row"><span>Tarif indicatif</span><span class="value">${p.price} €/h</span></div></div>
- <button class="btn primary" onclick="openRequest()">DEMANDER UNE PRESTATION →</button>
- <button class="btn secondary" onclick="toggleFav(${p.id})">${fav?"♥ Retirer des favoris":"♡ Ajouter aux favoris"}</button>
- <button class="btn secondary" onclick="startChat(${p.id})">✉ ENVOYER UN MESSAGE</button>
- ${p.live?'<button class="btn secondary" onclick="openLive('+p.id+')">◉ ACCÉDER AU LIVE PRIVÉ</button>':""}
- </div>`;
- show("profile");
-}
-function toggleFav(id){favorites.includes(id)?favorites=favorites.filter(x=>x!==id):favorites.push(id);save();renderProfiles();renderFavorites();if(selected?.id===id)openProfile(id);notify(favorites.includes(id)?"Ajouté aux favoris ♥":"Retiré des favoris")}
-function renderFavorites(){
- const el=document.getElementById("favoriteGrid"),list=profiles.filter(p=>favorites.includes(p.id));
- el.innerHTML=list.map(card).join("")||'<div class="empty" style="grid-column:1/-1">Aucun favori pour le moment.</div>';
-}
-function openRequest(){if(!selected)return;document.getElementById("requestModal").classList.add("show")}
-function closeModal(id){document.getElementById(id).classList.remove("show")}
-function submitRequest(){
- if(!selected)return;
- const r={id:Date.now(),profileId:selected.id,date:document.getElementById("reqDate").value||"À définir",time:document.getElementById("reqTime").value||"À définir",type:document.getElementById("reqType").value,text:document.getElementById("reqText").value,status:"En attente"};
- requests.unshift(r);save();closeModal("requestModal");renderRequests();renderAdmin();notify("Demande envoyée ✓");
-}
-function renderRequests(){
- const el=document.getElementById("requestList");
- el.innerHTML=requests.map(r=>{let p=profiles.find(x=>x.id===r.profileId);return `<div class="box"><b>${p?.name||"Profil"}</b><div class="small">${r.type} · ${r.date} · ${r.time}</div><div style="margin-top:8px;color:${r.status==="Acceptée"?"var(--green)":r.status==="Refusée"?"var(--red)":"var(--yellow)"}">${r.status}</div></div>`}).join("")||'<div class="empty">Aucune demande.</div>';
-}
-function startChat(id){
- currentChat=profiles.find(p=>p.id===id);
- if(!messages.some(m=>m.profileId===id)){messages.push({profileId:id,from:"system",text:"Conversation ouverte.",time:new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})});save()}
- renderChat();show("conversation");
-}
-function renderConversations(){
- const el=document.getElementById("conversationList");
- const ids=[...new Set(messages.map(m=>m.profileId))];
- el.innerHTML=ids.map(id=>{let p=profiles.find(x=>x.id===id),last=messages.filter(m=>m.profileId===id).at(-1);return `<div class="chat" onclick="startChat(${id})"><div class="avatar" style="background-image:url('${p.image}')"></div><div class="chatMain"><div class="chatTop"><b>${p.name}</b><span class="badgeNum">1</span></div><div class="chatText">${last?.text||"Nouvelle conversation"}</div></div></div>`}).join("")||'<div class="empty">Aucune conversation.</div>';
-}
-function renderChat(){
- if(!currentChat)return;
- document.getElementById("conversationTitle").textContent=currentChat.name+" 💗";
- const arr=messages.filter(m=>m.profileId===currentChat.id);
- document.getElementById("chatBody").innerHTML=arr.map(m=>`<div class="bubble ${m.from==="me"?"out":"in"}">${escapeHtml(m.text)}<div class="small" style="margin-top:4px">${m.time||""}</div></div>`).join("");
-}
-function sendMessage(){
- const input=document.getElementById("chatMessage"),text=input.value.trim();if(!text||!currentChat)return;
- const now=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
- messages.push({profileId:currentChat.id,from:"me",text,time:now});save();input.value="";renderChat();renderConversations();renderAdmin();notify("Message envoyé ✓");
- // Démo : réponse automatique. Pour du vrai temps réel multi-appareils, brancher Firebase/Supabase ici.
- setTimeout(()=>{messages.push({profileId:currentChat.id,from:"profile",text:"Merci pour ton message 💗 Je regarde mes disponibilités.",time:new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})});save();renderChat();renderConversations();renderAdmin()},900);
-}
-function openLive(id){
- selected=profiles.find(p=>p.id===id);if(!selected?.live)return;
- document.getElementById("liveInfo").textContent=`Live privé avec ${selected.name}. Accès par crédits.`;
- document.getElementById("livePrice").textContent="5 crédits / minute";
- document.getElementById("creditsValue").textContent=credits;
- document.getElementById("liveModal").classList.add("show");
-}
-function buyLive(){
- if(credits<5){notify("Crédits insuffisants");return}
- credits-=5;save();closeModal("liveModal");notify("Accès au live activé ✓");
-}
-function addCredits(){credits+=25;save();document.getElementById("creditsValue").textContent=credits;notify("+25 crédits ajoutés (démo)")}
-function renderLive(){
- document.getElementById("liveList").innerHTML=profiles.filter(p=>p.live).map(p=>`
- <div class="liveCard"><div style="display:flex;gap:10px;align-items:center"><div class="avatar" style="background-image:url('${p.image}')"></div><div><b>${p.name}</b><div class="small">📍 ${p.city} · <span class="live">● LIVE</span></div></div></div>
- <button class="btn primary" style="margin-top:12px" onclick="openLive(${p.id})">ACCÉDER AU LIVE · 5 crédits/min</button></div>`).join("");
-}
-function renderAdmin(){
- document.getElementById("statRequests").textContent=requests.length;
- document.getElementById("statMessages").textContent=messages.length;
- document.getElementById("adminRequests").innerHTML=requests.map(r=>{let p=profiles.find(x=>x.id===r.profileId);return `<div class="adminItem"><b>${p?.name||"Profil"}</b> — ${r.type}<br><span class="small">${r.date} ${r.time} · ${r.status}</span></div>`}).join("")||'<div class="small">Aucune demande.</div>';
- document.getElementById("adminMessages").innerHTML=messages.slice(-8).reverse().map(m=>{let p=profiles.find(x=>x.id===m.profileId);return `<div class="adminItem"><b>${p?.name||"Profil"}</b> — ${escapeHtml(m.text)}<br><span class="small">${m.time||""}</span></div>`}).join("")||'<div class="small">Aucun message.</div>';
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-document.addEventListener("click",e=>{
- const b=e.target.closest(".btn");if(!b)return;const r=document.createElement("span");r.className="ripple";const rect=b.getBoundingClientRect(),size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+"px";r.style.left=(e.clientX-rect.left-size/2)+"px";r.style.top=(e.clientY-rect.top-size/2)+"px";b.appendChild(r);setTimeout(()=>r.remove(),600);
-});
-renderProfiles();renderLive();renderFavorites();renderConversations();renderRequests();renderAdmin();
+  const myNetwork = new Network({
+    input: inputLayer,
+    hidden: [hiddenLayer],
+    output: outputLayer
+  });
+
+  const trainer = new Trainer(myNetwork);
+
+  function trainAI() {
+    const outputDiv = document.getElementById('output');
+    outputDiv.innerHTML = "Entraînement en cours...";
+
+    // 2. Jeux de données d'entraînement (logique XOR)
+    const trainingSet = [
+      { input: [0, 0], output: [0] },
+      { input: [0, 1], output: [1] },
+      { input: [1, 0], output: [1] },
+      { input: [1, 1], output: [0] }
+    ];
+
+    // 3. Entraînement du modèle (20 000 itérations)
+    setTimeout(() => {
+      trainer.train(trainingSet, {
+        rate: 0.1,
+        iterations: 20000,
+        error: 0.005,
+        shuffle: true
+      });
+
+      // 4. Test des prédictions
+      let res = "<b>Résultats après entraînement :</b><br><br>";
+      
+      trainingSet.forEach(item => {
+        const prediction = myNetwork.activate(item.input);
+        res += `Entrée: [${item.input.join(', ')}] → Prédiction: <b>${prediction[0].toFixed(3)}</b> (Attendu: ${item.output[0]})<br>`;
+      });
+
+      outputDiv.innerHTML = res;
+    }, 100);
+  }
 </script>
+
 </body>
 </html>
