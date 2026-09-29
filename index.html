@@ -2,1626 +2,374 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compagnie 33</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Compagnie 33 — Bordeaux</title>
+<meta name="theme-color" content="#050207">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    font-family:Inter,Arial,sans-serif;
-    background:#050307;
-    color:white;
-    min-height:100vh;
-}
-
-button,input,select{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.app{
-    width:100%;
-    max-width:480px;
-    min-height:100vh;
-    margin:auto;
-    background:
-        radial-gradient(circle at 50% 0%,rgba(255,0,153,.16),transparent 35%),
-        radial-gradient(circle at 0% 60%,rgba(128,0,255,.12),transparent 35%),
-        #050307;
-    position:relative;
-    overflow:hidden;
-}
-
-/* HEADER */
-
-.header{
-    height:70px;
-    padding:15px 18px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    position:sticky;
-    top:0;
-    z-index:20;
-    background:rgba(5,3,7,.86);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid rgba(255,0,170,.12);
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-family:"Playfair Display",serif;
-    font-size:22px;
-}
-
-.logo-heart{
-    color:#ff1493;
-    font-size:27px;
-    text-shadow:
-        0 0 5px #ff1493,
-        0 0 15px #ff1493,
-        0 0 30px #ff1493;
-}
-
-.logo span{
-    color:#ff2aa6;
-}
-
-.header-icon{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    border:1px solid #552052;
-    background:#0d0811;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:18px;
-}
-
-/* SCREENS */
-
-.screen{
-    display:none;
-    padding:20px 17px 105px;
-    animation:fadeIn .3s ease;
-}
-
-.screen.active{
-    display:block;
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* HOME */
-
-.hero{
-    min-height:520px;
-    border-radius:28px;
-    overflow:hidden;
-    position:relative;
-    display:flex;
-    align-items:flex-end;
-    padding:28px;
-    background:
-        linear-gradient(to top,#09030b 5%,rgba(5,3,7,.45) 55%,transparent),
-        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85")
-        center/cover;
-    box-shadow:
-        0 0 30px rgba(255,0,153,.13),
-        inset 0 0 80px rgba(0,0,0,.5);
-}
-
-.hero-content{
-    width:100%;
-}
-
-.hero h1{
-    font-family:"Playfair Display",serif;
-    font-size:45px;
-    line-height:1;
-    margin-bottom:12px;
-}
-
-.hero h1 span{
-    color:#ff1493;
-    text-shadow:0 0 20px rgba(255,20,147,.8);
-}
-
-.hero p{
-    color:#d8ced9;
-    line-height:1.5;
-    margin-bottom:22px;
-}
-
-.badges{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
-}
-
-.badge{
-    padding:7px 11px;
-    border-radius:30px;
-    background:rgba(255,20,147,.10);
-    border:1px solid rgba(255,20,147,.4);
-    font-size:11px;
-    color:#ff8aca;
-}
-
-/* BUTTONS */
-
-.btn{
-    width:100%;
-    border:0;
-    border-radius:16px;
-    padding:16px 20px;
-    font-size:14px;
-    font-weight:700;
-    color:white;
-    position:relative;
-    overflow:hidden;
-    transition:.15s ease;
-    margin-bottom:10px;
-}
-
-.btn-primary{
-    background:linear-gradient(135deg,#ff1493,#ff42b3);
-    box-shadow:
-        0 0 8px rgba(255,20,147,.8),
-        0 0 25px rgba(255,20,147,.35);
-}
-
-.btn-secondary{
-    background:#0c0810;
-    border:1px solid #d0178b;
-    box-shadow:0 0 10px rgba(255,20,147,.12);
-}
-
-.btn-danger{
-    background:#13070c;
-    border:1px solid #e33b65;
-    color:#ff6687;
-}
-
-.btn:active{
-    transform:scale(.95);
-    box-shadow:
-        0 0 5px #ff1493,
-        0 0 20px #ff1493,
-        0 0 45px rgba(255,20,147,.9);
-}
-
-.ripple{
-    position:absolute;
-    border-radius:50%;
-    background:rgba(255,255,255,.55);
-    transform:scale(0);
-    animation:ripple .55s linear;
-    pointer-events:none;
-}
-
-@keyframes ripple{
-    to{
-        transform:scale(5);
-        opacity:0;
-    }
-}
-
-/* TITLES */
-
-.section-title{
-    font-size:21px;
-    margin-bottom:15px;
-}
-
-.section-title span{
-    color:#ff269e;
-}
-
-/* SEARCH */
-
-.search-box{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:14px;
-    border:1px solid #42233f;
-    border-radius:15px;
-    background:#0b0710;
-    margin-bottom:15px;
-}
-
-.search-box input{
-    width:100%;
-    background:none;
-    border:0;
-    outline:0;
-    color:white;
-}
-
-.search-box input::placeholder{
-    color:#807383;
-}
-
-.filters{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    margin-bottom:20px;
-    scrollbar-width:none;
-}
-
-.filter{
-    white-space:nowrap;
-    padding:9px 14px;
-    border-radius:30px;
-    background:#0b0710;
-    border:1px solid #39243a;
-    color:#aaa;
-    font-size:12px;
-}
-
-.filter.active{
-    background:#ff1493;
-    border-color:#ff1493;
-    color:white;
-    box-shadow:0 0 15px rgba(255,20,147,.45);
-}
-
-/* CARDS */
-
-.grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.card{
-    background:linear-gradient(145deg,#120b16,#08060a);
-    border:1px solid #291b2c;
-    border-radius:20px;
-    overflow:hidden;
-    position:relative;
-    transition:.2s;
-}
-
-.card:active{
-    transform:scale(.97);
-    border-color:#ff1493;
-    box-shadow:0 0 25px rgba(255,20,147,.35);
-}
-
-.card-image{
-    height:190px;
-    position:relative;
-    background-size:cover;
-    background-position:center;
-}
-
-.online{
-    position:absolute;
-    left:9px;
-    bottom:9px;
-    padding:5px 8px;
-    border-radius:20px;
-    background:rgba(0,0,0,.75);
-    font-size:9px;
-}
-
-.online i{
-    display:inline-block;
-    width:6px;
-    height:6px;
-    background:#20e57a;
-    border-radius:50%;
-    margin-right:4px;
-    box-shadow:0 0 8px #20e57a;
-}
-
-.heart{
-    position:absolute;
-    right:9px;
-    top:9px;
-    width:34px;
-    height:34px;
-    border-radius:50%;
-    background:rgba(0,0,0,.55);
-    border:1px solid rgba(255,255,255,.2);
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.heart.active{
-    color:#ff1493;
-    text-shadow:0 0 12px #ff1493;
-}
-
-.card-body{
-    padding:12px;
-}
-
-.card-name{
-    font-size:15px;
-    font-weight:700;
-}
-
-.card-info{
-    color:#9d92a1;
-    font-size:11px;
-    margin-top:5px;
-}
-
-.card-tag{
-    display:inline-block;
-    margin-top:9px;
-    padding:5px 7px;
-    background:#21101d;
-    color:#ff72c4;
-    border-radius:7px;
-    font-size:9px;
-}
-
-/* PROFILE */
-
-.profile-cover{
-    height:410px;
-    border-radius:25px;
-    overflow:hidden;
-    position:relative;
-    background-size:cover;
-    background-position:center;
-}
-
-.profile-cover::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(transparent 50%,#060307);
-}
-
-.back{
-    position:absolute;
-    z-index:2;
-    top:15px;
-    left:15px;
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    background:rgba(0,0,0,.55);
-    border:1px solid rgba(255,255,255,.2);
-    color:white;
-}
-
-.profile-content{
-    position:relative;
-    margin-top:-90px;
-    z-index:3;
-    padding:0 15px;
-}
-
-.profile-name{
-    font-size:28px;
-    font-weight:700;
-}
-
-.verified{
-    display:inline-flex;
-    align-items:center;
-    gap:4px;
-    color:#55e89a;
-    font-size:11px;
-    margin-top:6px;
-}
-
-.profile-location{
-    color:#aaa;
-    font-size:12px;
-    margin-top:8px;
-}
-
-.profile-description{
-    margin-top:18px;
-    color:#c7becb;
-    font-size:13px;
-    line-height:1.6;
-}
-
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin:15px 0;
-}
-
-.tag{
-    padding:7px 10px;
-    background:#100a13;
-    border:1px solid #362238;
-    border-radius:20px;
-    color:#cfc3d0;
-    font-size:10px;
-}
-
-/* INFO BOX */
-
-.info-box{
-    background:linear-gradient(145deg,#100911,#08060a);
-    border:1px solid #312033;
-    border-radius:18px;
-    padding:15px;
-    margin:15px 0;
-}
-
-.info-row{
-    display:flex;
-    justify-content:space-between;
-    padding:11px 0;
-    border-bottom:1px solid #211723;
-    font-size:12px;
-}
-
-.info-row:last-child{
-    border-bottom:0;
-}
-
-.info-label{
-    color:#89808b;
-}
-
-.info-value{
-    color:white;
-}
-
-/* MESSAGES */
-
-.message{
-    display:flex;
-    gap:11px;
-    padding:14px 5px;
-    border-bottom:1px solid #1b131e;
-}
-
-.avatar{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background-size:cover;
-    background-position:center;
-    flex-shrink:0;
-}
-
-.message-content{
-    flex:1;
-}
-
-.message-top{
-    display:flex;
-    justify-content:space-between;
-}
-
-.message-name{
-    font-weight:600;
-    font-size:14px;
-}
-
-.message-time{
-    color:#777;
-    font-size:10px;
-}
-
-.message-text{
-    color:#8e8590;
-    font-size:11px;
-    margin-top:5px;
-}
-
-/* FORM */
-
-.form-card{
-    background:#0b0710;
-    border:1px solid #2d1b30;
-    border-radius:22px;
-    padding:18px;
-}
-
-.label{
-    display:block;
-    font-size:11px;
-    color:#a79aa9;
-    margin-bottom:7px;
-}
-
-.input{
-    width:100%;
-    padding:14px;
-    margin-bottom:14px;
-    border-radius:13px;
-    border:1px solid #39263d;
-    background:#07050a;
-    color:white;
-    outline:none;
-}
-
-.input:focus{
-    border-color:#ff1493;
-    box-shadow:0 0 12px rgba(255,20,147,.2);
-}
-
-/* BOTTOM NAV */
-
-.bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:50%;
-    transform:translateX(-50%);
-    width:100%;
-    max-width:480px;
-    height:76px;
-    background:rgba(8,5,10,.94);
-    backdrop-filter:blur(18px);
-    border-top:1px solid rgba(255,20,147,.18);
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:50;
-}
-
-.nav-btn{
-    background:none;
-    border:0;
-    color:#756b78;
-    font-size:10px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:5px;
-}
-
-.nav-icon{
-    font-size:19px;
-}
-
-.nav-btn.active{
-    color:#ff2aa6;
-    text-shadow:0 0 12px #ff1493;
-}
-
-.nav-btn.active .nav-icon{
-    transform:translateY(-2px);
-}
-
-/* TOAST */
-
-.toast{
-    position:fixed;
-    left:50%;
-    bottom:95px;
-    transform:translate(-50%,20px);
-    background:#160b17;
-    border:1px solid #ff1493;
-    padding:13px 18px;
-    border-radius:30px;
-    font-size:12px;
-    opacity:0;
-    pointer-events:none;
-    transition:.3s;
-    z-index:100;
-    box-shadow:0 0 25px rgba(255,20,147,.35);
-    white-space:nowrap;
-}
-
-.toast.show{
-    opacity:1;
-    transform:translate(-50%,0);
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(8px);
-    display:none;
-    align-items:flex-end;
-    justify-content:center;
-    z-index:200;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:480px;
-    background:#0b0710;
-    border:1px solid #45213f;
-    border-radius:28px 28px 0 0;
-    padding:25px 20px;
-    animation:slideUp .3s ease;
-}
-
-@keyframes slideUp{
-    from{transform:translateY(100%);}
-    to{transform:translateY(0);}
-}
-
-.modal-title{
-    font-size:20px;
-    margin-bottom:7px;
-}
-
-.modal-text{
-    color:#968b99;
-    font-size:12px;
-    line-height:1.6;
-    margin-bottom:20px;
-}
-
-.close{
-    float:right;
-    background:none;
-    border:0;
-    color:#aaa;
-    font-size:20px;
-}
-
-/* DESKTOP */
-
-@media(min-width:700px){
-    body{
-        padding:30px 0;
-        background:#020103;
-    }
-
-    .app{
-        border-radius:30px;
-        box-shadow:0 0 80px rgba(255,0,153,.12);
-    }
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+
+:root{
+  --bg:#050207; --panel:#0d0810; --panel2:#130b16; --pink:#ff1595;
+  --pink2:#ff52bc; --line:#43203e; --text:#fff; --muted:#a89aa9;
+  --green:#23e58b; --yellow:#ffc857; --red:#ff4f78;
+}
+*{box-sizing:border-box} html,body{margin:0;background:#020103;color:var(--text);font-family:Inter,Arial,sans-serif}
+body{min-height:100vh}.app{max-width:480px;margin:auto;min-height:100vh;background:
+radial-gradient(circle at 50% -5%,rgba(255,21,149,.22),transparent 34%),
+radial-gradient(circle at 100% 50%,rgba(125,0,255,.13),transparent 35%),var(--bg);
+position:relative;overflow:hidden}
+button,input,select,textarea{font:inherit}button{cursor:pointer;color:inherit}
+button:active{transform:scale(.96)}
+.top{height:70px;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;
+position:sticky;top:0;z-index:30;background:rgba(5,2,7,.84);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,21,149,.15)}
+.logo{font:700 24px "Playfair Display",serif;text-shadow:0 0 12px rgba(255,21,149,.5)}
+.logo b{color:var(--pink)} .cuff{font-size:22px;color:var(--pink);text-shadow:0 0 14px var(--pink)}
+.iconbtn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#0c0710;display:grid;place-items:center}
+.dot{position:absolute;width:8px;height:8px;background:var(--pink);border-radius:50%;margin: -24px 0 0 22px;box-shadow:0 0 10px var(--pink)}
+.screen{display:none;padding:18px 16px 105px;animation:up .25s ease}.screen.active{display:block}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1,h2,h3,p{margin-top:0}.title{font-size:24px;margin:5px 0 16px}.title span{color:var(--pink)}
+.small{font-size:11px;color:var(--muted)}.muted{color:var(--muted)}
+.hero{min-height:560px;border-radius:28px;position:relative;overflow:hidden;background:
+linear-gradient(180deg,rgba(0,0,0,.12),rgba(5,2,7,.92)),
+url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=85') center/cover;
+display:flex;align-items:flex-end;padding:25px;box-shadow:0 0 45px rgba(255,21,149,.16)}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 32%,rgba(255,21,149,.18),transparent 27%)}
+.heroContent{position:relative;z-index:1;width:100%}.cuffBig{font-size:48px;text-shadow:0 0 25px var(--pink);color:var(--pink)}
+.hero h1{font:700 47px/1 "Playfair Display",serif;margin:12px 0}.hero h1 span{color:var(--pink)}
+.hero p{color:#ddd0dc;line-height:1.55;font-size:13px}.pills{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.pill{border:1px solid #633057;background:#180b17;padding:7px 10px;border-radius:20px;font-size:10px}
+.btn{width:100%;padding:15px;border-radius:16px;border:0;font-weight:800;margin:6px 0;position:relative;overflow:hidden}
+.primary{background:linear-gradient(135deg,#ff078d,#ff51bd);box-shadow:0 0 9px #ff1595,0 0 30px rgba(255,21,149,.42)}
+.secondary{background:#0b0710;border:1px solid #c52b93;box-shadow:0 0 12px rgba(255,21,149,.14)}
+.danger{background:#16070d;border:1px solid #e34a70;color:#ff7994}
+.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.65);transform:scale(0);animation:rip .6s linear;pointer-events:none}
+@keyframes rip{to{transform:scale(5);opacity:0}}
+.banner{padding:13px;border:1px solid #54264e;border-radius:18px;background:linear-gradient(90deg,#180a17,#0b0710);margin-bottom:14px}
+.banner b{color:var(--pink)}.search{display:flex;gap:8px;padding:12px;border:1px solid #3b2138;border-radius:15px;background:#09060c;margin-bottom:12px}
+.search input{width:100%;border:0;outline:0;background:transparent;color:#fff}.filters{display:flex;gap:7px;overflow:auto;margin-bottom:14px}
+.filter{white-space:nowrap;border:1px solid #3c263b;background:#0b0710;border-radius:20px;padding:9px 12px;color:#a99aa8;font-size:11px}.filter.active{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 0 16px rgba(255,21,149,.5)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{background:linear-gradient(145deg,#130a16,#08050a);border:1px solid #2d1a2d;border-radius:20px;overflow:hidden}
+.photo{height:205px;background-size:cover;background-position:center;position:relative}.fav{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.55);border:1px solid #66405e}
+.fav.on{color:var(--pink);text-shadow:0 0 12px var(--pink)}.status{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.72);padding:5px 8px;border-radius:15px;font-size:9px}.green{color:var(--green)}
+.cardBody{padding:11px}.name{font-weight:800}.meta{font-size:10px;color:var(--muted);margin-top:5px}.tag{display:inline-block;margin-top:8px;padding:5px 7px;border-radius:7px;background:#210e1e;color:#ff81ca;font-size:9px}
+.profileHero{height:405px;border-radius:24px;background-size:cover;background-position:center;position:relative;overflow:hidden}.profileHero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,#070308)}
+.back{position:absolute;z-index:2;top:12px;left:12px;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.6);border:1px solid #69405f}
+.profileInfo{position:relative;z-index:2;margin-top:-82px;padding:0 15px}.profileName{font-size:28px;font-weight:800}.verified{font-size:10px;color:var(--green);margin-top:5px}.desc{font-size:12px;line-height:1.6;color:#c8bdca;margin:15px 0}.chips{display:flex;gap:7px;flex-wrap:wrap}.chip{padding:7px 10px;border-radius:20px;border:1px solid #392139;color:#cbbfca;font-size:10px}
+.box{border:1px solid #321e31;background:#0c0710;border-radius:18px;padding:14px;margin:14px 0}.row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #211520;font-size:11px}.row:last-child{border:0}.value{color:#fff}.live{color:#ff69bd;text-shadow:0 0 10px var(--pink)}
+.input,.select,.textarea{width:100%;background:#07050a;border:1px solid #3a253a;border-radius:13px;padding:13px;color:#fff;outline:none;margin:5px 0 12px}.input:focus,.select:focus,.textarea:focus{border-color:var(--pink);box-shadow:0 0 12px rgba(255,21,149,.22)}
+.label{font-size:10px;color:#a99baa}.chat{display:flex;gap:10px;padding:13px 3px;border-bottom:1px solid #201520}.avatar{width:48px;height:48px;border-radius:50%;background-size:cover;background-position:center;flex-shrink:0}.chatMain{flex:1}.chatTop{display:flex;justify-content:space-between}.chatText{font-size:11px;color:#9e929f;margin-top:4px}.badgeNum{background:var(--pink);border-radius:12px;padding:2px 6px;font-size:9px;box-shadow:0 0 9px rgba(255,21,149,.5)}
+.bubble{max-width:78%;padding:11px 13px;border-radius:17px;margin:8px 0;font-size:12px;line-height:1.45}.in{background:#17101b;border:1px solid #2d1c2e}.out{margin-left:auto;background:linear-gradient(135deg,#e90c82,#ff42b2);box-shadow:0 0 13px rgba(255,21,149,.18)}
+.chatInput{display:flex;gap:7px;position:sticky;bottom:82px;padding:7px 0;background:linear-gradient(transparent,#050207 35%)}.chatInput input{flex:1}.send{width:48px;border:0;border-radius:14px;background:var(--pink);box-shadow:0 0 18px rgba(255,21,149,.55)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:480px;width:100%;height:76px;background:rgba(7,4,9,.95);backdrop-filter:blur(18px);border-top:1px solid #321a30;display:flex;justify-content:space-around;align-items:center;z-index:40}
+.nav button{background:none;border:0;color:#776c79;font-size:9px;display:flex;flex-direction:column;gap:5px;align-items:center}.nav button b{font-size:20px}.nav button.active{color:var(--pink);text-shadow:0 0 12px var(--pink)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.76);backdrop-filter:blur(8px);z-index:100;align-items:flex-end}.modal.show{display:flex}.sheet{width:100%;max-width:480px;margin:auto;background:#0b0710;border:1px solid #4b2243;border-radius:27px 27px 0 0;padding:20px;animation:sheet .25s ease}@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
+.toast{position:fixed;z-index:200;bottom:92px;left:50%;transform:translate(-50%,20px);opacity:0;background:#170a17;border:1px solid var(--pink);box-shadow:0 0 24px rgba(255,21,149,.35);padding:12px 17px;border-radius:30px;font-size:11px;transition:.25s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+.statGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{border:1px solid #382039;border-radius:15px;background:#0c0710;padding:13px 6px;text-align:center}.stat strong{display:block;font-size:20px;color:var(--pink)}.stat span{font-size:9px;color:#9b8e9c}
+.adminItem{padding:12px;border-bottom:1px solid #221521;font-size:11px}.adminItem:last-child{border:0}
+.liveCard{border:1px solid #6d2457;background:linear-gradient(135deg,#180916,#09060b);border-radius:18px;padding:14px;margin:10px 0}.liveCard b{color:#ff62bd}
+.empty{text-align:center;color:#8f8290;padding:45px 15px;font-size:12px}
+@media(min-width:700px){body{padding:25px 0}.app{border-radius:30px;box-shadow:0 0 90px rgba(255,21,149,.13)}}
 </style>
 </head>
-
 <body>
-
 <div class="app">
 
-<header class="header">
-    <div class="logo">
-        <div class="logo-heart">♡</div>
-        Compagnie <span>33</span>
-    </div>
-
-    <button class="header-icon" onclick="showToast('Aucune nouvelle notification')">
-        ♡
-    </button>
+<header class="top">
+  <div class="logo"><span class="cuff">⛓</span> Compagnie <b>33</b></div>
+  <button class="iconbtn" onclick="notify('Aucune nouvelle notification')">♡<i class="dot"></i></button>
 </header>
 
-
 <!-- ACCUEIL -->
-
 <section id="home" class="screen active">
-
-    <div class="hero">
-
-        <div class="hero-content">
-
-            <div class="badges">
-                <div class="badge">18+</div>
-                <div class="badge">Profils vérifiés</div>
-                <div class="badge">Discrétion</div>
-            </div>
-
-            <h1>
-                Compagnie<br>
-                <span>33</span>
-            </h1>
-
-            <p>
-                Trouvez une personne disponible pour vous accompagner
-                lors d'une sortie, d'un repas, d'un événement ou simplement
-                pour passer un moment convivial.
-            </p>
-
-            <button class="btn btn-primary" onclick="showScreen('profiles')">
-                Découvrir les profils →
-            </button>
-
-            <button class="btn btn-secondary" onclick="showScreen('register')">
-                Créer mon compte
-            </button>
-
-        </div>
-
+  <div class="hero">
+    <div class="heroContent">
+      <div class="cuffBig">⛓♡⛓</div>
+      <h1>Bienvenue<br><span>Compagnie 33</span></h1>
+      <p>Une sélection privée de profils adultes disponibles à Bordeaux et ses alentours, pour des prestations de compagnie et des expériences vidéo privées 18+.</p>
+      <div class="pills"><span class="pill">18+</span><span class="pill">Bordeaux</span><span class="pill">Profils vérifiés</span><span class="pill">Discrétion</span></div>
+      <button class="btn primary" onclick="show('profiles')">ENTRER DANS L'APPLICATION →</button>
     </div>
-
-    <div style="margin-top:25px">
-
-        <h2 class="section-title">
-            Pourquoi <span>Compagnie 33 ?</span>
-        </h2>
-
-        <div class="info-box">
-
-            <div class="info-row">
-                <span class="info-label">✓ Profils</span>
-                <span class="info-value">Présentés clairement</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">✓ Disponibilités</span>
-                <span class="info-value">Visibles</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">✓ Confidentialité</span>
-                <span class="info-value">Respectée</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">✓ Réservation</span>
-                <span class="info-value">Simple</span>
-            </div>
-
-        </div>
-
-    </div>
-
+  </div>
+  <div class="box">
+    <div class="row"><span>Profils disponibles</span><span class="value">4 aujourd'hui</span></div>
+    <div class="row"><span>Zone</span><span class="value">Bordeaux & alentours</span></div>
+    <div class="row"><span>Accès</span><span class="value">Réservé aux majeurs</span></div>
+  </div>
 </section>
-
 
 <!-- PROFILS -->
-
 <section id="profiles" class="screen">
-
-    <h2 class="section-title">
-        Profils <span>disponibles</span>
-    </h2>
-
-    <div class="search-box">
-        🔎
-        <input id="searchInput"
-               type="text"
-               placeholder="Rechercher une ville..."
-               oninput="searchProfiles()">
-    </div>
-
-    <div class="filters">
-
-        <button class="filter active" onclick="filterCity('Toutes',this)">
-            Toutes
-        </button>
-
-        <button class="filter" onclick="filterCity('Bordeaux',this)">
-            Bordeaux
-        </button>
-
-        <button class="filter" onclick="filterCity('Pessac',this)">
-            Pessac
-        </button>
-
-        <button class="filter" onclick="filterCity('Libourne',this)">
-            Libourne
-        </button>
-
-    </div>
-
-    <div id="profileGrid" class="grid"></div>
-
+  <h2 class="title">Femmes <span>disponibles</span></h2>
+  <div class="banner">💗 <b>4 profils</b> disponibles à Bordeaux aujourd'hui.</div>
+  <div class="search">⌕ <input id="search" placeholder="Rechercher un prénom ou une ville..." oninput="renderProfiles()"></div>
+  <div class="filters">
+    <button class="filter active" onclick="setFilter('Toutes',this)">Toutes</button>
+    <button class="filter" onclick="setFilter('Bordeaux',this)">Bordeaux</button>
+    <button class="filter" onclick="setFilter('Disponible',this)">Disponibles</button>
+    <button class="filter" onclick="setFilter('Live',this)">Live</button>
+  </div>
+  <div id="profilesGrid" class="grid"></div>
 </section>
-
-
-<!-- DETAIL PROFIL -->
-
-<section id="detail" class="screen">
-
-    <div id="detailContent"></div>
-
-</section>
-
-
-<!-- FAVORIS -->
-
-<section id="favorites" class="screen">
-
-    <h2 class="section-title">
-        Mes <span>favoris</span>
-    </h2>
-
-    <div id="favoriteGrid" class="grid"></div>
-
-</section>
-
-
-<!-- MESSAGES -->
-
-<section id="messages" class="screen">
-
-    <h2 class="section-title">
-        Mes <span>messages</span>
-    </h2>
-
-    <div id="messagesList"></div>
-
-</section>
-
 
 <!-- PROFIL -->
+<section id="profile" class="screen"><div id="profileContent"></div></section>
 
+<!-- LIVE -->
+<section id="live" class="screen">
+  <h2 class="title">Sexcam <span>LIVE</span></h2>
+  <div class="banner">🔴 <b>Live privé 18+</b><br><span class="small">Accès payant par crédits. Les profils affichent leurs propres disponibilités et tarifs.</span></div>
+  <div id="liveList"></div>
+</section>
+
+<!-- MESSAGES -->
+<section id="messages" class="screen">
+  <h2 class="title">Ma <span>messagerie</span></h2>
+  <div id="conversationList"></div>
+</section>
+
+<!-- CONVERSATION -->
+<section id="conversation" class="screen">
+  <button class="filter" onclick="show('messages')">← Retour</button>
+  <h2 id="conversationTitle" class="title" style="margin-top:15px"></h2>
+  <div id="chatBody"></div>
+  <div class="chatInput">
+    <input id="chatMessage" class="input" style="margin:0" placeholder="Écrire un message..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="send" onclick="sendMessage()">➤</button>
+  </div>
+</section>
+
+<!-- DEMANDES -->
+<section id="requests" class="screen">
+  <h2 class="title">Mes <span>demandes</span></h2>
+  <div id="requestList"></div>
+</section>
+
+<!-- FAVORIS -->
+<section id="favorites" class="screen">
+  <h2 class="title">Mes <span>favoris</span></h2>
+  <div id="favoriteGrid" class="grid"></div>
+</section>
+
+<!-- COMPTE -->
 <section id="account" class="screen">
-
-    <h2 class="section-title">
-        Mon <span>compte</span>
-    </h2>
-
-    <div class="form-card">
-
-        <label class="label">Prénom / pseudo</label>
-        <input class="input" value="Nicolas">
-
-        <label class="label">Ville</label>
-        <input class="input" value="Bordeaux">
-
-        <label class="label">Présentation</label>
-        <textarea class="input" rows="5"
-        style="resize:none">Bienvenue sur mon profil.</textarea>
-
-        <button class="btn btn-primary"
-        onclick="showToast('Profil enregistré ✓')">
-            Enregistrer les modifications
-        </button>
-
-        <button class="btn btn-secondary"
-        onclick="showToast('Paramètres ouverts')">
-            ⚙ Paramètres
-        </button>
-
-        <button class="btn btn-secondary"
-        onclick="showToast('Centre de sécurité')">
-            🛡 Sécurité & confidentialité
-        </button>
-
-    </div>
-
+  <h2 class="title">Mon <span>profil</span></h2>
+  <div class="box">
+    <label class="label">Pseudo</label><input class="input" id="myName" value="Nicolas">
+    <label class="label">Ville</label><input class="input" value="Bordeaux">
+    <button class="btn primary" onclick="notify('Profil enregistré ✓')">Enregistrer</button>
+    <button class="btn secondary" onclick="notify('Paramètres ouverts')">⚙ Préférences</button>
+    <button class="btn secondary" onclick="notify('Confidentialité ouverte')">🔒 Confidentialité</button>
+  </div>
 </section>
 
-
-<!-- INSCRIPTION -->
-
-<section id="register" class="screen">
-
-    <h2 class="section-title">
-        Créer mon <span>compte</span>
-    </h2>
-
-    <div class="form-card">
-
-        <label class="label">Pseudo</label>
-        <input class="input" placeholder="Votre pseudo">
-
-        <label class="label">Email</label>
-        <input class="input" type="email" placeholder="votre@email.com">
-
-        <label class="label">Mot de passe</label>
-        <input class="input" type="password" placeholder="••••••••">
-
-        <label class="label">Ville</label>
-        <select class="input">
-            <option>Bordeaux</option>
-            <option>Pessac</option>
-            <option>Libourne</option>
-            <option>Autre</option>
-        </select>
-
-        <div style="font-size:11px;color:#aaa;margin-bottom:18px">
-            ☑ Je confirme avoir 18 ans ou plus et accepter les
-            conditions d'utilisation.
-        </div>
-
-        <button class="btn btn-primary"
-        onclick="createAccount()">
-            Créer mon compte →
-        </button>
-
-    </div>
-
+<!-- ADMIN -->
+<section id="admin" class="screen">
+  <h2 class="title">Espace <span>administrateur</span></h2>
+  <div class="statGrid">
+    <div class="stat"><strong id="statProfiles">4</strong><span>Profils actifs</span></div>
+    <div class="stat"><strong id="statRequests">0</strong><span>Demandes</span></div>
+    <div class="stat"><strong id="statMessages">0</strong><span>Messages</span></div>
+  </div>
+  <div class="box">
+    <h3>🔔 Nouvelles demandes</h3>
+    <div id="adminRequests"></div>
+  </div>
+  <div class="box">
+    <h3>💬 Messages reçus</h3>
+    <div id="adminMessages"></div>
+  </div>
+  <button class="btn secondary" onclick="notify('Actualisation effectuée')">Actualiser les données</button>
 </section>
 
-
-<!-- NAVIGATION -->
-
-<nav class="bottom-nav">
-
-    <button class="nav-btn active"
-            onclick="showScreen('home',this)">
-        <span class="nav-icon">⌂</span>
-        Accueil
-    </button>
-
-    <button class="nav-btn"
-            onclick="showScreen('profiles',this)">
-        <span class="nav-icon">⌕</span>
-        Profils
-    </button>
-
-    <button class="nav-btn"
-            onclick="showScreen('favorites',this)">
-        <span class="nav-icon">♡</span>
-        Favoris
-    </button>
-
-    <button class="nav-btn"
-            onclick="showScreen('messages',this)">
-        <span class="nav-icon">♧</span>
-        Messages
-    </button>
-
-    <button class="nav-btn"
-            onclick="showScreen('account',this)">
-        <span class="nav-icon">♙</span>
-        Compte
-    </button>
-
+<nav class="nav">
+  <button onclick="show('home',this)" class="active"><b>⌂</b>Accueil</button>
+  <button onclick="show('profiles',this)"><b>♡</b>Profils</button>
+  <button onclick="show('live',this)"><b>◉</b>Live</button>
+  <button onclick="show('messages',this)"><b>✉</b>Messages</button>
+  <button onclick="show('account',this)"><b>♙</b>Profil</button>
 </nav>
-
 </div>
-
-
-<!-- TOAST -->
 
 <div id="toast" class="toast"></div>
 
-
-<!-- MODAL RESERVATION -->
-
-<div id="bookingModal" class="modal">
-
-    <div class="modal-box">
-
-        <button class="close"
-                onclick="closeModal()">×</button>
-
-        <h2 class="modal-title">
-            Demander une prestation
-        </h2>
-
-        <p class="modal-text">
-            Sélectionnez la date, l'horaire et indiquez le type
-            de compagnie souhaité. La demande pourra ensuite être
-            confirmée par la personne concernée.
-        </p>
-
-        <label class="label">Date</label>
-        <input class="input" type="date">
-
-        <label class="label">Horaire</label>
-        <input class="input" type="time">
-
-        <label class="label">Type de prestation</label>
-
-        <select class="input">
-            <option>Sortie / événement</option>
-            <option>Restaurant</option>
-            <option>Accompagnement</option>
-            <option>Conversation / compagnie</option>
-            <option>Autre demande</option>
-        </select>
-
-        <button class="btn btn-primary"
-                onclick="sendRequest()">
-            Envoyer la demande →
-        </button>
-
-    </div>
-
+<!-- DEMANDE -->
+<div id="requestModal" class="modal">
+  <div class="sheet">
+    <button class="filter" style="float:right" onclick="closeModal('requestModal')">×</button>
+    <h2>Demander une <span style="color:var(--pink)">prestation</span></h2>
+    <p class="small">Choisis une date, une heure et le type de prestation. La demande sera visible dans ton espace et dans l'espace administrateur.</p>
+    <label class="label">Date</label><input id="reqDate" class="input" type="date">
+    <label class="label">Heure</label><input id="reqTime" class="input" type="time">
+    <label class="label">Prestation</label>
+    <select id="reqType" class="select"><option>Sortie / restaurant</option><option>Événement</option><option>Accompagnement</option><option>Compagnie privée</option></select>
+    <label class="label">Message</label><textarea id="reqText" class="textarea" rows="3" placeholder="Votre demande..."></textarea>
+    <button class="btn primary" onclick="submitRequest()">ENVOYER LA DEMANDE →</button>
+  </div>
 </div>
 
+<!-- LIVE PAYMENT -->
+<div id="liveModal" class="modal">
+  <div class="sheet">
+    <button class="filter" style="float:right" onclick="closeModal('liveModal')">×</button>
+    <h2>Live privé <span style="color:var(--pink)">18+</span></h2>
+    <p id="liveInfo" class="small"></p>
+    <div class="box">
+      <div class="row"><span>Crédits disponibles</span><span id="creditsValue" class="value">25</span></div>
+      <div class="row"><span>Tarif</span><span id="livePrice" class="value"></span></div>
+    </div>
+    <button class="btn primary" onclick="buyLive()">ACCÉDER AU LIVE →</button>
+    <button class="btn secondary" onclick="addCredits()">RECHARGER MES CRÉDITS</button>
+  </div>
+</div>
 
 <script>
-
-/* DONNÉES DE DÉMONSTRATION */
-
-const profiles = [
-
-{
-    id:1,
-    name:"Lina",
-    age:24,
-    city:"Bordeaux",
-    distance:"3 km",
-    image:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85",
-    tags:["Sorties","Restaurant","Événements"],
-    description:"Profil disponible pour des sorties, repas et événements. Présentation claire et échanges directement depuis l'application.",
-    online:true
-},
-
-{
-    id:2,
-    name:"Chloé",
-    age:27,
-    city:"Bordeaux",
-    distance:"5 km",
-    image:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=700&q=85",
-    tags:["Événements","Voyages","Sorties"],
-    description:"Disponible sur réservation selon les créneaux affichés dans l'application.",
-    online:true
-},
-
-{
-    id:3,
-    name:"Mélissa",
-    age:22,
-    city:"Pessac",
-    distance:"8 km",
-    image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85",
-    tags:["Restaurant","Sorties","Culture"],
-    description:"Compagnie pour sorties et moments conviviaux.",
-    online:false
-},
-
-{
-    id:4,
-    name:"Sarah",
-    age:30,
-    city:"Libourne",
-    distance:"18 km",
-    image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=700&q=85",
-    tags:["Événements","Restaurant","Voyages"],
-    description:"Profil disponible selon calendrier et réservation.",
-    online:true
-}
-
+const profiles=[
+ {id:1,name:"Léa",age:24,city:"Bordeaux",distance:"3 km",available:true,live:true,price:120,
+ image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=85",
+ tags:["Sorties","Restaurant","Événements"],desc:"Profil adulte disponible sur réservation. Échanges directs, disponibilités affichées et demandes traitées via l'application."},
+ {id:2,name:"Chloé",age:27,city:"Bordeaux",distance:"5 km",available:true,live:true,price:150,
+ image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85",
+ tags:["Événements","Sorties","Voyages"],desc:"Profil adulte disponible selon les créneaux affichés. Réservation et messages depuis l'application."},
+ {id:3,name:"Mélissa",age:22,city:"Bordeaux",distance:"8 km",available:true,live:false,price:100,
+ image:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=85",
+ tags:["Restaurant","Compagnie","Sorties"],desc:"Profil adulte disponible pour des prestations de compagnie selon disponibilités."},
+ {id:4,name:"Sarah",age:30,city:"Bordeaux",distance:"10 km",available:true,live:true,price:160,
+ image:"https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=85",
+ tags:["Événements","Restaurant","Compagnie"],desc:"Profil adulte disponible sur réservation. Consultez les créneaux puis envoyez une demande."}
 ];
 
-let favorites = [];
-let selectedProfile = null;
+let filter="Toutes", favorites=JSON.parse(localStorage.getItem("c33fav")||"[]");
+let requests=JSON.parse(localStorage.getItem("c33requests")||"[]");
+let messages=JSON.parse(localStorage.getItem("c33messages")||"[]");
+let credits=Number(localStorage.getItem("c33credits")||25);
+let selected=null,currentChat=null;
 
-
-/* AFFICHAGE PROFILS */
-
-function renderProfiles(list=profiles){
-
-    const grid=document.getElementById("profileGrid");
-
-    grid.innerHTML="";
-
-    if(list.length===0){
-
-        grid.innerHTML=`
-        <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:50px 20px;
-        color:#888">
-            Aucun profil trouvé.
-        </div>`;
-
-        return;
-    }
-
-    list.forEach(profile=>{
-
-        const isFav=favorites.includes(profile.id);
-
-        grid.innerHTML+=`
-
-        <div class="card"
-             onclick="openProfile(${profile.id})">
-
-            <div class="card-image"
-                 style="background-image:url('${profile.image}')">
-
-                <button class="heart ${isFav?'active':''}"
-                        onclick="event.stopPropagation();toggleFavorite(${profile.id})">
-
-                    ${isFav?'♥':'♡'}
-
-                </button>
-
-                <div class="online">
-
-                    ${profile.online
-                    ?'<i></i> En ligne'
-                    :'Disponible sur réservation'}
-
-                </div>
-
-            </div>
-
-            <div class="card-body">
-
-                <div class="card-name">
-                    ${profile.name}, ${profile.age}
-                </div>
-
-                <div class="card-info">
-                    📍 ${profile.city} · ${profile.distance}
-                </div>
-
-                <div class="card-tag">
-                    ${profile.tags[0]}
-                </div>
-
-            </div>
-
-        </div>`;
-
-    });
-
+function save(){
+ localStorage.setItem("c33fav",JSON.stringify(favorites));
+ localStorage.setItem("c33requests",JSON.stringify(requests));
+ localStorage.setItem("c33messages",JSON.stringify(messages));
+ localStorage.setItem("c33credits",credits);
 }
-
-
-/* PROFIL DETAIL */
-
+function show(id,navBtn){
+ document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ if(navBtn){document.querySelectorAll(".nav button").forEach(x=>x.classList.remove("active"));navBtn.classList.add("active")}
+ if(id==="profiles")renderProfiles();
+ if(id==="live")renderLive();
+ if(id==="favorites")renderFavorites();
+ if(id==="messages")renderConversations();
+ if(id==="requests")renderRequests();
+ if(id==="admin")renderAdmin();
+ scrollTo(0,0);
+}
+function notify(msg){
+ const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
+ clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove("show"),2200);
+}
+function setFilter(v,b){filter=v;document.querySelectorAll(".filter").forEach(x=>{if(x.parentElement.classList.contains("filters"))x.classList.remove("active")});b.classList.add("active");renderProfiles()}
+function renderProfiles(){
+ const q=(document.getElementById("search")?.value||"").toLowerCase();
+ let list=profiles.filter(p=>(p.name+" "+p.city).toLowerCase().includes(q));
+ if(filter==="Bordeaux")list=list.filter(p=>p.city==="Bordeaux");
+ if(filter==="Disponible")list=list.filter(p=>p.available);
+ if(filter==="Live")list=list.filter(p=>p.live);
+ const el=document.getElementById("profilesGrid");el.innerHTML=list.map(card).join("")||'<div class="empty" style="grid-column:1/-1">Aucun profil trouvé.</div>';
+}
+function card(p){
+ const fav=favorites.includes(p.id);
+ return `<div class="card" onclick="openProfile(${p.id})">
+ <div class="photo" style="background-image:url('${p.image}')">
+ <button class="fav ${fav?"on":""}" onclick="event.stopPropagation();toggleFav(${p.id})">${fav?"♥":"♡"}</button>
+ <div class="status"><span class="${p.available?"green":""}">●</span> ${p.available?"Disponible":"Sur réservation"}</div></div>
+ <div class="cardBody"><div class="name">${p.name}, ${p.age}</div><div class="meta">📍 ${p.city} · ${p.distance}</div><span class="tag">${p.tags[0]}</span>${p.live?'<span class="tag" style="margin-left:4px">LIVE</span>':""}</div>
+ </div>`;
+}
 function openProfile(id){
-
-    selectedProfile=profiles.find(p=>p.id===id);
-
-    const p=selectedProfile;
-
-    const isFav=favorites.includes(p.id);
-
-    document.getElementById("detailContent").innerHTML=`
-
-    <div class="profile-cover"
-         style="background-image:url('${p.image}')">
-
-        <button class="back"
-                onclick="showScreen('profiles')">
-            ←
-        </button>
-
-    </div>
-
-    <div class="profile-content">
-
-        <div class="profile-name">
-            ${p.name}, ${p.age}
-        </div>
-
-        <div class="verified">
-            ● Profil présenté comme vérifié
-        </div>
-
-        <div class="profile-location">
-            📍 ${p.city} · ${p.distance}
-        </div>
-
-        <div class="profile-description">
-            ${p.description}
-        </div>
-
-        <div class="tags">
-
-            ${p.tags.map(tag=>`
-                <span class="tag">${tag}</span>
-            `).join("")}
-
-        </div>
-
-        <div class="info-box">
-
-            <div class="info-row">
-                <span class="info-label">Disponibilité</span>
-                <span class="info-value">
-                    ${p.online?"Aujourd'hui":"Sur réservation"}
-                </span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">Secteur</span>
-                <span class="info-value">${p.city}</span>
-            </div>
-
-            <div class="info-row">
-                <span class="info-label">Réservation</span>
-                <span class="info-value">Sur demande</span>
-            </div>
-
-        </div>
-
-        <button class="btn btn-primary"
-                onclick="openBooking()">
-
-            Demander une prestation →
-
-        </button>
-
-        <button class="btn btn-secondary"
-                onclick="toggleFavorite(${p.id});openProfile(${p.id})">
-
-            ${isFav
-            ?"♥ Retirer des favoris"
-            :"♡ Ajouter aux favoris"}
-
-        </button>
-
-        <button class="btn btn-secondary"
-                onclick="startMessage()">
-
-            💬 Envoyer un message
-
-        </button>
-
-        <button class="btn btn-danger"
-                onclick="showToast('Signalement enregistré')">
-
-            ⚠ Signaler ce profil
-
-        </button>
-
-    </div>
-    `;
-
-    showScreen("detail");
-
+ selected=profiles.find(p=>p.id===id);
+ const p=selected,fav=favorites.includes(id);
+ document.getElementById("profileContent").innerHTML=`
+ <div class="profileHero" style="background-image:url('${p.image}')"><button class="back" onclick="show('profiles')">←</button></div>
+ <div class="profileInfo">
+ <div class="profileName">${p.name}, ${p.age}</div><div class="verified">● Profil adulte vérifié</div>
+ <div class="small" style="margin-top:6px">📍 ${p.city} · ${p.distance}</div>
+ <p class="desc">${p.desc}</p><div class="chips">${p.tags.map(x=>`<span class="chip">${x}</span>`).join("")}</div>
+ <div class="box"><div class="row"><span>Disponibilité</span><span class="value">${p.available?"Aujourd'hui":"Sur réservation"}</span></div>
+ <div class="row"><span>Live privé</span><span class="value ${p.live?"live":""}">${p.live?"Disponible":"Indisponible"}</span></div>
+ <div class="row"><span>Tarif indicatif</span><span class="value">${p.price} €/h</span></div></div>
+ <button class="btn primary" onclick="openRequest()">DEMANDER UNE PRESTATION →</button>
+ <button class="btn secondary" onclick="toggleFav(${p.id})">${fav?"♥ Retirer des favoris":"♡ Ajouter aux favoris"}</button>
+ <button class="btn secondary" onclick="startChat(${p.id})">✉ ENVOYER UN MESSAGE</button>
+ ${p.live?'<button class="btn secondary" onclick="openLive('+p.id+')">◉ ACCÉDER AU LIVE PRIVÉ</button>':""}
+ </div>`;
+ show("profile");
 }
-
-
-/* FAVORIS */
-
-function toggleFavorite(id){
-
-    if(favorites.includes(id)){
-
-        favorites=favorites.filter(x=>x!==id);
-
-        showToast("Retiré des favoris");
-
-    }else{
-
-        favorites.push(id);
-
-        showToast("Ajouté aux favoris ♥");
-
-    }
-
-    renderProfiles();
-    renderFavorites();
-
-}
-
-
-/* AFFICHAGE FAVORIS */
-
+function toggleFav(id){favorites.includes(id)?favorites=favorites.filter(x=>x!==id):favorites.push(id);save();renderProfiles();renderFavorites();if(selected?.id===id)openProfile(id);notify(favorites.includes(id)?"Ajouté aux favoris ♥":"Retiré des favoris")}
 function renderFavorites(){
-
-    const grid=document.getElementById("favoriteGrid");
-
-    const list=profiles.filter(p=>favorites.includes(p.id));
-
-    if(list.length===0){
-
-        grid.innerHTML=`
-        <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:60px 20px;
-        color:#888">
-
-            Aucun favori pour le moment.<br><br>
-            Ajoutez des profils avec le ♡.
-
-        </div>`;
-
-        return;
-    }
-
-    grid.innerHTML="";
-
-    list.forEach(p=>{
-
-        grid.innerHTML+=`
-
-        <div class="card"
-             onclick="openProfile(${p.id})">
-
-            <div class="card-image"
-                 style="background-image:url('${p.image}')">
-
-                <div class="heart active">
-                    ♥
-                </div>
-
-            </div>
-
-            <div class="card-body">
-
-                <div class="card-name">
-                    ${p.name}, ${p.age}
-                </div>
-
-                <div class="card-info">
-                    📍 ${p.city}
-                </div>
-
-            </div>
-
-        </div>`;
-
-    });
-
+ const el=document.getElementById("favoriteGrid"),list=profiles.filter(p=>favorites.includes(p.id));
+ el.innerHTML=list.map(card).join("")||'<div class="empty" style="grid-column:1/-1">Aucun favori pour le moment.</div>';
 }
-
-
-/* RECHERCHE */
-
-function searchProfiles(){
-
-    const value=
-        document.getElementById("searchInput")
-        .value
-        .toLowerCase();
-
-    const result=profiles.filter(p=>
-        p.city.toLowerCase().includes(value) ||
-        p.name.toLowerCase().includes(value)
-    );
-
-    renderProfiles(result);
-
+function openRequest(){if(!selected)return;document.getElementById("requestModal").classList.add("show")}
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+function submitRequest(){
+ if(!selected)return;
+ const r={id:Date.now(),profileId:selected.id,date:document.getElementById("reqDate").value||"À définir",time:document.getElementById("reqTime").value||"À définir",type:document.getElementById("reqType").value,text:document.getElementById("reqText").value,status:"En attente"};
+ requests.unshift(r);save();closeModal("requestModal");renderRequests();renderAdmin();notify("Demande envoyée ✓");
 }
-
-
-/* FILTRE VILLE */
-
-function filterCity(city,button){
-
-    document
-        .querySelectorAll(".filter")
-        .forEach(b=>b.classList.remove("active"));
-
-    button.classList.add("active");
-
-    if(city==="Toutes"){
-
-        renderProfiles();
-
-    }else{
-
-        renderProfiles(
-            profiles.filter(p=>p.city===city)
-        );
-
-    }
-
+function renderRequests(){
+ const el=document.getElementById("requestList");
+ el.innerHTML=requests.map(r=>{let p=profiles.find(x=>x.id===r.profileId);return `<div class="box"><b>${p?.name||"Profil"}</b><div class="small">${r.type} · ${r.date} · ${r.time}</div><div style="margin-top:8px;color:${r.status==="Acceptée"?"var(--green)":r.status==="Refusée"?"var(--red)":"var(--yellow)"}">${r.status}</div></div>`}).join("")||'<div class="empty">Aucune demande.</div>';
 }
-
-
-/* NAVIGATION */
-
-function showScreen(id,button){
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen=>{
-            screen.classList.remove("active");
-        });
-
-    document
-        .getElementById(id)
-        .classList.add("active");
-
-    if(button){
-
-        document
-            .querySelectorAll(".nav-btn")
-            .forEach(b=>b.classList.remove("active"));
-
-        button.classList.add("active");
-
-    }
-
-    if(id==="profiles"){
-        renderProfiles();
-    }
-
-    if(id==="favorites"){
-        renderFavorites();
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
+function startChat(id){
+ currentChat=profiles.find(p=>p.id===id);
+ if(!messages.some(m=>m.profileId===id)){messages.push({profileId:id,from:"system",text:"Conversation ouverte.",time:new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})});save()}
+ renderChat();show("conversation");
 }
-
-
-/* MODAL */
-
-function openBooking(){
-
-    document
-        .getElementById("bookingModal")
-        .classList.add("show");
-
+function renderConversations(){
+ const el=document.getElementById("conversationList");
+ const ids=[...new Set(messages.map(m=>m.profileId))];
+ el.innerHTML=ids.map(id=>{let p=profiles.find(x=>x.id===id),last=messages.filter(m=>m.profileId===id).at(-1);return `<div class="chat" onclick="startChat(${id})"><div class="avatar" style="background-image:url('${p.image}')"></div><div class="chatMain"><div class="chatTop"><b>${p.name}</b><span class="badgeNum">1</span></div><div class="chatText">${last?.text||"Nouvelle conversation"}</div></div></div>`}).join("")||'<div class="empty">Aucune conversation.</div>';
 }
-
-function closeModal(){
-
-    document
-        .getElementById("bookingModal")
-        .classList.remove("show");
-
+function renderChat(){
+ if(!currentChat)return;
+ document.getElementById("conversationTitle").textContent=currentChat.name+" 💗";
+ const arr=messages.filter(m=>m.profileId===currentChat.id);
+ document.getElementById("chatBody").innerHTML=arr.map(m=>`<div class="bubble ${m.from==="me"?"out":"in"}">${escapeHtml(m.text)}<div class="small" style="margin-top:4px">${m.time||""}</div></div>`).join("");
 }
-
-function sendRequest(){
-
-    closeModal();
-
-    showToast(
-        "Demande envoyée ✓"
-    );
-
+function sendMessage(){
+ const input=document.getElementById("chatMessage"),text=input.value.trim();if(!text||!currentChat)return;
+ const now=new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
+ messages.push({profileId:currentChat.id,from:"me",text,time:now});save();input.value="";renderChat();renderConversations();renderAdmin();notify("Message envoyé ✓");
+ // Démo : réponse automatique. Pour du vrai temps réel multi-appareils, brancher Firebase/Supabase ici.
+ setTimeout(()=>{messages.push({profileId:currentChat.id,from:"profile",text:"Merci pour ton message 💗 Je regarde mes disponibilités.",time:new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})});save();renderChat();renderConversations();renderAdmin()},900);
 }
-
-
-/* MESSAGE */
-
-function startMessage(){
-
-    showScreen("messages");
-
-    showToast(
-        "Conversation créée ✓"
-    );
-
+function openLive(id){
+ selected=profiles.find(p=>p.id===id);if(!selected?.live)return;
+ document.getElementById("liveInfo").textContent=`Live privé avec ${selected.name}. Accès par crédits.`;
+ document.getElementById("livePrice").textContent="5 crédits / minute";
+ document.getElementById("creditsValue").textContent=credits;
+ document.getElementById("liveModal").classList.add("show");
 }
-
-
-/* COMPTE */
-
-function createAccount(){
-
-    showToast(
-        "Compte créé avec succès ✓"
-    );
-
-    setTimeout(()=>{
-        showScreen("profiles");
-    },700);
-
+function buyLive(){
+ if(credits<5){notify("Crédits insuffisants");return}
+ credits-=5;save();closeModal("liveModal");notify("Accès au live activé ✓");
 }
-
-
-/* TOAST */
-
-let toastTimer;
-
-function showToast(message){
-
-    const toast=
-        document.getElementById("toast");
-
-    toast.textContent=message;
-
-    toast.classList.add("show");
-
-    clearTimeout(toastTimer);
-
-    toastTimer=setTimeout(()=>{
-        toast.classList.remove("show");
-    },2300);
-
+function addCredits(){credits+=25;save();document.getElementById("creditsValue").textContent=credits;notify("+25 crédits ajoutés (démo)")}
+function renderLive(){
+ document.getElementById("liveList").innerHTML=profiles.filter(p=>p.live).map(p=>`
+ <div class="liveCard"><div style="display:flex;gap:10px;align-items:center"><div class="avatar" style="background-image:url('${p.image}')"></div><div><b>${p.name}</b><div class="small">📍 ${p.city} · <span class="live">● LIVE</span></div></div></div>
+ <button class="btn primary" style="margin-top:12px" onclick="openLive(${p.id})">ACCÉDER AU LIVE · 5 crédits/min</button></div>`).join("");
 }
-
-
-/* MESSAGES DEMO */
-
-function renderMessages(){
-
-    const list=
-        document.getElementById("messagesList");
-
-    list.innerHTML="";
-
-    profiles.forEach((p,i)=>{
-
-        list.innerHTML+=`
-
-        <div class="message"
-             onclick="openProfile(${p.id})">
-
-            <div class="avatar"
-                 style="background-image:url('${p.image}')">
-            </div>
-
-            <div class="message-content">
-
-                <div class="message-top">
-
-                    <div class="message-name">
-                        ${p.name}
-                    </div>
-
-                    <div class="message-time">
-                        ${i+10}:2${i}
-                    </div>
-
-                </div>
-
-                <div class="message-text">
-                    Bonjour, merci pour votre message.
-                </div>
-
-            </div>
-
-        </div>`;
-
-    });
-
+function renderAdmin(){
+ document.getElementById("statRequests").textContent=requests.length;
+ document.getElementById("statMessages").textContent=messages.length;
+ document.getElementById("adminRequests").innerHTML=requests.map(r=>{let p=profiles.find(x=>x.id===r.profileId);return `<div class="adminItem"><b>${p?.name||"Profil"}</b> — ${r.type}<br><span class="small">${r.date} ${r.time} · ${r.status}</span></div>`}).join("")||'<div class="small">Aucune demande.</div>';
+ document.getElementById("adminMessages").innerHTML=messages.slice(-8).reverse().map(m=>{let p=profiles.find(x=>x.id===m.profileId);return `<div class="adminItem"><b>${p?.name||"Profil"}</b> — ${escapeHtml(m.text)}<br><span class="small">${m.time||""}</span></div>`}).join("")||'<div class="small">Aucun message.</div>';
 }
-
-
-/* EFFET RIPPLE */
-
-document.addEventListener("click",function(e){
-
-    const button=e.target.closest(".btn");
-
-    if(!button)return;
-
-    const circle=document.createElement("span");
-
-    circle.classList.add("ripple");
-
-    const rect=button.getBoundingClientRect();
-
-    const size=Math.max(rect.width,rect.height);
-
-    circle.style.width=size+"px";
-    circle.style.height=size+"px";
-
-    circle.style.left=
-        (e.clientX-rect.left-size/2)+"px";
-
-    circle.style.top=
-        (e.clientY-rect.top-size/2)+"px";
-
-    button.appendChild(circle);
-
-    setTimeout(()=>{
-        circle.remove();
-    },600);
-
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+document.addEventListener("click",e=>{
+ const b=e.target.closest(".btn");if(!b)return;const r=document.createElement("span");r.className="ripple";const rect=b.getBoundingClientRect(),size=Math.max(rect.width,rect.height);r.style.width=r.style.height=size+"px";r.style.left=(e.clientX-rect.left-size/2)+"px";r.style.top=(e.clientY-rect.top-size/2)+"px";b.appendChild(r);setTimeout(()=>r.remove(),600);
 });
-
-
-/* INITIALISATION */
-
-renderProfiles();
-renderFavorites();
-renderMessages();
-
+renderProfiles();renderLive();renderFavorites();renderConversations();renderRequests();renderAdmin();
 </script>
-
 </body>
 </html>
